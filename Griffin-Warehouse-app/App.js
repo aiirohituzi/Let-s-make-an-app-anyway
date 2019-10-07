@@ -12,6 +12,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 // import TabBarExample from './TabBarExample';
 // import createAppContainer from './createAppContainer';
+import Menu from './Menu';
 
 
 class HomeScreen extends React.Component {
@@ -74,7 +75,8 @@ export default function App() {
     //     </Text>
     //   </View>
     // </View>
-    <AppContainer />
+    // <AppContainer />
+    <Menu />
   );
 }
 
