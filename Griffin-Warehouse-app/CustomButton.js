@@ -6,22 +6,18 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const CustomButton = ({ title, buttonColor, titleColor, onPress }) => {
-  let ltitle = title ? title : 'untitled';
-  let lbuttonColor = buttonColor ? buttonColor : '#000';
-  let ltitleColor = titleColor ? titleColor : '#ddd';
-  let lonPress = onPress ? onPress : () => null;
+const CustomButton = ({ title = 'untitled', buttonColor = '#000', titleColor = '#ddd', onPress = () => null }) => {
 
   return (
     <TouchableOpacity style={[
       styles.button,
-      {backgroundColor: lbuttonColor}
+      {backgroundColor: buttonColor}
     ]}
-    onPress={lonPress}>
+    onPress={onPress}>
       <Text style={[
         styles.title,
-        {color: ltitleColor}
-      ]}>{ltitle}</Text>
+        {color: titleColor}
+      ]}>{title}</Text>
     </TouchableOpacity>
   );
 };
