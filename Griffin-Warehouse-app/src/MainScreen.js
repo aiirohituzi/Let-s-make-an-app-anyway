@@ -58,19 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  button: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#dddddd',
-    borderRadius: 5,
-    margin: 5,
-  },
-  title: {      // 적용 안됨
-    fontSize: 30,
-    textAlign: 'center',
-    color: '#ff0000',
-  }
 });
 
 export default Menu;
