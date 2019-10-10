@@ -10,8 +10,8 @@ import {
   SafeAreaView
 } from 'react-native';
 import Constants from 'expo-constants';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+// import { createAppContainer } from 'react-navigation';
+// import { createStackNavigator } from 'react-navigation-stack';
 // import MenuScreen from './src/MenuScreen'
 import CustomButton from './src/CustomButton';
 import DamageCalc from './src/DamageCalc';
@@ -43,7 +43,7 @@ const App = () => {
 
       <View style={styles.navbar}>
         <View style={styles.status}>
-          <Text style={{fontSize: 20, fontWeight: 600}}>메인 화면</Text>
+          <Text style={{fontSize: 20, fontWeight: "600"}}>메인 화면</Text>
         </View>
       </View>
 
@@ -88,10 +88,10 @@ const App = () => {
         <SafeAreaView style={{paddingTop: Constants.statusBarHeight}}>
           <View style={styles.navbar}>
             <TouchableOpacity style={styles.btnBack} onPress={() => setModalVisible(false)}>
-              <Text style={{fontSize: 18, fontWeight: 600}}>뒤로</Text>
+              <Text style={{fontSize: 18, fontWeight: "600"}}>뒤로</Text>
             </TouchableOpacity>
             <View style={styles.status}>
-              <Text style={{fontSize: 20, fontWeight: 600}}>{ screenName }</Text>
+              <Text style={{fontSize: 20, fontWeight: "600"}}>{ screenName }</Text>
             </View>
             <View style={{width: 50}} />
           </View>
