@@ -6,13 +6,17 @@ import {
   Dimensions,
   SafeAreaView,
   TouchableOpacity,
-  TextInput
+  TextInput,
 } from 'react-native';
 import Constants from 'expo-constants';
 
 const DamageCalc = (props) => {
   const [value1, setValue1] = useState('');
-  console.log(props)
+  const [value2, setValue2] = useState('');
+  const [value3, setValue3] = useState('');
+  const [tdoll1, setTdoll1] = useState('P22');
+  const [selectedItem, setSelectedItem] = useState();
+  // console.log(props)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navbar}>
@@ -27,17 +31,126 @@ const DamageCalc = (props) => {
 
       <View style={{padding: '5%'}}>
         <View style={styles.flexRow}>
-          <View style={styles.inputLabelsView}>
-            <Text style={styles.inputLabels}>입력항목 1</Text>
+          <View style={[styles.inputLabelsView, {flex: 3}]}>
+            <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
           </View>
           <TextInput
-            style={styles.inputs}
+            style={[styles.inputs, {flex: 2}]}
             onChangeText={text => setValue1(text)}
             value={value1}
             placeholder="입력창 1"
           />
         </View>
-        <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text>
+        {/* <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text> */}
+        
+        <View style={styles.flexRow}>
+          <View style={[styles.inputLabelsView, {flex: 3}]}>
+            <Text style={styles.inputLabels}>인형 스킬 화력 배율(%) 입력</Text>
+          </View>
+          <TextInput
+            style={[styles.inputs, {flex: 2}]}
+            onChangeText={text => setValue2(text)}
+            value={value2}
+            placeholder="입력창 2"
+          />
+        </View>
+        
+        <View style={styles.flexRow}>
+          <View style={[styles.inputLabelsView, {flex: 3}]}>
+            <Text style={styles.inputLabels}>장비 치명상 입력</Text>
+          </View>
+          <TextInput
+            style={[styles.inputs, {flex: 2}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        
+
+        <View style={styles.titleLabelsView}>
+          <Text style={styles.titleLabels}>화력 버퍼 정보 입력</Text>
+        </View>
+        
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+          </View>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+            <Text style={[styles.inputLabels, {textAlign: 'center'}]}>화력 진형 버프</Text>
+          </View>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+            <Text style={[styles.inputLabels, {textAlign: 'center'}]}>버프 스킬 배율</Text>
+          </View>
+        </View>
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+            <Text style={styles.inputLabels}>인형1</Text>
+          </View>
+          <TextInput
+            style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+          <TextInput
+            style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+            <Text style={styles.inputLabels}>인형2</Text>
+          </View>
+          <TextInput
+            style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+          <TextInput
+            style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+            <Text style={styles.inputLabels}>인형3</Text>
+          </View>
+          <TextInput
+            style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+          <TextInput
+            style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0}]}>
+            <Text style={styles.inputLabels}>인형4</Text>
+          </View>
+          <TextInput
+            style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+          <TextInput
+            style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        
       </View>
     </SafeAreaView>
   );
@@ -54,6 +167,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
   },
   flexRow: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+  flexRowNoMargin: {
     flexDirection: 'row',
   },
   navbar: {
@@ -76,7 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputLabelsView: {
-    flex: 3,
+    // flex: 3,
     height: 40,
 
     borderColor: '#bbb',
@@ -102,7 +219,7 @@ const styles = StyleSheet.create({
     // borderBottomLeftRadius: 5,
   },
   inputs: {
-    flex: 2,
+    // flex: 2,
     textAlign: 'right',
     height: 40,
     paddingRight: 5,
@@ -111,6 +228,42 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
+  },
+
+  titleLabelsView: {
+    // flex: 3,
+    height: 40,
+
+    borderColor: '#bbb',
+    borderWidth: 1,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    backgroundColor: '#bbb',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  titleLabels: {
+    // flex: 3,
+    // height: 40,
+    // lineHeight: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    textAlign: 'center',
+
+    // borderColor: 'gray',
+    // borderWidth: 1,
+    // borderTopLeftRadius: 5,
+    // borderBottomLeftRadius: 5,
+  },
+  inputsMiddle: {
+    flex: 2,
+    textAlign: 'right',
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderColor: '#bbb',
+    borderWidth: 1,
+    borderRightWidth: 0,
   }
 });
 
