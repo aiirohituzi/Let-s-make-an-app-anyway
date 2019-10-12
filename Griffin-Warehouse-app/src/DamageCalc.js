@@ -68,23 +68,22 @@ const DamageCalc = (props) => {
         </View>
         
 
-        <View style={styles.titleLabelsView}>
-          <Text style={styles.titleLabels}>화력 버퍼 정보 입력</Text>
-        </View>
-        
+        <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+          <Text style={styles.baseLabelsAlignCenter}>화력 버퍼 정보 입력</Text>
+        </View>        
         <View style={styles.flexRowNoMargin}>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
           </View>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
-            <Text style={[styles.inputLabels, {textAlign: 'center'}]}>화력 진형 버프</Text>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>화력 진형 버프</Text>
           </View>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
-            <Text style={[styles.inputLabels, {textAlign: 'center'}]}>버프 스킬 배율</Text>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>버프 스킬 배율</Text>
           </View>
         </View>
         <View style={styles.flexRowNoMargin}>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
-            <Text style={styles.inputLabels}>인형1</Text>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>인형1</Text>
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
@@ -100,8 +99,8 @@ const DamageCalc = (props) => {
           />
         </View>
         <View style={styles.flexRowNoMargin}>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
-            <Text style={styles.inputLabels}>인형2</Text>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>인형2</Text>
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
@@ -117,8 +116,8 @@ const DamageCalc = (props) => {
           />
         </View>
         <View style={styles.flexRowNoMargin}>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
-            <Text style={styles.inputLabels}>인형3</Text>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>인형3</Text>
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
@@ -134,8 +133,8 @@ const DamageCalc = (props) => {
           />
         </View>
         <View style={styles.flexRowNoMargin}>
-          <View style={[styles.inputLabelsView, {flex: 1, borderTopLeftRadius: 0}]}>
-            <Text style={styles.inputLabels}>인형4</Text>
+          <View style={[styles.baseLabelsView, styles.radiusLeftEndLine, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignRight}>인형4</Text>
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
@@ -230,25 +229,36 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
   },
 
-  titleLabelsView: {
+  baseLabelsView: {
     // flex: 3,
     height: 40,
 
     borderColor: '#bbb',
     borderWidth: 1,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
     backgroundColor: '#bbb',
     alignItems: 'stretch',
     justifyContent: 'center',
   },
-  titleLabels: {
+  baseLabelsAlignCenter: {
     // flex: 3,
     // height: 40,
     // lineHeight: 40,
     paddingRight: 5,
     paddingLeft: 5,
     textAlign: 'center',
+
+    // borderColor: 'gray',
+    // borderWidth: 1,
+    // borderTopLeftRadius: 5,
+    // borderBottomLeftRadius: 5,
+  },
+  baseLabelsAlignRight: {
+    // flex: 3,
+    // height: 40,
+    // lineHeight: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    textAlign: 'right',
 
     // borderColor: 'gray',
     // borderWidth: 1,
@@ -264,6 +274,13 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderWidth: 1,
     borderRightWidth: 0,
+  },
+  radiusTitle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  radiusLeftEndLine: {
+    borderBottomLeftRadius: 5,
   }
 });
 
