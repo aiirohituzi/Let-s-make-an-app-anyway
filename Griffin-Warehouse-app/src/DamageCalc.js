@@ -11,11 +11,21 @@ import {
 import Constants from 'expo-constants';
 
 const DamageCalc = (props) => {
-  const [value1, setValue1] = useState('');
-  const [value2, setValue2] = useState('');
-  const [value3, setValue3] = useState('');
-  const [tdoll1, setTdoll1] = useState('P22');
-  const [selectedItem, setSelectedItem] = useState();
+  const [tdollAtk, setTdollAtk] = useState('');
+  const [tdollSkill, setTdollSkill] = useState('');
+  const [equipCritical, setEquipCritical] = useState('');
+  
+  const [buffer1Buff, setBuffer1Buff] = useState('');
+  const [buffer2Buff, setBuffer2Buff] = useState('');
+  const [buffer3Buff, setBuffer3Buff] = useState('');
+  const [buffer4Buff, setBuffer4Buff] = useState('');
+  const [buffer1Skill, setBuffer1Skill] = useState('');
+  const [buffer2Skill, setBuffer2Skill] = useState('');
+  const [buffer3Skill, setBuffer3Skill] = useState('');
+  const [buffer4Skill, setBuffer4Skill] = useState('');
+  
+  const [armor, setArmor] = useState('');
+  const [critical, setCritical] = useState('');
   // console.log(props)
   return (
     <SafeAreaView style={styles.container}>
@@ -36,8 +46,8 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputs, {flex: 2}]}
-            onChangeText={text => setValue1(text)}
-            value={value1}
+            onChangeText={text => setTdollAtk(text)}
+            value={tdollAtk}
             placeholder="입력창 1"
           />
         </View>
@@ -49,8 +59,8 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputs, {flex: 2}]}
-            onChangeText={text => setValue2(text)}
-            value={value2}
+            onChangeText={text => setTdollSkill(text)}
+            value={tdollSkill}
             placeholder="입력창 2"
           />
         </View>
@@ -61,8 +71,8 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputs, {flex: 2}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setEquipCritical(text)}
+            value={equipCritical}
             placeholder="입력창 3"
           />
         </View>
@@ -87,14 +97,14 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer1Buff(text)}
+            value={buffer1Buff}
             placeholder="입력창 3"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer1Skill(text)}
+            value={buffer1Skill}
             placeholder="입력창 3"
           />
         </View>
@@ -104,14 +114,14 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer2Buff(text)}
+            value={buffer2Buff}
             placeholder="입력창 3"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer2Skill(text)}
+            value={buffer2Skill}
             placeholder="입력창 3"
           />
         </View>
@@ -121,14 +131,14 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer3Buff(text)}
+            value={buffer3Buff}
             placeholder="입력창 3"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer3Skill(text)}
+            value={buffer3Skill}
             placeholder="입력창 3"
           />
         </View>
@@ -138,14 +148,14 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer4Buff(text)}
+            value={buffer4Buff}
             placeholder="입력창 3"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setBuffer4Skill(text)}
+            value={buffer4Skill}
             placeholder="입력창 3"
           />
         </View>
@@ -157,8 +167,8 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputs, {flex: 2}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setArmor(text)}
+            value={armor}
             placeholder="입력창 3"
           />
         </View>
@@ -169,8 +179,8 @@ const DamageCalc = (props) => {
           </View>
           <TextInput
             style={[styles.inputs, {flex: 2}]}
-            onChangeText={text => setValue3(text)}
-            value={value3}
+            onChangeText={text => setCritical(text)}
+            value={critical}
             placeholder="입력창 3"
           />
         </View>
