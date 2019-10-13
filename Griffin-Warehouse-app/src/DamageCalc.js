@@ -24,7 +24,7 @@ const DamageCalc = (props) => {
           <Text style={{fontSize: 18, fontWeight: "600"}}>메뉴</Text>
         </TouchableOpacity>
         <View style={styles.status}>
-          <Text style={{fontSize: 20, fontWeight: "600"}}>화면3</Text>
+          <Text style={{fontSize: 20, fontWeight: "600"}}>데미지 계산기</Text>
         </View>
         <View style={{width: 50}} />
       </View>
@@ -70,15 +70,15 @@ const DamageCalc = (props) => {
 
         <View style={[styles.baseLabelsView, styles.radiusTitle]}>
           <Text style={styles.baseLabelsAlignCenter}>화력 버퍼 정보 입력</Text>
-        </View>        
+        </View>
         <View style={styles.flexRowNoMargin}>
           <View style={[styles.baseLabelsView, {flex: 1}]}>
           </View>
           <View style={[styles.baseLabelsView, {flex: 1}]}>
-            <Text style={styles.baseLabelsAlignRight}>화력 진형 버프</Text>
+            <Text style={styles.baseLabelsAlignCenter}>화력 진형 버프</Text>
           </View>
           <View style={[styles.baseLabelsView, {flex: 1}]}>
-            <Text style={styles.baseLabelsAlignRight}>버프 스킬 배율</Text>
+            <Text style={styles.baseLabelsAlignCenter}>버프 스킬 배율</Text>
           </View>
         </View>
         <View style={styles.flexRowNoMargin}>
@@ -132,8 +132,8 @@ const DamageCalc = (props) => {
             placeholder="입력창 3"
           />
         </View>
-        <View style={styles.flexRowNoMargin}>
-          <View style={[styles.baseLabelsView, styles.radiusLeftEndLine, {flex: 1}]}>
+        <View style={styles.flexRow}>
+          <View style={[styles.baseLabelsView, {flex: 1, borderBottomLeftRadius: 5}]}>
             <Text style={styles.baseLabelsAlignRight}>인형4</Text>
           </View>
           <TextInput
@@ -150,6 +150,66 @@ const DamageCalc = (props) => {
           />
         </View>
         
+        
+        <View style={styles.flexRow}>
+          <View style={[styles.inputLabelsView, {flex: 3}]}>
+            <Text style={styles.inputLabels}>장갑 적용</Text>
+          </View>
+          <TextInput
+            style={[styles.inputs, {flex: 2}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+        
+        <View style={styles.flexRow}>
+          <View style={[styles.inputLabelsView, {flex: 3}]}>
+            <Text style={styles.inputLabels}>치명타 적용 (치명상 배율(%) 입력)</Text>
+          </View>
+          <TextInput
+            style={[styles.inputs, {flex: 2}]}
+            onChangeText={text => setValue3(text)}
+            value={value3}
+            placeholder="입력창 3"
+          />
+        </View>
+
+
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.baseLabelsView, {flex: 1, borderTopLeftRadius: 5}]}>
+          </View>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignCenter}>1링크</Text>
+          </View>
+          <View style={[styles.baseLabelsView, {flex: 1, borderTopRightRadius: 5}]}>
+            <Text style={styles.baseLabelsAlignCenter}>5링크</Text>
+          </View>
+        </View>
+        
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.baseLabelsView, {flex: 1}]}>
+            <Text style={styles.baseLabelsAlignCenter}>최소데미지</Text>
+          </View>
+          <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
+            <Text style={styles.baseLabelsAlignCenter}></Text>
+          </View>
+          <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0}]}>
+            <Text style={styles.baseLabelsAlignCenter}></Text>
+          </View>
+        </View>
+        
+        <View style={styles.flexRowNoMargin}>
+          <View style={[styles.baseLabelsView, {flex: 1, borderBottomLeftRadius: 5}]}>
+            <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
+          </View>
+          <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
+            <Text style={styles.baseLabelsAlignCenter}></Text>
+          </View>
+          <View style={[styles.resultLabelsView, {flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0}]}>
+            <Text style={styles.baseLabelsAlignCenter}></Text>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -239,6 +299,16 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
   },
+  resultLabelsView: {
+    // flex: 3,
+    height: 40,
+
+    borderColor: '#bbb',
+    borderWidth: 1,
+    backgroundColor: '#ddd',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
   baseLabelsAlignCenter: {
     // flex: 3,
     // height: 40,
@@ -278,9 +348,6 @@ const styles = StyleSheet.create({
   radiusTitle: {
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-  },
-  radiusLeftEndLine: {
-    borderBottomLeftRadius: 5,
   }
 });
 
