@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -45,7 +45,17 @@ const DamageCalc = (props) => {
   const [armor, setArmor] = useState('');
   const [criticalOn, setCriticalOn] = useState(false);
   const [critical, setCritical] = useState('');
-  // console.log(props)
+
+  const [finalStatMin, setFinalStatMin] = useState(0);
+  const [finalStatMax, setFinalStatMax] = useState(0);
+
+  useEffect(() => {
+    sum_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
+    sum_skill = ((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) * (1 + (fairySkill / 100)) - 1) * 100;
+    console.log('buff : ' + sum_buff);
+    console.log('skill : ' + sum_skill.toFixed(4));
+  })
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -327,10 +337,10 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최소데미지</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignCenter}></Text>
+              <Text style={styles.baseLabelsAlignRight}>{finalStatMin}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignCenter}></Text>
+              <Text style={styles.baseLabelsAlignRight}>{finalStatMin * 5}</Text>
             </View>
           </View>
           
@@ -339,10 +349,10 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignCenter}></Text>
+              <Text style={styles.baseLabelsAlignRight}>{finalStatMax}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignCenter}></Text>
+              <Text style={styles.baseLabelsAlignRight}>{finalStatMax * 5}</Text>
             </View>
           </View>
         </View>
