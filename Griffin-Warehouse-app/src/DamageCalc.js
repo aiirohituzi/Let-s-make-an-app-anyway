@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TextInput,
+  Switch,
 } from 'react-native';
 import Constants from 'expo-constants';
 
@@ -24,7 +25,9 @@ const DamageCalc = (props) => {
   const [buffer3Skill, setBuffer3Skill] = useState('');
   const [buffer4Skill, setBuffer4Skill] = useState('');
   
+  const [armorOn, setArmorOn] = useState(false);
   const [armor, setArmor] = useState('');
+  const [criticalOn, setCriticalOn] = useState(false);
   const [critical, setCritical] = useState('');
   // console.log(props)
   return (
@@ -48,7 +51,7 @@ const DamageCalc = (props) => {
             style={[styles.inputs, {flex: 2}]}
             onChangeText={text => setTdollAtk(text)}
             value={tdollAtk}
-            placeholder="입력창 1"
+            placeholder="화력(호감도포함)"
           />
         </View>
         {/* <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text> */}
@@ -61,7 +64,7 @@ const DamageCalc = (props) => {
             style={[styles.inputs, {flex: 2}]}
             onChangeText={text => setTdollSkill(text)}
             value={tdollSkill}
-            placeholder="입력창 2"
+            placeholder="스킬 배율"
           />
         </View>
         
@@ -73,7 +76,7 @@ const DamageCalc = (props) => {
             style={[styles.inputs, {flex: 2}]}
             onChangeText={text => setEquipCritical(text)}
             value={equipCritical}
-            placeholder="입력창 3"
+            placeholder="장비 치명상"
           />
         </View>
         
@@ -99,13 +102,13 @@ const DamageCalc = (props) => {
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
             onChangeText={text => setBuffer1Buff(text)}
             value={buffer1Buff}
-            placeholder="입력창 3"
+            placeholder="인형1 진형버프"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
             onChangeText={text => setBuffer1Skill(text)}
             value={buffer1Skill}
-            placeholder="입력창 3"
+            placeholder="인형1 스킬배율"
           />
         </View>
         <View style={styles.flexRowNoMargin}>
@@ -116,13 +119,13 @@ const DamageCalc = (props) => {
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
             onChangeText={text => setBuffer2Buff(text)}
             value={buffer2Buff}
-            placeholder="입력창 3"
+            placeholder="인형2 진형버프"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
             onChangeText={text => setBuffer2Skill(text)}
             value={buffer2Skill}
-            placeholder="입력창 3"
+            placeholder="인형2 스킬배율"
           />
         </View>
         <View style={styles.flexRowNoMargin}>
@@ -133,13 +136,13 @@ const DamageCalc = (props) => {
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
             onChangeText={text => setBuffer3Buff(text)}
             value={buffer3Buff}
-            placeholder="입력창 3"
+            placeholder="인형3 진형버프"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
             onChangeText={text => setBuffer3Skill(text)}
             value={buffer3Skill}
-            placeholder="입력창 3"
+            placeholder="인형3 스킬배율"
           />
         </View>
         <View style={styles.flexRow}>
@@ -150,38 +153,54 @@ const DamageCalc = (props) => {
             style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
             onChangeText={text => setBuffer4Buff(text)}
             value={buffer4Buff}
-            placeholder="입력창 3"
+            placeholder="인형4 진형버프"
           />
           <TextInput
             style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
             onChangeText={text => setBuffer4Skill(text)}
             value={buffer4Skill}
-            placeholder="입력창 3"
+            placeholder="인형4 스킬배율"
           />
         </View>
         
         
         <View style={styles.flexRow}>
+          <View style={{justifyContent: 'center', marginRight: 5}}>
+            <Switch
+              onChange={() => setArmorOn(!armorOn)}
+              value={armorOn}
+            />
+          </View>
           <View style={[styles.inputLabelsView, {flex: 3}]}>
             <Text style={styles.inputLabels}>장갑 적용</Text>
           </View>
           <TextInput
-            style={[styles.inputs, {flex: 2}]}
+            style={[styles.inputs, {flex: 1}]}
             onChangeText={text => setArmor(text)}
             value={armor}
-            placeholder="입력창 3"
+            placeholder="적 장갑"
+            editable={armorOn}
+            backgroundColor={armorOn ? '#eee' : '#ddd'}
           />
         </View>
         
         <View style={styles.flexRow}>
+          <View style={{justifyContent: 'center', marginRight: 5}}>
+            <Switch
+              onChange={() => setCriticalOn(!criticalOn)}
+              value={criticalOn}
+            />
+          </View>
           <View style={[styles.inputLabelsView, {flex: 3}]}>
             <Text style={styles.inputLabels}>치명타 적용 (치명상 배율(%) 입력)</Text>
           </View>
           <TextInput
-            style={[styles.inputs, {flex: 2}]}
+            style={[styles.inputs, {flex: 1}]}
             onChangeText={text => setCritical(text)}
             value={critical}
-            placeholder="입력창 3"
+            placeholder="인형 치명상"
+            editable={criticalOn}
+            backgroundColor={criticalOn ? '#eee' : '#ddd'}
           />
         </View>
 
