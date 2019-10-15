@@ -43,16 +43,16 @@ const DamageCalc = (props) => {
   ];
   
   const [armorOn, setArmorOn] = useState(false);
-  const [armor, setArmor] = useState('');
+  const [armor, setArmor] = useState(0);
   const [criticalOn, setCriticalOn] = useState(false);
-  const [critical, setCritical] = useState('');
+  const [critical, setCritical] = useState(150);
 
   const [finalStatMin, setFinalStatMin] = useState(0);
   const [finalStatMax, setFinalStatMax] = useState(0);
 
   useEffect(() => {
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
-    let calc_skill = (((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) * (1 + (fairySkill / 100)) - 1) * 100).toFixed(4);
+    let calc_skill = (((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) - 1) * 100).toFixed(4);
     
     let calc_fairyPassive = fairyPassive[fairySelected].buff;
 
@@ -267,14 +267,14 @@ const DamageCalc = (props) => {
           <View style={styles.flexRow}>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0, borderBottomLeftRadius: 5}]}
-              onChangeText={text => setBuffer1Buff(text)}
-              value={buffer1Buff}
+              onChangeText={text => setFairyStrBuff(text)}
+              value={fairyStrBuff}
               placeholder="요정 진형버프"
             />
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-              onChangeText={text => setBuffer1Buff(text)}
-              value={buffer1Buff}
+              onChangeText={text => setFairyCriticalBuff(text)}
+              value={fairyCriticalBuff}
               placeholder="요정 치명상"
             />
             <TouchableHighlight
@@ -287,8 +287,8 @@ const DamageCalc = (props) => {
             </TouchableHighlight>
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
-              onChangeText={text => setBuffer1Skill(text)}
-              value={buffer1Skill}
+              onChangeText={text => setFairySkill(text)}
+              value={fairySkill}
               placeholder="요정 스킬배율"
             />
           </View>
