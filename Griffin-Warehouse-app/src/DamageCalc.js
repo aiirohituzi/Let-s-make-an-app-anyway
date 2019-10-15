@@ -13,6 +13,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import Constants from 'expo-constants';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const DamageCalc = (props) => {
   const [tdollAtk, setTdollAtk] = useState('');
@@ -50,10 +51,22 @@ const DamageCalc = (props) => {
   const [finalStatMax, setFinalStatMax] = useState(0);
 
   useEffect(() => {
-    sum_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
-    sum_skill = ((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) * (1 + (fairySkill / 100)) - 1) * 100;
-    console.log('buff : ' + sum_buff);
-    console.log('skill : ' + sum_skill.toFixed(4));
+    let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
+    let calc_skill = (((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) * (1 + (fairySkill / 100)) - 1) * 100).toFixed(4);
+    
+    let calc_fairyPassive = fairyPassive[fairySelected].buff;
+
+    let calc_armor = armorOn ? armor : 0
+    let calc_critical = criticalOn ?
+                        ((critical / 100) * (1 + (fairyCriticalBuff / 100))) + (equipCritical / 100)
+                        : 1;
+
+    let calc_fairySkill = fairySkill ? fairySkill : 0
+
+    let finalStat = Math.ceil(tdollAtk * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (tdollSkill / 100)) * (1 + (calc_fairySkill / 100))
+
+    setFinalStatMin(((finalStat * 0.85) - calc_armor) * calc_critical);
+    setFinalStatMax(((finalStat * 1.15) - calc_armor) * calc_critical);
   })
 
   return (
@@ -61,7 +74,7 @@ const DamageCalc = (props) => {
       <ScrollView>
         <View style={styles.navbar}>
           <TouchableOpacity style={styles.btnMenu} onPress={() => props.navigation.openDrawer()}>
-            <Text style={{fontSize: 18, fontWeight: "600"}}>메뉴</Text>
+            <Text style={{fontSize: 18, fontWeight: "600"}}><Icon name="ios-menu" size={30} color="#555" /></Text>
           </TouchableOpacity>
           <View style={styles.status}>
             <Text style={{fontSize: 20, fontWeight: "600"}}>데미지 계산기</Text>
@@ -337,10 +350,10 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최소데미지</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{finalStatMin}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin)}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{finalStatMin * 5}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin * 5)}</Text>
             </View>
           </View>
           
@@ -349,10 +362,10 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{finalStatMax}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax)}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{finalStatMax * 5}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax * 5)}</Text>
             </View>
           </View>
         </View>
