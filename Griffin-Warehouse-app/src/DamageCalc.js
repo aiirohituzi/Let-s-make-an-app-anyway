@@ -52,18 +52,18 @@ const DamageCalc = (props) => {
 
   useEffect(() => {
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
-    let calc_skill = (((1 + (parseInt(buffer1Skill) / 100)) * (1 + (parseInt(buffer2Skill) / 100)) * (1 + (parseInt(buffer3Skill) / 100)) * (1 + (parseInt(buffer4Skill) / 100)) - 1) * 100).toFixed(4);
+    let calc_skill = (((1 + (parseInt(buffer1Skill ? buffer1Skill : 0) / 100)) * (1 + (parseInt(buffer2Skill ? buffer2Skill : 0) / 100)) * (1 + (parseInt(buffer3Skill ? buffer3Skill : 0) / 100)) * (1 + (parseInt(buffer4Skill ? buffer4Skill : 0) / 100)) - 1) * 100).toFixed(4);
     
     let calc_fairyPassive = fairyPassive[fairySelected].buff;
 
-    let calc_armor = armorOn ? parseInt(armor) : 0
+    let calc_armor = armorOn ? parseInt(armor ? armor : 0) : 0
     let calc_critical = criticalOn ?
-                        ((parseInt(critical) / 100) * (1 + (parseInt(fairyCriticalBuff) / 100))) + (parseInt(equipCritical) / 100)
+                        ((parseInt(critical ? critical : 0) / 100) * (1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100))) + (parseInt(equipCritical ? equipCritical : 0) / 100)
                         : 1;
 
     let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0
 
-    let finalStat = Math.ceil(parseInt(tdollAtk) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill) / 100)) * (1 + (calc_fairySkill / 100))
+    let finalStat = Math.ceil(parseInt(tdollAtk ? tdollAtk : 0) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill ? tdollSkill : 0) / 100)) * (1 + (calc_fairySkill / 100))
 
     setFinalStatMin(((finalStat * 0.85) - calc_armor) * calc_critical);
     setFinalStatMax(((finalStat * 1.15) - calc_armor) * calc_critical);
