@@ -92,6 +92,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setTdollAtk(text)}
               value={tdollAtk}
               placeholder="화력(호감도포함)"
+              keyboardType="numeric"
             />
           </View>
           {/* <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text> */}
@@ -105,6 +106,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setTdollSkill(text)}
               value={tdollSkill}
               placeholder="스킬 배율"
+              keyboardType="numeric"
             />
           </View>
           
@@ -117,6 +119,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setEquipCritical(text)}
               value={equipCritical}
               placeholder="장비 치명상"
+              keyboardType="numeric"
             />
           </View>
           
@@ -143,12 +146,14 @@ const DamageCalc = (props) => {
               onChangeText={text => setBuffer1Buff(text)}
               value={buffer1Buff}
               placeholder="인형1 진형버프"
+              keyboardType="numeric"
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
               onChangeText={text => setBuffer1Skill(text)}
               value={buffer1Skill}
               placeholder="인형1 스킬배율"
+              keyboardType="numeric"
             />
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -160,12 +165,14 @@ const DamageCalc = (props) => {
               onChangeText={text => setBuffer2Buff(text)}
               value={buffer2Buff}
               placeholder="인형2 진형버프"
+              keyboardType="numeric"
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
               onChangeText={text => setBuffer2Skill(text)}
               value={buffer2Skill}
               placeholder="인형2 스킬배율"
+              keyboardType="numeric"
             />
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -177,12 +184,14 @@ const DamageCalc = (props) => {
               onChangeText={text => setBuffer3Buff(text)}
               value={buffer3Buff}
               placeholder="인형3 진형버프"
+              keyboardType="numeric"
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
               onChangeText={text => setBuffer3Skill(text)}
               value={buffer3Skill}
               placeholder="인형3 스킬배율"
+              keyboardType="numeric"
             />
           </View>
           <View style={styles.flexRow}>
@@ -194,12 +203,14 @@ const DamageCalc = (props) => {
               onChangeText={text => setBuffer4Buff(text)}
               value={buffer4Buff}
               placeholder="인형4 진형버프"
+              keyboardType="numeric"
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
               onChangeText={text => setBuffer4Skill(text)}
               value={buffer4Skill}
               placeholder="인형4 스킬배율"
+              keyboardType="numeric"
             />
           </View>
           
@@ -270,12 +281,14 @@ const DamageCalc = (props) => {
               onChangeText={text => setFairyStrBuff(text)}
               value={fairyStrBuff}
               placeholder="요정 진형버프"
+              keyboardType="numeric"
             />
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
               onChangeText={text => setFairyCriticalBuff(text)}
               value={fairyCriticalBuff}
               placeholder="요정 치명상"
+              keyboardType="numeric"
             />
             <TouchableHighlight
               underlayColor="#ddd"
@@ -290,6 +303,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setFairySkill(text)}
               value={fairySkill}
               placeholder="요정 스킬배율"
+              keyboardType="numeric"
             />
           </View>
           
@@ -308,6 +322,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setArmor(text)}
               value={armor}
               placeholder="적 장갑"
+              keyboardType="numeric"
               editable={armorOn}
               backgroundColor={armorOn ? '#eee' : '#ddd'}
             />
@@ -328,6 +343,7 @@ const DamageCalc = (props) => {
               onChangeText={text => setCritical(text)}
               value={critical}
               placeholder="인형 치명상"
+              keyboardType="numeric"
               editable={criticalOn}
               backgroundColor={criticalOn ? '#eee' : '#ddd'}
             />
