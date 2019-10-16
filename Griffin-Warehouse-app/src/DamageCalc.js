@@ -11,6 +11,7 @@ import {
   ScrollView,
   Modal,
   TouchableHighlight,
+  Slider,
 } from 'react-native';
 import Constants from 'expo-constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -41,6 +42,7 @@ const DamageCalc = (props) => {
     {id: 3, name: '격양계', buff: 10},
     {id: 4, name: '돌격계', buff: 0},
   ];
+  const [fairyPassiveRageStack, setFairyPassiveRageStack] = useState(0);
   
   const [armorOn, setArmorOn] = useState(false);
   const [armor, setArmor] = useState('0');
@@ -306,6 +308,29 @@ const DamageCalc = (props) => {
               keyboardType="numeric"
             />
           </View>
+
+          {fairySelected === 3 ?
+            <View style={styles.flexRow}>
+              <View style={{flex: 1, justifyContent: 'center'}}>
+                <Text style={{textAlign: 'center'}}>
+                  격양계
+                </Text>
+              </View>
+              <Slider
+                style={{flex: 3}}
+                minimumValue={0}
+                maximumValue={3}
+                step={1}
+                value={fairyPassiveRageStack}
+                onSlidingComplete={(value) => setFairyPassiveRageStack(value)}
+              />
+              <View style={{flex: 1, justifyContent: 'center'}}>
+                <Text style={{textAlign: 'center'}}>
+                  {fairyPassiveRageStack} 스택
+                </Text>
+              </View>
+            </View>
+          : null}
           
           <View style={styles.flexRow}>
             <View style={{justifyContent: 'center', marginRight: 5}}>
