@@ -43,27 +43,27 @@ const DamageCalc = (props) => {
   ];
   
   const [armorOn, setArmorOn] = useState(false);
-  const [armor, setArmor] = useState(0);
+  const [armor, setArmor] = useState('0');
   const [criticalOn, setCriticalOn] = useState(false);
-  const [critical, setCritical] = useState(150);
+  const [critical, setCritical] = useState('150');
 
   const [finalStatMin, setFinalStatMin] = useState(0);
   const [finalStatMax, setFinalStatMax] = useState(0);
 
   useEffect(() => {
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
-    let calc_skill = (((1 + (buffer1Skill / 100)) * (1 + (buffer2Skill / 100)) * (1 + (buffer3Skill / 100)) * (1 + (buffer4Skill / 100)) - 1) * 100).toFixed(4);
+    let calc_skill = (((1 + (parseInt(buffer1Skill) / 100)) * (1 + (parseInt(buffer2Skill) / 100)) * (1 + (parseInt(buffer3Skill) / 100)) * (1 + (parseInt(buffer4Skill) / 100)) - 1) * 100).toFixed(4);
     
     let calc_fairyPassive = fairyPassive[fairySelected].buff;
 
-    let calc_armor = armorOn ? armor : 0
+    let calc_armor = armorOn ? parseInt(armor) : 0
     let calc_critical = criticalOn ?
-                        ((critical / 100) * (1 + (fairyCriticalBuff / 100))) + (equipCritical / 100)
+                        ((parseInt(critical) / 100) * (1 + (parseInt(fairyCriticalBuff) / 100))) + (parseInt(equipCritical) / 100)
                         : 1;
 
-    let calc_fairySkill = fairySkill ? fairySkill : 0
+    let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0
 
-    let finalStat = Math.ceil(tdollAtk * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (tdollSkill / 100)) * (1 + (calc_fairySkill / 100))
+    let finalStat = Math.ceil(parseInt(tdollAtk) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill) / 100)) * (1 + (calc_fairySkill / 100))
 
     setFinalStatMin(((finalStat * 0.85) - calc_armor) * calc_critical);
     setFinalStatMax(((finalStat * 1.15) - calc_armor) * calc_critical);
