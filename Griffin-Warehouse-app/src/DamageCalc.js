@@ -182,7 +182,7 @@ const DamageCalc = (props) => {
                   <Text
                     style={{
                       textAlign: 'center',
-                      fontWeight: 600,
+                      fontWeight: '600',
                       fontSize: 20,
                     }}>
                     {modalTitle}
@@ -205,6 +205,7 @@ const DamageCalc = (props) => {
                   : itemList.map(data => {
                       return (
                         <TouchableHighlight
+                          key={data.id}
                           underlayColor="#ddd"
                           style={styles.selectItem}
                           onPress={() => {
@@ -250,6 +251,7 @@ const DamageCalc = (props) => {
               value={buffer1Buff}
               placeholder="인형1 진형버프"
               keyboardType="numeric"
+              editable={selected[0] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
@@ -257,6 +259,7 @@ const DamageCalc = (props) => {
               value={buffer1Skill}
               placeholder="인형1 스킬배율"
               keyboardType="numeric"
+              editable={selected[0] === 1}
             />
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -274,6 +277,7 @@ const DamageCalc = (props) => {
               value={buffer2Buff}
               placeholder="인형2 진형버프"
               keyboardType="numeric"
+              editable={selected[1] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
@@ -281,6 +285,7 @@ const DamageCalc = (props) => {
               value={buffer2Skill}
               placeholder="인형2 스킬배율"
               keyboardType="numeric"
+              editable={selected[1] === 1}
             />
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -298,6 +303,7 @@ const DamageCalc = (props) => {
               value={buffer3Buff}
               placeholder="인형3 진형버프"
               keyboardType="numeric"
+              editable={selected[2] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
@@ -305,12 +311,13 @@ const DamageCalc = (props) => {
               value={buffer3Skill}
               placeholder="인형3 스킬배율"
               keyboardType="numeric"
+              editable={selected[2] === 1}
             />
           </View>
           <View style={styles.flexRow}>
             <TouchableHighlight
               underlayColor="#ddd"
-              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
+              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0, borderBottomLeftRadius: 5}]}
               onPress={() => modalSelectOpen('인형4', tdollAtkBuffer, 4)}>
               <Text style={{ textAlign: 'right' }}>
                 {tdollAtkBuffer[selected[3]].name} ▼
@@ -322,6 +329,7 @@ const DamageCalc = (props) => {
               value={buffer4Buff}
               placeholder="인형4 진형버프"
               keyboardType="numeric"
+              editable={selected[3] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
@@ -329,6 +337,7 @@ const DamageCalc = (props) => {
               value={buffer4Skill}
               placeholder="인형4 스킬배율"
               keyboardType="numeric"
+              editable={selected[3] === 1}
             />
           </View>
           
