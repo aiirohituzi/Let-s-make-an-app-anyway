@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { tdollAtkBuffer } from './data';
 
 const DamageCalc = (props) => {
   const [tdollAtk, setTdollAtk] = useState('');
@@ -30,7 +31,14 @@ const DamageCalc = (props) => {
   const [buffer3Skill, setBuffer3Skill] = useState('');
   const [buffer4Skill, setBuffer4Skill] = useState('');
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalBufferVisible, setModalBufferVisible] = useState(false);
+  const [modalTitle, setModalTitle] = useState('default');
+  const [itemList, setItemList] = useState();
+  const [selected, setSelected] = useState([0, 0, 0, 0]);
+  const [currentSelect, setCurrentSelect] = useState(1);
+
+
+  const [modalFairyVisible, setModalFairyVisible] = useState(false);
   const [fairyStrBuff, setFairyStrBuff] = useState('');
   const [fairyCriticalBuff, setFairyCriticalBuff] = useState('');
   const [fairySelected, setFairySelected] = useState(0);
@@ -51,6 +59,28 @@ const DamageCalc = (props) => {
 
   const [finalStatMin, setFinalStatMin] = useState(0);
   const [finalStatMax, setFinalStatMax] = useState(0);
+
+  
+  const modalSelectOpen = (title, list, current) => {
+    setModalTitle(title);
+    setItemList(list);
+    setCurrentSelect(current - 1);
+    setModalBufferVisible(true);
+  };
+  
+  const modalSelected = id => {
+    let temp = selected;
+    temp[currentSelect] = id;
+    setSelected(temp);
+
+    if (id === 0) {
+      temp = selected;
+      for (let i = currentSelect + 1; i < temp.length; i++) {
+        temp[i] = 0;
+      }
+      setSelected(temp);
+    }
+  };
 
   useEffect(() => {
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
@@ -126,11 +156,77 @@ const DamageCalc = (props) => {
           </View>
           
 
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={modalBufferVisible}>
+            <View
+              style={{
+                flex: 1,
+                padding: 10,
+                paddingTop: Constants.statusBarHeight,
+              }}>
+              <View
+                style={{
+                  height: 60,
+                  flexDirection: 'row',
+                  borderBottomWidth: 2,
+                }}>
+                <View style={{ width: 50 }} />
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      fontWeight: 600,
+                      fontSize: 20,
+                    }}>
+                    {modalTitle}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    width: 50,
+                    height: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onPress={() => setModalBufferVisible(false)}>
+                  <Icon name="ios-close" size={30} color="#555" />
+                </TouchableOpacity>
+              </View>
+              <ScrollView>
+                {!itemList
+                  ? ''
+                  : itemList.map(data => {
+                      return (
+                        <TouchableHighlight
+                          underlayColor="#ddd"
+                          style={styles.selectItem}
+                          onPress={() => {
+                            modalSelected(data.id);
+                            setModalBufferVisible(false);
+                          }}>
+                          <Text style={styles.selectItemText} key={data.id}>
+                            {data.name}
+                          </Text>
+                        </TouchableHighlight>
+                      );
+                    })}
+              </ScrollView>
+            </View>
+          </Modal>
+
           <View style={[styles.baseLabelsView, styles.radiusTitle]}>
             <Text style={styles.baseLabelsAlignCenter}>화력 버퍼 정보 입력</Text>
           </View>
           <View style={styles.flexRowNoMargin}>
             <View style={[styles.baseLabelsView, {flex: 1}]}>
+              <Text style={styles.baseLabelsAlignCenter}>버퍼 인형 선택</Text>
             </View>
             <View style={[styles.baseLabelsView, {flex: 1}]}>
               <Text style={styles.baseLabelsAlignCenter}>화력 진형버프</Text>
@@ -140,9 +236,14 @@ const DamageCalc = (props) => {
             </View>
           </View>
           <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, {flex: 1}]}>
-              <Text style={styles.baseLabelsAlignRight}>인형1</Text>
-            </View>
+            <TouchableHighlight
+              underlayColor="#ddd"
+              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
+              onPress={() => modalSelectOpen('인형1', tdollAtkBuffer, 1)}>
+              <Text style={{ textAlign: 'right' }}>
+                {tdollAtkBuffer[selected[0]].name} ▼
+              </Text>
+            </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
               onChangeText={text => setBuffer1Buff(text)}
@@ -159,9 +260,14 @@ const DamageCalc = (props) => {
             />
           </View>
           <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, {flex: 1}]}>
-              <Text style={styles.baseLabelsAlignRight}>인형2</Text>
-            </View>
+            <TouchableHighlight
+              underlayColor="#ddd"
+              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
+              onPress={() => modalSelectOpen('인형2', tdollAtkBuffer, 2)}>
+              <Text style={{ textAlign: 'right' }}>
+                {tdollAtkBuffer[selected[1]].name} ▼
+              </Text>
+            </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
               onChangeText={text => setBuffer2Buff(text)}
@@ -178,9 +284,14 @@ const DamageCalc = (props) => {
             />
           </View>
           <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, {flex: 1}]}>
-              <Text style={styles.baseLabelsAlignRight}>인형3</Text>
-            </View>
+            <TouchableHighlight
+              underlayColor="#ddd"
+              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
+              onPress={() => modalSelectOpen('인형3', tdollAtkBuffer, 3)}>
+              <Text style={{ textAlign: 'right' }}>
+                {tdollAtkBuffer[selected[2]].name} ▼
+              </Text>
+            </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
               onChangeText={text => setBuffer3Buff(text)}
@@ -197,9 +308,14 @@ const DamageCalc = (props) => {
             />
           </View>
           <View style={styles.flexRow}>
-            <View style={[styles.baseLabelsView, {flex: 1, borderBottomLeftRadius: 5}]}>
-              <Text style={styles.baseLabelsAlignRight}>인형4</Text>
-            </View>
+            <TouchableHighlight
+              underlayColor="#ddd"
+              style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
+              onPress={() => modalSelectOpen('인형4', tdollAtkBuffer, 4)}>
+              <Text style={{ textAlign: 'right' }}>
+                {tdollAtkBuffer[selected[3]].name} ▼
+              </Text>
+            </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
               onChangeText={text => setBuffer4Buff(text)}
@@ -220,7 +336,7 @@ const DamageCalc = (props) => {
           <Modal
             animationType="slide"
             transparent={false}
-            visible={modalVisible}>
+            visible={modalFairyVisible}>
             <View
               style={{
                 flex: 1,
@@ -248,7 +364,7 @@ const DamageCalc = (props) => {
                       style={styles.selectItem}
                       onPress={() => {
                         setFairySelected(data.id);
-                        setModalVisible(false);
+                        setModalFairyVisible(false);
                       }}>
                       <Text style={styles.selectItemText}>
                         {data.name}
@@ -295,7 +411,7 @@ const DamageCalc = (props) => {
             <TouchableHighlight
               underlayColor="#ddd"
               style={[styles.selectsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}
-              onPress={() => setModalVisible(true)}>
+              onPress={() => setModalFairyVisible(true)}>
               <Text style={{ textAlign: 'right' }}>
                 {fairyPassive[fairySelected].name} ▼
               </Text>
@@ -454,6 +570,8 @@ const styles = StyleSheet.create({
   inputLabelsView: {
     // flex: 3,
     height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
 
     borderColor: '#bbb',
     borderWidth: 1,
@@ -468,8 +586,6 @@ const styles = StyleSheet.create({
     // flex: 3,
     // height: 40,
     // lineHeight: 40,
-    paddingRight: 5,
-    paddingLeft: 5,
     textAlign: 'right',
 
     // borderColor: 'gray',
@@ -492,6 +608,8 @@ const styles = StyleSheet.create({
   baseLabelsView: {
     // flex: 3,
     height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
 
     borderColor: '#bbb',
     borderWidth: 1,
@@ -502,6 +620,8 @@ const styles = StyleSheet.create({
   resultLabelsView: {
     // flex: 3,
     height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
 
     borderColor: '#bbb',
     borderWidth: 1,
@@ -513,8 +633,6 @@ const styles = StyleSheet.create({
     // flex: 3,
     // height: 40,
     // lineHeight: 40,
-    paddingRight: 5,
-    paddingLeft: 5,
     textAlign: 'center',
 
     // borderColor: 'gray',
@@ -550,6 +668,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
   },
   selectsView: {
+    flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
     height: 40,
