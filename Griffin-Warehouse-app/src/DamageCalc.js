@@ -292,7 +292,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, selected === 1 ? {flex: 1, borderTopWidth: 0, backgroundColor: '#fff'} : {flex: 1, borderTopWidth: 0, backgroundColor: '#ddd'}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer1Buff(text)}
               value={buffer1Buff}
               placeholder="인형1 진형버프"
@@ -300,7 +300,7 @@ const DamageCalc = (props) => {
               editable={selected[0] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer1Skill(text)}
               value={buffer1Skill}
               placeholder="인형1 스킬배율"
@@ -318,7 +318,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer2Buff(text)}
               value={buffer2Buff}
               placeholder="인형2 진형버프"
@@ -326,7 +326,7 @@ const DamageCalc = (props) => {
               editable={selected[1] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer2Skill(text)}
               value={buffer2Skill}
               placeholder="인형2 스킬배율"
@@ -344,7 +344,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer3Buff(text)}
               value={buffer3Buff}
               placeholder="인형3 진형버프"
@@ -352,7 +352,7 @@ const DamageCalc = (props) => {
               editable={selected[2] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer3Skill(text)}
               value={buffer3Skill}
               placeholder="인형3 스킬배율"
@@ -370,7 +370,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer4Buff(text)}
               value={buffer4Buff}
               placeholder="인형4 진형버프"
@@ -378,7 +378,7 @@ const DamageCalc = (props) => {
               editable={selected[3] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: '#ddd'}]}
               onChangeText={text => setBuffer4Skill(text, 4)}
               value={buffer4Skill}
               placeholder="인형4 스킬배율"
