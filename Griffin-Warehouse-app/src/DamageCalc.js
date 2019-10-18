@@ -26,12 +26,12 @@ const DamageCalc = (props) => {
   const [buffer2Buff, setBuffer2Buff] = useState('');
   const [buffer3Buff, setBuffer3Buff] = useState('');
   const [buffer4Buff, setBuffer4Buff] = useState('');
-  const [bufferBuff, setBufferBuff] = useState(['', '', '', ''])
+  // const [bufferBuff, setBufferBuff] = useState(['', '', '', ''])
   const [buffer1Skill, setBuffer1Skill] = useState('');
   const [buffer2Skill, setBuffer2Skill] = useState('');
   const [buffer3Skill, setBuffer3Skill] = useState('');
   const [buffer4Skill, setBuffer4Skill] = useState('');
-  const [bufferSkill, setBufferSkill] = useState(['', '', '', ''])
+  // const [bufferSkill, setBufferSkill] = useState(['', '', '', ''])
 
   const [modalBufferVisible, setModalBufferVisible] = useState(false);
   const [modalTitle, setModalTitle] = useState('default');
@@ -63,27 +63,46 @@ const DamageCalc = (props) => {
   const [finalStatMax, setFinalStatMax] = useState(0);
 
   
-  const buffDirectInput = (value, current) => {
-    let tempBuff = bufferBuff;
-    tempBuff[current-1] = value;
-    setBufferBuff(tempBuff);
-  }
-  const skillDirectInput = (value, current) => {
-    let tempSkill = bufferSkill;
-    tempSkill[current-1] = value;
-    setBufferSkill(tempSkill);
-  }
+  // const buffDirectInput = (value, current) => {
+  //   let tempBuff = bufferBuff;
+  //   tempBuff[current-1] = value;
+  //   setBufferBuff(tempBuff);
+  //   console.log(bufferBuff);
+  // }
+  // const skillDirectInput = (value, current) => {
+  //   let tempSkill = bufferSkill;
+  //   tempSkill[current-1] = value;
+  //   setBufferSkill(tempSkill);
+  // }
 
   const bufferSelected = id => {
-    let tempBuff = bufferBuff;
-    let tempSkill = bufferSkill;
-    tempBuff[currentSelect] = tdollAtkBuffer[id].buff.toString();
-    tempSkill[currentSelect] = tdollAtkBuffer[id].skill.toString();
-    setBufferBuff(tempBuff);
-    setBufferSkill(tempSkill);
+    // let tempBuff = bufferBuff;
+    // let tempSkill = bufferSkill;
+    // tempBuff[currentSelect] = tdollAtkBuffer[id].buff.toString();
+    // tempSkill[currentSelect] = tdollAtkBuffer[id].skill.toString();
+    // setBufferBuff(tempBuff);
+    // setBufferSkill(tempSkill);
 
-    console.log(bufferBuff)
-    console.log(bufferSkill)
+    switch(currentSelect) {
+      case 0:
+        setBuffer1Buff(tdollAtkBuffer[id].buff.toString())
+        setBuffer1Skill(tdollAtkBuffer[id].skill.toString())
+        break;
+      case 1:
+        setBuffer2Buff(tdollAtkBuffer[id].buff.toString())
+        setBuffer2Skill(tdollAtkBuffer[id].skill.toString())
+        break;
+      case 2:
+        setBuffer3Buff(tdollAtkBuffer[id].buff.toString())
+        setBuffer3Skill(tdollAtkBuffer[id].skill.toString())
+        break;
+      case 3:
+        setBuffer4Buff(tdollAtkBuffer[id].buff.toString())
+        setBuffer4Skill(tdollAtkBuffer[id].skill.toString())
+        break;
+    }
+    // console.log(bufferBuff)
+    // console.log(bufferSkill)
   }
 
   const modalSelectOpen = (title, list, current) => {
@@ -273,17 +292,17 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-              onChangeText={text => buffDirectInput(text, 1)}
-              value={bufferBuff[0]}
+              style={[styles.inputsMiddle, selected === 1 ? {flex: 1, borderTopWidth: 0, backgroundColor: '#fff'} : {flex: 1, borderTopWidth: 0, backgroundColor: '#ddd'}]}
+              onChangeText={text => setBuffer1Buff(text)}
+              value={buffer1Buff}
               placeholder="인형1 진형버프"
               keyboardType="numeric"
               editable={selected[0] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-              onChangeText={text => skillDirectInput(text, 1)}
-              value={bufferSkill[0]}
+              onChangeText={text => setBuffer1Skill(text)}
+              value={buffer1Skill}
               placeholder="인형1 스킬배율"
               keyboardType="numeric"
               editable={selected[0] === 1}
@@ -300,16 +319,16 @@ const DamageCalc = (props) => {
             </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-              onChangeText={text => buffDirectInput(text, 2)}
-              value={bufferBuff[1]}
+              onChangeText={text => setBuffer2Buff(text)}
+              value={buffer2Buff}
               placeholder="인형2 진형버프"
               keyboardType="numeric"
               editable={selected[1] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-              onChangeText={text => skillDirectInput(text, 2)}
-              value={bufferSkill[1]}
+              onChangeText={text => setBuffer2Skill(text)}
+              value={buffer2Skill}
               placeholder="인형2 스킬배율"
               keyboardType="numeric"
               editable={selected[1] === 1}
@@ -326,16 +345,16 @@ const DamageCalc = (props) => {
             </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-              onChangeText={text => buffDirectInput(text, 3)}
-              value={bufferBuff[2]}
+              onChangeText={text => setBuffer3Buff(text)}
+              value={buffer3Buff}
               placeholder="인형3 진형버프"
               keyboardType="numeric"
               editable={selected[2] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}]}
-              onChangeText={text => skillDirectInput(text, 3)}
-              value={bufferSkill[2]}
+              onChangeText={text => setBuffer3Skill(text)}
+              value={buffer3Skill}
               placeholder="인형3 스킬배율"
               keyboardType="numeric"
               editable={selected[2] === 1}
@@ -352,16 +371,16 @@ const DamageCalc = (props) => {
             </TouchableHighlight>
             <TextInput
               style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}]}
-              onChangeText={text => buffDirectInput(text, 4)}
-              value={bufferBuff[3]}
+              onChangeText={text => setBuffer4Buff(text)}
+              value={buffer4Buff}
               placeholder="인형4 진형버프"
               keyboardType="numeric"
               editable={selected[3] === 1}
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}]}
-              onChangeText={text => skillDirectInput(text, 4)}
-              value={bufferSkill[3]}
+              onChangeText={text => setBuffer4Skill(text, 4)}
+              value={buffer4Skill}
               placeholder="인형4 스킬배율"
               keyboardType="numeric"
               editable={selected[3] === 1}
