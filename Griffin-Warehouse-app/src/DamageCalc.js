@@ -147,14 +147,20 @@ const DamageCalc = (props) => {
     
     let calc_fairyPassive = fairyPassive[fairySelected].buff;
 
-    let calc_armor = armorOn ? parseInt(armor ? armor : 0) : 0
+    let calc_armor = armorOn ? parseInt(armor ? armor : 0) : 0;
+    let calc_Px4 = px4On ? 1.5 : 1;
     let calc_critical = criticalOn ?
-                        ((parseInt(critical ? critical : 0) / 100) * (1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100))) + (parseInt(equipCritical ? equipCritical : 0) / 100)
+                        ((parseInt(critical ? critical : 0) / 100) * (1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100)) * calc_Px4) + (parseInt(equipCritical ? equipCritical : 0) / 100)
                         : 1;
+                        
+    console.log(parseInt(critical ? critical : 0) / 100)
+    console.log(1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100))
+    console.log('px4 : ' + calc_Px4)
+    console.log('치합산 : ' + calc_critical)
 
-    let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0
+    let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0;
 
-    let finalStat = Math.ceil(parseInt(tdollAtk ? tdollAtk : 0) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill ? tdollSkill : 0) / 100)) * (1 + (calc_fairySkill / 100))
+    let finalStat = Math.ceil(parseInt(tdollAtk ? tdollAtk : 0) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill ? tdollSkill : 0) / 100)) * (1 + (calc_fairySkill / 100));
 
     setFinalStatMin(((finalStat * 0.85) - calc_armor) * calc_critical);
     setFinalStatMax(((finalStat * 1.15) - calc_armor) * calc_critical);
