@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { tdollAtkBuffer } from './data';
+import { tdollAtkBuffer, specialBuffer } from './data';
 
 const DamageCalc = (props) => {
   const [tdollAtk, setTdollAtk] = useState('');
@@ -59,6 +59,9 @@ const DamageCalc = (props) => {
   const [criticalOn, setCriticalOn] = useState(false);
   const [critical, setCritical] = useState('150');
 
+  const [contenderOn, setContenderOn] = useState(false);
+  const [px4On, setPx4On] = useState(false);
+
   const [finalStatMin, setFinalStatMin] = useState(0);
   const [finalStatMax, setFinalStatMax] = useState(0);
 
@@ -82,23 +85,33 @@ const DamageCalc = (props) => {
     // tempSkill[currentSelect] = tdollAtkBuffer[id].skill.toString();
     // setBufferBuff(tempBuff);
     // setBufferSkill(tempSkill);
+    let buff = tdollAtkBuffer[id].buff.toString();
+    let skill = '0';
+
+    if (id === specialBuffer.Contender) {
+      setContenderOn(true);
+    } else if (id === specialBuffer.Px4Storm) {
+      setPx4On(true);
+    } else {
+      skill = tdollAtkBuffer[id].skill.toString();
+    }
 
     switch(currentSelect) {
       case 0:
-        setBuffer1Buff(tdollAtkBuffer[id].buff.toString())
-        setBuffer1Skill(tdollAtkBuffer[id].skill.toString())
+        setBuffer1Buff(buff);
+        setBuffer1Skill(skill);
         break;
       case 1:
-        setBuffer2Buff(tdollAtkBuffer[id].buff.toString())
-        setBuffer2Skill(tdollAtkBuffer[id].skill.toString())
+        setBuffer2Buff(buff);
+        setBuffer2Skill(skill);
         break;
       case 2:
-        setBuffer3Buff(tdollAtkBuffer[id].buff.toString())
-        setBuffer3Skill(tdollAtkBuffer[id].skill.toString())
+        setBuffer3Buff(buff);
+        setBuffer3Skill(skill);
         break;
       case 3:
-        setBuffer4Buff(tdollAtkBuffer[id].buff.toString())
-        setBuffer4Skill(tdollAtkBuffer[id].skill.toString())
+        setBuffer4Buff(buff);
+        setBuffer4Skill(skill);
         break;
     }
     // console.log(bufferBuff)
@@ -288,7 +301,7 @@ const DamageCalc = (props) => {
               style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
               onPress={() => modalSelectOpen('인형1', tdollAtkBuffer, 1)}>
               <Text style={{ textAlign: 'right' }}>
-                {tdollAtkBuffer[selected[0]].name} ▼
+                {tdollAtkBuffer[selected[0]].name} ▼    
               </Text>
             </TouchableHighlight>
             <TextInput
@@ -569,7 +582,7 @@ const DamageCalc = (props) => {
             </View>
           </View>
           
-          <View style={styles.flexRowNoMargin}>
+          <View style={styles.flexRow}>
             <View style={[styles.baseLabelsView, {flex: 1, borderBottomLeftRadius: 5}]}>
               <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
             </View>
@@ -580,6 +593,35 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax * 5)}</Text>
             </View>
           </View>
+          
+
+          { contenderOn ?
+          (<View style={styles.flexRowNoMargin}>
+            <View style={[styles.baseLabelsView, {flex: 1, borderTopLeftRadius: 5}]}>
+              <Text style={styles.baseLabelsAlignCenter}>최소데미지(컨텐더)</Text>
+            </View>
+            <View style={[styles.resultLabelsView, {flex: 1, borderRightWidth: 0}]}>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin) * 1.4}</Text>
+            </View>
+            <View style={[styles.resultLabelsView, {flex: 1, borderTopRightRadius: 5}]}>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin * 1.4) * 5}</Text>
+            </View>
+          </View>)
+          : null}
+          
+          { contenderOn ?
+          (<View style={styles.flexRowNoMargin}>
+            <View style={[styles.baseLabelsView, {flex: 1, borderBottomLeftRadius: 5}]}>
+              <Text style={styles.baseLabelsAlignCenter}>최대데미지(컨텐더)</Text>
+            </View>
+            <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax) * 1.4}</Text>
+            </View>
+            <View style={[styles.resultLabelsView, {flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0}]}>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax * 1.4) * 5}</Text>
+            </View>
+          </View>)
+          : null}
         </View>
       </ScrollView>
     </SafeAreaView>

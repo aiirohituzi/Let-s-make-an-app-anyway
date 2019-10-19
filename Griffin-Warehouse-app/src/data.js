@@ -46,3 +46,9 @@ export var tdollAtkBuffer = [
   // {id: 44, name: '', buff: 0, skill: 0},
   // {id: 45, name: '', buff: 0, skill: 0},
 ]
+
+export var specialBuffer = {
+  Contender: 6,
+  Px4Storm: 33,
+  ColtPython: 42
+}
