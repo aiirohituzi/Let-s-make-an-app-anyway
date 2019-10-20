@@ -26,12 +26,14 @@ const DamageCalc = (props) => {
   const [buffer2Buff, setBuffer2Buff] = useState('');
   const [buffer3Buff, setBuffer3Buff] = useState('');
   const [buffer4Buff, setBuffer4Buff] = useState('');
-  // const [bufferBuff, setBufferBuff] = useState(['', '', '', ''])
   const [buffer1Skill, setBuffer1Skill] = useState('');
   const [buffer2Skill, setBuffer2Skill] = useState('');
   const [buffer3Skill, setBuffer3Skill] = useState('');
   const [buffer4Skill, setBuffer4Skill] = useState('');
-  // const [bufferSkill, setBufferSkill] = useState(['', '', '', ''])
+  const [bufferSelected1, setBufferSelected1] = useState(0);
+  const [bufferSelected2, setBufferSelected2] = useState(0);
+  const [bufferSelected3, setBufferSelected3] = useState(0);
+  const [bufferSelected4, setBufferSelected4] = useState(0);
 
   const [modalBufferVisible, setModalBufferVisible] = useState(false);
   const [modalTitle, setModalTitle] = useState('default');
@@ -86,32 +88,32 @@ const DamageCalc = (props) => {
     // setBufferBuff(tempBuff);
     // setBufferSkill(tempSkill);
     let buff = tdollAtkBuffer[id].buff.toString();
-    let skill = '0';
+    let skill = tdollAtkBuffer[id].skill.toString();;
 
-    if (id === specialBuffer.Contender) {
-      setContenderOn(true);
-    } else if (id === specialBuffer.Px4Storm) {
-      setPx4On(true);
-    } else {
-      skill = tdollAtkBuffer[id].skill.toString();
+    if (id === specialBuffer.Contender || id === specialBuffer.Px4Storm) {
+      skill = '0';
     }
 
     switch(currentSelect) {
       case 0:
         setBuffer1Buff(buff);
         setBuffer1Skill(skill);
+        setBufferSelected1(id);
         break;
       case 1:
         setBuffer2Buff(buff);
         setBuffer2Skill(skill);
+        setBufferSelected2(id);
         break;
       case 2:
         setBuffer3Buff(buff);
         setBuffer3Skill(skill);
+        setBufferSelected3(id);
         break;
       case 3:
         setBuffer4Buff(buff);
         setBuffer4Skill(skill);
+        setBufferSelected4(id);
         break;
     }
     // console.log(bufferBuff)
@@ -142,6 +144,24 @@ const DamageCalc = (props) => {
   };
 
   useEffect(() => {
+    if (bufferSelected1 === specialBuffer.Contender ||
+      bufferSelected2 === specialBuffer.Contender ||
+      bufferSelected3 === specialBuffer.Contender ||
+      bufferSelected4 === specialBuffer.Contender) {
+      setContenderOn(true);
+    } else {
+      setContenderOn(false);
+    }
+    
+    if (bufferSelected1 === specialBuffer.Px4Storm ||
+      bufferSelected2 === specialBuffer.Px4Storm ||
+      bufferSelected3 === specialBuffer.Px4Storm ||
+      bufferSelected4 === specialBuffer.Px4Storm) {
+      setPx4On(true);
+    } else {
+      setPx4On(false);
+    }
+
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
     let calc_skill = (((1 + (parseInt(buffer1Skill ? buffer1Skill : 0) / 100)) * (1 + (parseInt(buffer2Skill ? buffer2Skill : 0) / 100)) * (1 + (parseInt(buffer3Skill ? buffer3Skill : 0) / 100)) * (1 + (parseInt(buffer4Skill ? buffer4Skill : 0) / 100)) - 1) * 100).toFixed(4);
     
@@ -152,11 +172,6 @@ const DamageCalc = (props) => {
     let calc_critical = criticalOn ?
                         ((parseInt(critical ? critical : 0) / 100) * (1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100)) * calc_Px4) + (parseInt(equipCritical ? equipCritical : 0) / 100)
                         : 1;
-                        
-    console.log(parseInt(critical ? critical : 0) / 100)
-    console.log(1 + (parseInt(fairyCriticalBuff ? fairyCriticalBuff : 0) / 100))
-    console.log('px4 : ' + calc_Px4)
-    console.log('치합산 : ' + calc_critical)
 
     let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0;
 
@@ -607,7 +622,7 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최소데미지(컨텐더)</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin) * 1.4}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin * 1.4)}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopRightRadius: 5}]}>
               <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMin * 1.4) * 5}</Text>
@@ -621,7 +636,7 @@ const DamageCalc = (props) => {
               <Text style={styles.baseLabelsAlignCenter}>최대데미지(컨텐더)</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax) * 1.4}</Text>
+              <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax * 1.4)}</Text>
             </View>
             <View style={[styles.resultLabelsView, {flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0}]}>
               <Text style={styles.baseLabelsAlignRight}>{Math.ceil(finalStatMax * 1.4) * 5}</Text>
