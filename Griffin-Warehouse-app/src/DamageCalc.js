@@ -63,6 +63,9 @@ const DamageCalc = (props) => {
 
   const [contenderOn, setContenderOn] = useState(false);
   const [px4On, setPx4On] = useState(false);
+  const [pythonOn, setPythonOn] = useState(false);
+  const [pythonStack, setPythonStack] = useState(0);
+  const [pythonReflectStack, setPythonReflectStack] = useState(0);
 
   const [finalStatMin, setFinalStatMin] = useState(0);
   const [finalStatMax, setFinalStatMax] = useState(0);
@@ -160,6 +163,15 @@ const DamageCalc = (props) => {
       setPx4On(true);
     } else {
       setPx4On(false);
+    }
+    
+    if (bufferSelected1 === specialBuffer.ColtPython ||
+      bufferSelected2 === specialBuffer.ColtPython ||
+      bufferSelected3 === specialBuffer.ColtPython ||
+      bufferSelected4 === specialBuffer.ColtPython) {
+      setPythonOn(true);
+    } else {
+      setPythonOn(false);
     }
 
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
@@ -420,6 +432,40 @@ const DamageCalc = (props) => {
               editable={selected[3] === 1}
             />
           </View>
+          {pythonOn ?
+          <View style={{flex: 1, marginBottom: 5}}>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <View style={[styles.inputLabelsView, {flex: 7, borderBottomLeftRadius: 0, borderBottomColor: '#ddd'}]}>
+                <Slider
+                  minimumValue={1}
+                  maximumValue={6}
+                  step={1}
+                  maximumTrackTintColor={'#fff'}
+                  value={pythonStack}
+                  onSlidingComplete={(value) => setPythonStack(value)}
+                />
+              </View>
+              <View style={[styles.sliderValueView, {flex: 3, borderTopRightRadius: 5}]}>
+                <Text style={{textAlign: 'center'}}>스킬 {pythonStack} 스택</Text>
+              </View>
+            </View>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <View style={[styles.inputLabelsView, {flex: 7, borderTopLeftRadius: 0, borderTopWidth: 0}]}>
+                <Slider
+                  minimumValue={0}
+                  maximumValue={5}
+                  step={1}
+                  maximumTrackTintColor={'#fff'}
+                  value={pythonReflectStack}
+                  onSlidingComplete={(value) => setPythonReflectStack(value)}
+                />
+              </View>
+              <View style={[styles.sliderValueView, {flex: 3, borderTopWidth: 0, borderBottomRightRadius: 5}]}>
+                <Text style={{textAlign: 'center'}}>반사 {pythonReflectStack} 스택</Text>
+              </View>
+            </View>
+          </View>
+          : null}
           
 
           <Modal
@@ -809,6 +855,13 @@ const styles = StyleSheet.create({
   selectItemText: {
     textAlign: 'center',
     fontSize: 18,
+  },
+
+  sliderValueView: {
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#bbb',
+    backgroundColor: '#ddd',
   },
 });
 
