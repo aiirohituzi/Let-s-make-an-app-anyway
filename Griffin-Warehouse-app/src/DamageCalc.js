@@ -91,7 +91,7 @@ const DamageCalc = (props) => {
     // setBufferBuff(tempBuff);
     // setBufferSkill(tempSkill);
     let buff = tdollAtkBuffer[id].buff.toString();
-    let skill = tdollAtkBuffer[id].skill.toString();;
+    let skill = tdollAtkBuffer[id].skill.toString();
 
     if (id === specialBuffer.Contender || id === specialBuffer.Px4Storm) {
       skill = '0';
@@ -172,6 +172,19 @@ const DamageCalc = (props) => {
       setPythonOn(true);
     } else {
       setPythonOn(false);
+    }
+
+    if (pythonOn) {
+      let skill = 6;
+      for(let i = 0; i < pythonStack + pythonReflectStack - 1; i++) {
+        console.log(i);
+        skill = (((1 + (skill / 100)) * (1 + (tdollAtkBuffer[specialBuffer.ColtPython].skill_base / 100)) - 1) * 100).toFixed(4);
+      }
+
+      bufferSelected1 === specialBuffer.ColtPython ? setBuffer1Skill(skill.toString())
+      : bufferSelected2 === specialBuffer.ColtPython ? setBuffer2Skill(skill.toString())
+      : bufferSelected3 === specialBuffer.ColtPython ? setBuffer3Skill(skill.toString())
+      : setBuffer4Skill(skill.toString());
     }
 
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
