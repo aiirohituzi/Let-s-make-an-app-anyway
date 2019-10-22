@@ -54,7 +54,7 @@ const DamageCalc = (props) => {
     {id: 3, name: '격양계', buff: 10},
     {id: 4, name: '돌격계', buff: 0},
   ];
-  const [fairyPassiveRageStack, setFairyPassiveRageStack] = useState(0);
+  const [fairyPassiveRageStack, setFairyPassiveRageStack] = useState(1);
   
   const [armorOn, setArmorOn] = useState(false);
   const [armor, setArmor] = useState('0');
@@ -64,7 +64,7 @@ const DamageCalc = (props) => {
   const [contenderOn, setContenderOn] = useState(false);
   const [px4On, setPx4On] = useState(false);
   const [pythonOn, setPythonOn] = useState(false);
-  const [pythonStack, setPythonStack] = useState(0);
+  const [pythonStack, setPythonStack] = useState(1);
   const [pythonReflectStack, setPythonReflectStack] = useState(0);
 
   const [finalStatMin, setFinalStatMin] = useState(0);
@@ -183,13 +183,23 @@ const DamageCalc = (props) => {
       bufferSelected1 === specialBuffer.ColtPython ? setBuffer1Skill(skill.toString())
       : bufferSelected2 === specialBuffer.ColtPython ? setBuffer2Skill(skill.toString())
       : bufferSelected3 === specialBuffer.ColtPython ? setBuffer3Skill(skill.toString())
-      : setBuffer4Skill(skill.toString());
+      : bufferSelected4 === specialBuffer.ColtPython ? setBuffer4Skill(skill.toString())
+      : null;
     }
 
     let calc_buff = parseInt(buffer1Buff ? buffer1Buff : 0) + parseInt(buffer2Buff ? buffer2Buff : 0) + parseInt(buffer3Buff ? buffer3Buff : 0) + parseInt(buffer4Buff ? buffer4Buff : 0) + parseInt(fairyStrBuff ? fairyStrBuff : 0);
     let calc_skill = (((1 + (parseInt(buffer1Skill ? buffer1Skill : 0) / 100)) * (1 + (parseInt(buffer2Skill ? buffer2Skill : 0) / 100)) * (1 + (parseInt(buffer3Skill ? buffer3Skill : 0) / 100)) * (1 + (parseInt(buffer4Skill ? buffer4Skill : 0) / 100)) - 1) * 100).toFixed(4);
     
-    let calc_fairyPassive = fairyPassive[fairySelected].buff;
+    let calc_fairyPassive = 0;
+    if(fairySelected === 3) {
+      calc_fairyPassive = fairyPassive[fairySelected].buff
+      for(let i = 0; i < fairyPassiveRageStack - 1; i++) {
+          calc_fairyPassive = (((1 + (calc_fairyPassive / 100)) * (1 + (fairyPassive[fairySelected].buff / 100)) - 1) * 100).toFixed(1)
+      }
+    } else {
+      calc_fairyPassive = fairyPassive[fairySelected].buff;
+    }
+    
 
     let calc_armor = armorOn ? parseInt(armor ? armor : 0) : 0;
     let calc_Px4 = px4On ? 1.5 : 1;
@@ -198,9 +208,9 @@ const DamageCalc = (props) => {
                         : 1;
 
     let calc_fairySkill = fairySkill ? parseInt(fairySkill) : 0;
-
+    
     let finalStat = Math.ceil(parseInt(tdollAtk ? tdollAtk : 0) * (1 + (calc_buff / 100)) * (1 + (calc_fairyPassive / 100))) * (1 + (calc_skill / 100)) * (1 + (parseInt(tdollSkill ? tdollSkill : 0) / 100)) * (1 + (calc_fairySkill / 100));
-
+    console.log(finalStat)
     setFinalStatMin(((finalStat * 0.85) - calc_armor) * calc_critical);
     setFinalStatMax(((finalStat * 1.15) - calc_armor) * calc_critical);
   })
@@ -437,7 +447,7 @@ const DamageCalc = (props) => {
             />
             <TextInput
               style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: '#ddd'}]}
-              onChangeText={text => setBuffer4Skill(text, 4)}
+              onChangeText={text => setBuffer4Skill(text)}
               value={buffer4Skill}
               placeholder="인형4 스킬배율"
               keyboardType="numeric"
@@ -581,7 +591,7 @@ const DamageCalc = (props) => {
               </View>
               <View style={[styles.inputLabelsView, {flex: 3, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
                 <Slider
-                  minimumValue={0}
+                  minimumValue={1}
                   maximumValue={3}
                   step={1}
                   maximumTrackTintColor={'#fff'}
