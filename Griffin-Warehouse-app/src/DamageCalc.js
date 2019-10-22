@@ -177,7 +177,6 @@ const DamageCalc = (props) => {
     if (pythonOn) {
       let skill = 6;
       for(let i = 0; i < pythonStack + pythonReflectStack - 1; i++) {
-        console.log(i);
         skill = (((1 + (skill / 100)) * (1 + (tdollAtkBuffer[specialBuffer.ColtPython].skill_base / 100)) - 1) * 100).toFixed(4);
       }
 
@@ -575,20 +574,22 @@ const DamageCalc = (props) => {
 
           {fairySelected === 3 ?
             <View style={styles.flexRow}>
-              <View style={{flex: 1, justifyContent: 'center'}}>
+              <View style={[styles.sliderValueView, {flex: 1, justifyContent: 'center', borderTopLeftRadius: 5, borderBottomLeftRadius: 5}]}>
                 <Text style={{textAlign: 'center'}}>
                   격양계
                 </Text>
               </View>
-              <Slider
-                style={{flex: 3}}
-                minimumValue={0}
-                maximumValue={3}
-                step={1}
-                value={fairyPassiveRageStack}
-                onSlidingComplete={(value) => setFairyPassiveRageStack(value)}
-              />
-              <View style={{flex: 1, justifyContent: 'center'}}>
+              <View style={[styles.inputLabelsView, {flex: 3, borderTopLeftRadius: 0, borderBottomLeftRadius: 0}]}>
+                <Slider
+                  minimumValue={0}
+                  maximumValue={3}
+                  step={1}
+                  maximumTrackTintColor={'#fff'}
+                  value={fairyPassiveRageStack}
+                  onSlidingComplete={(value) => setFairyPassiveRageStack(value)}
+                />
+              </View>
+              <View style={[styles.sliderValueView, {flex: 1, justifyContent: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5}]}>
                 <Text style={{textAlign: 'center'}}>
                   {fairyPassiveRageStack} 스택
                 </Text>
