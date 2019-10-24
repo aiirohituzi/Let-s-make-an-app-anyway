@@ -38,35 +38,35 @@ const AgiCalc = (props) => {
         <View style={{padding: '5%'}}>
           <View style={styles.flexRow}>
             <View style={[styles.inputLabelsView, {flex: 3}]}>
-              <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+              <Text style={styles.inputLabels}>인형 사속 입력</Text>
             </View>
             <TextInput
               style={[styles.inputs, {flex: 2}]}
-              placeholder="화력(호감도포함)"
+              placeholder="사속"
               keyboardType="numeric"
             />
           </View>
           <View style={styles.flexRow}>
             <View style={[styles.inputLabelsView, {flex: 3}]}>
-              <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+              <Text style={styles.inputLabels}>인형 사속 스킬 배율 입력(%)</Text>
             </View>
             <TextInput
               style={[styles.inputs, {flex: 2}]}
-              placeholder="화력(호감도포함)"
+              placeholder="스킬 배율(%)"
               keyboardType="numeric"
             />
           </View>
 
           
           <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-            <Text style={styles.baseLabelsAlignCenter}>화력 버퍼 정보 입력</Text>
+            <Text style={styles.baseLabelsAlignCenter}>사속 버퍼 정보 입력</Text>
           </View>
           <View style={styles.flexRowNoMargin}>
             <View style={[styles.baseLabelsView, {flex: 1}]}>
               <Text style={styles.baseLabelsAlignCenter}>버퍼 인형 선택</Text>
             </View>
             <View style={[styles.baseLabelsView, {flex: 1}]}>
-              <Text style={styles.baseLabelsAlignCenter}>화력 진형버프</Text>
+              <Text style={styles.baseLabelsAlignCenter}>사속 진형버프</Text>
             </View>
             <View style={[styles.baseLabelsView, {flex: 1}]}>
               <Text style={styles.baseLabelsAlignCenter}>버프 스킬 배율</Text>
@@ -75,7 +75,7 @@ const AgiCalc = (props) => {
           <View style={styles.flexRowNoMargin}>
             <View
               style={[styles.baseLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={{ textAlign: 'right' }}>
+              <Text style={{ textAlign: 'center' }}>
                 버퍼 인형 1
               </Text>
             </View>
@@ -97,7 +97,7 @@ const AgiCalc = (props) => {
           <View style={styles.flexRowNoMargin}>
             <View
               style={[styles.baseLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={{ textAlign: 'right' }}>
+              <Text style={{ textAlign: 'center' }}>
                 버퍼 인형 2
               </Text>
             </View>
@@ -119,7 +119,7 @@ const AgiCalc = (props) => {
           <View style={styles.flexRowNoMargin}>
             <View
               style={[styles.baseLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={{ textAlign: 'right' }}>
+              <Text style={{ textAlign: 'center' }}>
                 버퍼 인형 3
               </Text>
             </View>
@@ -141,7 +141,7 @@ const AgiCalc = (props) => {
           <View style={styles.flexRow}>
             <View
               style={[styles.baseLabelsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}>
-              <Text style={{ textAlign: 'right' }}>
+              <Text style={{ textAlign: 'center' }}>
                 버퍼 인형 4
               </Text>
             </View>
@@ -163,23 +163,23 @@ const AgiCalc = (props) => {
 
           <View style={styles.flexRow}>
             <View style={[styles.inputLabelsView, {flex: 3}]}>
-              <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+              <Text style={styles.inputLabels}>필요 버프량</Text>
             </View>
-            <TextInput
-              style={[styles.inputs, {flex: 2}]}
-              placeholder="화력(호감도포함)"
-              keyboardType="numeric"
-            />
+            <View style={[styles.valueLables, {flex: 2}]}>
+              <Text style={{ textAlign: 'right' }}>
+                0                  
+              </Text>
+            </View>
           </View>
           <View style={styles.flexRow}>
             <View style={[styles.inputLabelsView, {flex: 3}]}>
-              <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+              <Text style={styles.inputLabels}>자버프 사용 후 필요 버프량</Text>
             </View>
-            <TextInput
-              style={[styles.inputs, {flex: 2}]}
-              placeholder="화력(호감도포함)"
-              keyboardType="numeric"
-            />
+            <View style={[styles.valueLables, {flex: 2}]}>
+              <Text style={{ textAlign: 'right' }}>
+                0                  
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -326,6 +326,17 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
   },
+  valueLables: {
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderWidth: 1,
+    borderColor: '#bbb',
+    backgroundColor: '#ddd',
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+    justifyContent: 'center',
+  }
 });
 
 export default AgiCalc;
