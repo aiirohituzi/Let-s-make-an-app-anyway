@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import {
-  StatusBar,
-} from 'react-native';
-import DamageCalc from './src/DamageCalc';
-import AgiCalc from './src/AgiCalc';
+import React, { useState } from "react";
+import { StatusBar } from "react-native";
+import DamageCalc from "./src/DamageCalc";
+import AgiCalc from "./src/AgiCalc";
 // import Screen3 from './components/screen3';
 // import Screen1 from './components/screen4';
 // import Screen2 from './components/screen5';
 // import Screen3 from './components/screen5';
 
-import {createAppContainer} from 'react-navigation';
+import { createAppContainer } from "react-navigation";
 // import {createStackNavigator} from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 const MyDrawerNavigator = createDrawerNavigator(
   {
     DamageCalc: {
       screen: DamageCalc,
       navigationOptions: {
-        drawerLabel: '데미지 계산기',
-      }
+        drawerLabel: "데미지 계산기",
+      },
     },
     AgiCalc: {
       screen: AgiCalc,
       navigationOptions: {
-        drawerLabel: '사속 계산기',
-      }
+        drawerLabel: "사속 계산기",
+      },
     },
     // Screen3: {
     //   screen: Screen3,
@@ -54,13 +52,13 @@ const MyDrawerNavigator = createDrawerNavigator(
   },
   {
     contentOptions: {
-      activeTintColor: '#e91e63',
+      activeTintColor: "#e91e63",
     },
-    initialRouteName: 'DamageCalc',
+    initialRouteName: "AgiCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },
-  StatusBar.setBarStyle('dark-content')
+  StatusBar.setBarStyle("dark-content"),
 );
 
 const App = createAppContainer(MyDrawerNavigator);
