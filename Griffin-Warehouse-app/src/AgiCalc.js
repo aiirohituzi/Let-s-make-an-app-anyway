@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -29,6 +29,37 @@ const AgiCalc = props => {
 
   const [calcMode, setCalcMode] = useState(false);
   const [inputFlag, setInputFlag] = useState(false);
+
+  const [needAgiBuff, setNeedAgiBuff] = useState(0);
+  const [needAgiBuffAfterSkill, setNeedAgiBuffAfterSkill] = useState(0);
+
+  useEffect(() => {
+    let sumAgiBuff =
+      parseInt(buffer1Buff ? buffer1Buff : 0) +
+      parseInt(buffer2Buff ? buffer2Buff : 0) +
+      parseInt(buffer3Buff ? buffer3Buff : 0) +
+      parseInt(buffer4Buff ? buffer4Buff : 0);
+    let mulAgiSkill =
+      (1 + parseInt(buffer1Skill ? buffer1Skill : 0) / 100) *
+      (1 + parseInt(buffer2Skill ? buffer2Skill : 0) / 100) *
+      (1 + parseInt(buffer3Skill ? buffer3Skill : 0) / 100) *
+      (1 + parseInt(buffer4Skill ? buffer4Skill : 0) / 100);
+
+    let calc_needAgiBuff =
+      116 /
+      (parseInt(tdollAgi ? tdollAgi : 0) *
+        (1 + sumAgiBuff / 100) *
+        mulAgiSkill);
+    let calc_needAgiBuffAfterSkill =
+      116 /
+      (parseInt(tdollAgi ? tdollAgi : 0) *
+        (1 + sumAgiBuff / 100) *
+        (1 + parseInt(tdollAgiSkill ? tdollAgiSkill : 0) / 100) *
+        mulAgiSkill);
+
+    setNeedAgiBuff(Math.ceil((calc_needAgiBuff - 1) * 100));
+    setNeedAgiBuffAfterSkill(Math.ceil((calc_needAgiBuffAfterSkill - 1) * 100));
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -324,7 +355,9 @@ const AgiCalc = props => {
               <Text style={styles.inputLabels}>필요 버프량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>
+                {!isFinite(needAgiBuff) || needAgiBuff < 0 ? 0 : needAgiBuff}%
+              </Text>
             </View>
           </View>
           <View style={styles.flexRow}>
@@ -332,7 +365,12 @@ const AgiCalc = props => {
               <Text style={styles.inputLabels}>자버프 사용 후 필요 버프량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>
+                {!isFinite(needAgiBuffAfterSkill) || needAgiBuffAfterSkill < 0
+                  ? 0
+                  : needAgiBuffAfterSkill}
+                %
+              </Text>
             </View>
           </View>
         </View>
