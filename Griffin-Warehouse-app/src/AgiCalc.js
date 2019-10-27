@@ -13,6 +13,18 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
+import "./style/color";
+import {
+  BORDER_COLOR,
+  BORDER_SHADOW,
+  OUTPUT_LABEL,
+  ADDON_LABEL,
+  TAB_ACTIVE,
+  TAB_INACTIVE,
+  TAB_UNDERLAY,
+  SWITCH_ACTIVE,
+  SWITCH_UNDERLAY,
+} from "./style/color";
 
 const AgiCalc = props => {
   const [tdollAgi, setTdollAgi] = useState();
@@ -88,14 +100,14 @@ const AgiCalc = props => {
               calcMode
                 ? {}
                 : {
-                    backgroundColor: "#d6d7da",
+                    backgroundColor: TAB_ACTIVE,
                     borderBottomWidth: 1.5,
                     borderRightWidth: 1,
-                    borderBottomColor: "#aaa",
-                    borderRightColor: "#aaa",
+                    borderBottomColor: BORDER_SHADOW,
+                    borderRightColor: BORDER_SHADOW,
                   },
             ]}
-            underlayColor="#ccc"
+            underlayColor={TAB_UNDERLAY}
             onPress={() => setCalcMode(false)}
           >
             <Text style={{ textAlign: "center" }}>단순계산</Text>
@@ -108,15 +120,15 @@ const AgiCalc = props => {
               },
               calcMode
                 ? {
-                    backgroundColor: "#d6d7da",
+                    backgroundColor: TAB_ACTIVE,
                     borderBottomWidth: 1.5,
                     borderRightWidth: 1,
-                    borderBottomColor: "#aaa",
-                    borderRightColor: "#aaa",
+                    borderBottomColor: BORDER_SHADOW,
+                    borderRightColor: BORDER_SHADOW,
                   }
                 : {},
             ]}
-            underlayColor="#ccc"
+            underlayColor={TAB_UNDERLAY}
             onPress={() => setCalcMode(true)}
           >
             <Text style={{ textAlign: "center" }}>상세계산</Text>
@@ -148,14 +160,14 @@ const AgiCalc = props => {
                 inputFlag
                   ? {}
                   : {
-                      backgroundColor: "#ccf",
+                      backgroundColor: SWITCH_ACTIVE,
                       borderBottomWidth: 1.5,
                       borderRightWidth: 1,
-                      borderBottomColor: "#aae",
-                      borderRightColor: "#aae",
+                      borderBottomColor: BORDER_SHADOW,
+                      borderRightColor: BORDER_SHADOW,
                     },
               ]}
-              underlayColor="#aaf"
+              underlayColor={SWITCH_UNDERLAY}
               onPress={() => setInputFlag(false)}
             >
               <Text style={{ textAlign: "center" }}>스킬 사속 직접 입력</Text>
@@ -170,15 +182,15 @@ const AgiCalc = props => {
                 },
                 inputFlag
                   ? {
-                      backgroundColor: "#ccf",
+                      backgroundColor: SWITCH_ACTIVE,
                       borderBottomWidth: 1.5,
                       borderRightWidth: 1,
-                      borderBottomColor: "#aae",
-                      borderRightColor: "#aae",
+                      borderBottomColor: BORDER_SHADOW,
+                      borderRightColor: BORDER_SHADOW,
                     }
                   : {},
               ]}
-              underlayColor="#aaf"
+              underlayColor={SWITCH_UNDERLAY}
               onPress={() => setInputFlag(true)}
             >
               <Text style={{ textAlign: "center" }}>목록에서 선택</Text>
@@ -422,12 +434,12 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: "#bbb",
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderRightWidth: 0,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
-    backgroundColor: "#bbb",
+    backgroundColor: ADDON_LABEL,
     alignItems: "stretch",
     justifyContent: "center",
   },
@@ -448,7 +460,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 5,
     paddingLeft: 5,
-    borderColor: "#bbb",
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
@@ -460,9 +472,9 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: "#bbb",
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
-    backgroundColor: "#bbb",
+    backgroundColor: ADDON_LABEL,
     alignItems: "stretch",
     justifyContent: "center",
   },
@@ -472,9 +484,9 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: "#bbb",
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
-    backgroundColor: "#ddd",
+    backgroundColor: OUTPUT_LABEL,
     alignItems: "stretch",
     justifyContent: "center",
   },
@@ -508,7 +520,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 5,
     paddingLeft: 5,
-    borderColor: "#bbb",
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderRightWidth: 0,
   },
@@ -521,8 +533,8 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
     borderWidth: 1,
-    borderColor: "#bbb",
-    backgroundColor: "#ddd",
+    borderColor: BORDER_COLOR,
+    backgroundColor: OUTPUT_LABEL,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     justifyContent: "center",
@@ -533,14 +545,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderTopWidth: 0,
-    borderColor: "#d6d7da",
+    borderColor: BORDER_COLOR,
+    backgroundColor: TAB_INACTIVE,
   },
   switch: {
     flex: 1,
     justifyContent: "center",
     height: 40,
     borderWidth: 1,
-    borderColor: "#ccf",
+    borderColor: BORDER_COLOR,
   },
 });
 

@@ -16,6 +16,7 @@ import {
 import Constants from 'expo-constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { tdollAtkBuffer, specialBuffer } from './data';
+import { BORDER_COLOR, ADDON_LABEL, OUTPUT_LABEL } from './style/color';
 
 const DamageCalc = (props) => {
   const [tdollAtk, setTdollAtk] = useState('');
@@ -320,7 +321,7 @@ const DamageCalc = (props) => {
                       return (
                         <TouchableHighlight
                           key={data.id}
-                          underlayColor="#ddd"
+                          underlayColor={OUTPUT_LABEL}
                           style={styles.selectItem}
                           onPress={() => {
                             modalSelected(data.id);
@@ -352,7 +353,7 @@ const DamageCalc = (props) => {
           </View>
           <View style={styles.flexRowNoMargin}>
             <TouchableHighlight
-              underlayColor="#ddd"
+              underlayColor={OUTPUT_LABEL}
               style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
               onPress={() => modalSelectOpen('인형1', tdollAtkBuffer, 1)}>
               <Text style={{ textAlign: 'right' }}>
@@ -360,7 +361,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer1Buff(text)}
               value={buffer1Buff}
               placeholder="인형1 진형버프"
@@ -368,7 +369,7 @@ const DamageCalc = (props) => {
               editable={selected[0] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[0] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer1Skill(text)}
               value={buffer1Skill}
               placeholder="인형1 스킬배율"
@@ -378,7 +379,7 @@ const DamageCalc = (props) => {
           </View>
           <View style={styles.flexRowNoMargin}>
             <TouchableHighlight
-              underlayColor="#ddd"
+              underlayColor={OUTPUT_LABEL}
               style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
               onPress={() => modalSelectOpen('인형2', tdollAtkBuffer, 2)}>
               <Text style={{ textAlign: 'right' }}>
@@ -386,7 +387,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer2Buff(text)}
               value={buffer2Buff}
               placeholder="인형2 진형버프"
@@ -394,7 +395,7 @@ const DamageCalc = (props) => {
               editable={selected[1] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[1] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer2Skill(text)}
               value={buffer2Skill}
               placeholder="인형2 스킬배율"
@@ -404,7 +405,7 @@ const DamageCalc = (props) => {
           </View>
           <View style={styles.flexRowNoMargin}>
             <TouchableHighlight
-              underlayColor="#ddd"
+              underlayColor={OUTPUT_LABEL}
               style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0}]}
               onPress={() => modalSelectOpen('인형3', tdollAtkBuffer, 3)}>
               <Text style={{ textAlign: 'right' }}>
@@ -412,7 +413,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer3Buff(text)}
               value={buffer3Buff}
               placeholder="인형3 진형버프"
@@ -420,7 +421,7 @@ const DamageCalc = (props) => {
               editable={selected[2] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 0}, selected[2] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer3Skill(text)}
               value={buffer3Skill}
               placeholder="인형3 스킬배율"
@@ -430,7 +431,7 @@ const DamageCalc = (props) => {
           </View>
           <View style={styles.flexRow}>
             <TouchableHighlight
-              underlayColor="#ddd"
+              underlayColor={OUTPUT_LABEL}
               style={[styles.selectsView, {borderTopWidth: 0, borderRightWidth: 0, borderBottomLeftRadius: 5}]}
               onPress={() => modalSelectOpen('인형4', tdollAtkBuffer, 4)}>
               <Text style={{ textAlign: 'right' }}>
@@ -438,7 +439,7 @@ const DamageCalc = (props) => {
               </Text>
             </TouchableHighlight>
             <TextInput
-              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputsMiddle, {flex: 1, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer4Buff(text)}
               value={buffer4Buff}
               placeholder="인형4 진형버프"
@@ -446,7 +447,7 @@ const DamageCalc = (props) => {
               editable={selected[3] === 1}
             />
             <TextInput
-              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: '#ddd'}]}
+              style={[styles.inputs, {flex: 1, borderTopRightRadius: 0, borderTopWidth: 0}, selected[3] === 1 ? {} : {backgroundColor: OUTPUT_LABEL}]}
               onChangeText={text => setBuffer4Skill(text)}
               value={buffer4Skill}
               placeholder="인형4 스킬배율"
@@ -517,7 +518,7 @@ const DamageCalc = (props) => {
                   return (
                     <TouchableHighlight
                       key={data.id}
-                      underlayColor="#ddd"
+                      underlayColor={OUTPUT_LABEL}
                       style={styles.selectItem}
                       onPress={() => {
                         setFairySelected(data.id);
@@ -566,7 +567,7 @@ const DamageCalc = (props) => {
               keyboardType="numeric"
             />
             <TouchableHighlight
-              underlayColor="#ddd"
+              underlayColor={OUTPUT_LABEL}
               style={[styles.selectsView, {flex: 1, borderTopWidth: 0, borderRightWidth: 0}]}
               onPress={() => setModalFairyVisible(true)}>
               <Text style={{ textAlign: 'right' }}>
@@ -624,7 +625,7 @@ const DamageCalc = (props) => {
               placeholder="적 장갑"
               keyboardType="numeric"
               editable={armorOn}
-              backgroundColor={armorOn ? '#eee' : '#ddd'}
+              backgroundColor={armorOn ? '#ecf0f1' : OUTPUT_LABEL}
             />
           </View>
           
@@ -645,7 +646,7 @@ const DamageCalc = (props) => {
               placeholder="인형 치명상"
               keyboardType="numeric"
               editable={criticalOn}
-              backgroundColor={criticalOn ? '#eee' : '#ddd'}
+              backgroundColor={criticalOn ? '#ecf0f1' : OUTPUT_LABEL}
             />
           </View>
 
@@ -761,12 +762,12 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderRightWidth: 0,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
-    backgroundColor: '#bbb',
+    backgroundColor: ADDON_LABEL,
     alignItems: 'stretch',
     justifyContent: 'center',
   },
@@ -787,7 +788,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 5,
     paddingLeft: 5,
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
@@ -799,9 +800,9 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
-    backgroundColor: '#bbb',
+    backgroundColor: ADDON_LABEL,
     alignItems: 'stretch',
     justifyContent: 'center',
   },
@@ -811,9 +812,9 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
 
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: OUTPUT_LABEL,
     alignItems: 'stretch',
     justifyContent: 'center',
   },
@@ -847,7 +848,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 5,
     paddingLeft: 5,
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
     borderRightWidth: 0,
   },
@@ -862,7 +863,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 5,
     paddingLeft: 5,
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderWidth: 1,
   },
 
@@ -871,7 +872,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
     height: 60,
-    borderColor: '#bbb',
+    borderColor: BORDER_COLOR,
     borderTopWidth: 1,
     marginRight: 20,
     marginLeft: 20,
@@ -884,8 +885,8 @@ const styles = StyleSheet.create({
   sliderValueView: {
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#bbb',
-    backgroundColor: '#ddd',
+    borderColor: BORDER_COLOR,
+    backgroundColor: OUTPUT_LABEL,
   },
 });
 
