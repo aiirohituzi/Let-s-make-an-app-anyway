@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import DamageCalc from "./src/DamageCalc";
 import AgiCalc from "./src/AgiCalc";
+import GemsCalc from "./src/GemsCalc";
 // import Screen3 from './components/screen3';
 // import Screen1 from './components/screen4';
 // import Screen2 from './components/screen5';
@@ -22,7 +23,13 @@ const MyDrawerNavigator = createDrawerNavigator(
     AgiCalc: {
       screen: AgiCalc,
       navigationOptions: {
-        drawerLabel: "사속 계산기",
+        drawerLabel: "최대사속 계산기",
+      },
+    },
+    GemsCalc: {
+      screen: GemsCalc,
+      navigationOptions: {
+        drawerLabel: "필요 보석량 계산기",
       },
     },
     // Screen3: {
@@ -54,7 +61,7 @@ const MyDrawerNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "AgiCalc",
+    initialRouteName: "GemsCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },

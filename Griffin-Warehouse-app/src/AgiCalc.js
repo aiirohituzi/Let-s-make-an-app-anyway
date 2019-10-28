@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
-  Switch,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
