@@ -24,8 +24,8 @@ import {
 
 const GemsCalc = props => {
   const [inputFlag, setInputFlag] = useState(false);
-  const [inputGems, setInputGems] = useState();
-  const [remainingDays, setRemainingDays] = useState();
+  const [inputGems, setInputGems] = useState("");
+  const [remainingDays, setRemainingDays] = useState("");
   const [gemXDay, setGemXDay] = useState(0);
   const [currentGems, setCurrentGems] = useState();
   const [monthly, setMonthly] = useState(0);
@@ -34,7 +34,100 @@ const GemsCalc = props => {
   const [shareGems, setShareGems] = useState(0);
   const [needGems, setNeedGems] = useState(0);
 
-  useEffect(() => {});
+  useEffect(() => {
+    let targetGems = 0;
+    let mockSum = 0;
+
+    let parse_inputGems = parseInt(inputGems ? inputGems : 0);
+    let parse_remainingDays = parseInt(remainingDays ? remainingDays : 0);
+    let parse_monthly = parseInt(monthly ? monthly : 0);
+    let parse_mockPurchaseCount = parseInt(
+      mockPurchaseCount ? mockPurchaseCount : 0,
+    );
+    let parse_mockGems = parseInt(mockGems ? mockGems : 0);
+    let parse_shareGems = parseInt(shareGems ? shareGems : 0);
+    let parse_needGems = parseInt(needGems ? needGems : 0);
+    let parse_currentGems = parseInt(currentGems ? currentGems : 0);
+
+    // console.log(parse_inputGems);
+    // console.log(parse_remainingDays);
+    // console.log(parse_monthly);
+    // console.log(parse_mockPurchaseCount);
+    // console.log(parse_mockGems);
+    // console.log(parse_shareGems);
+    // console.log(parse_needGems);
+    // console.log(parse_currentGems);
+
+    // 오늘의 요일 반환
+    let todayLabel = new Date().getDay();
+    // 일요일 기준으로 몇주 경과했는지 계산
+    let weeklyCount = Math.floor((todayLabel + parse_remainingDays) / 7);
+    // D-day의 요일을 계산
+    let afterDayLabel = (todayLabel + parse_remainingDays) % 7;
+    let calc_monthly = 0;
+    let calc_mockGems = 0;
+
+    if (!inputFlag) {
+      targetGems = parse_inputGems * parse_remainingDays;
+    } else {
+      targetGems = parse_inputGems;
+    }
+
+    calc_monthly = parse_remainingDays * 30;
+    if (isNaN(calc_monthly)) {
+      setMonthly(0);
+    } else {
+      setMonthly(calc_monthly);
+    }
+
+    for (let i = 0; i < parse_mockPurchaseCount; i++) {
+      mockSum += (i + 1) * 20;
+    }
+    calc_mockGems = mockSum * parse_remainingDays;
+    if (isNaN(calc_mockGems)) {
+      setMockGems(0);
+    } else {
+      setMockGems(calc_mockGems);
+    }
+
+    if (isNaN(parse_inputGems * parse_remainingDays)) {
+      setGemXDay(0);
+    } else {
+      setGemXDay(parse_inputGems * parse_remainingDays);
+    }
+    // 일~토: 0~6
+    if (parse_remainingDays !== 0) {
+      // (일요일 기준)1주 이상 경과했을 경우
+      if (weeklyCount > 0) {
+        // D-Day가 그 주의 월요일을 지난 경우
+        if (afterDayLabel > 0) {
+          setShareGems(weeklyCount * 30);
+          // D-Day가 그 주의 월요일을 지나지 않은 경우
+        } else {
+          setShareGems((weeklyCount - 1) * 30);
+        }
+        // 입력 날짜가 1주일 미만인 경우
+      } else {
+        // 오늘이 일요일 인경우, D-Day가 그 주의 월요일을 지난 경우
+        if (todayLabel === 0 && afterDayLabel > 0) {
+          setShareGems(30);
+          // D-Day가 그 주의 월요일을 지나지 않은 경우
+        } else {
+          setShareGems(0);
+        }
+      }
+    } else {
+      setShareGems(0);
+    }
+
+    setNeedGems(
+      targetGems -
+        parse_currentGems -
+        parse_monthly +
+        parse_mockGems -
+        parse_shareGems,
+    );
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -118,8 +211,9 @@ const GemsCalc = props => {
             />
             <View style={[styles.valueLables, { flex: 3 }]}>
               <Text style={styles.inputLabels}>
-                {/* {inputFlag ? } */}
-                111개 * 11일 = 1111개
+                {!inputFlag
+                  ? `${inputGems}개 * ${remainingDays}일 = ${gemXDay}개`
+                  : `${inputGems}개`}
               </Text>
             </View>
           </View>
