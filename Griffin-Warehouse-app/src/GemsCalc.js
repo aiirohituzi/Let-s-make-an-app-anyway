@@ -97,14 +97,17 @@ const GemsCalc = props => {
           </View>
 
           <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
+            <View style={[styles.inputLabelsView, { flex: 2 }]}>
               <Text style={styles.inputLabels}>가격 / 수량 입력</Text>
             </View>
             <TextInput
-              style={[styles.inputs, { flex: 2 }]}
+              style={[styles.inputsMiddle, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
             />
+            <View style={[styles.valueLables, { flex: 3 }]}>
+              <Text style={styles.inputLabels}>111개 * 11일 = 1111개</Text>
+            </View>
           </View>
 
           <View style={styles.flexRow}>
@@ -145,11 +148,14 @@ const GemsCalc = props => {
               </Text>
             </View>
             <TextInput
-              style={[styles.inputs, { flex: 2 }]}
+              style={[styles.inputsMiddle, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
             />
             {/* type number처럼 가능한지? */}
+            <View style={[styles.valueLables, { flex: 1 }]}>
+              <Text style={styles.inputLabels}>총 0개</Text>
+            </View>
           </View>
 
           <View style={styles.flexRow}>
