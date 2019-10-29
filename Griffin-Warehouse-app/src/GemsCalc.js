@@ -24,6 +24,15 @@ import {
 
 const GemsCalc = props => {
   const [inputFlag, setInputFlag] = useState(false);
+  const [inputGems, setInputGems] = useState();
+  const [remainingDays, setRemainingDays] = useState();
+  const [gemXDay, setGemXDay] = useState(0);
+  const [currentGems, setCurrentGems] = useState();
+  const [monthly, setMonthly] = useState(0);
+  const [mockPurchaseCount, setMockPurchaseCount] = useState();
+  const [mockGems, setMockGems] = useState(0);
+  const [shareGems, setShareGems] = useState(0);
+  const [needGems, setNeedGems] = useState(0);
 
   useEffect(() => {});
 
@@ -104,9 +113,14 @@ const GemsCalc = props => {
               style={[styles.inputsMiddle, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
+              onChangeText={text => setInputGems(text)}
+              value={inputGems}
             />
             <View style={[styles.valueLables, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>111개 * 11일 = 1111개</Text>
+              <Text style={styles.inputLabels}>
+                {/* {inputFlag ? } */}
+                111개 * 11일 = 1111개
+              </Text>
             </View>
           </View>
 
@@ -118,6 +132,8 @@ const GemsCalc = props => {
               style={[styles.inputs, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
+              onChangeText={text => setRemainingDays(text)}
+              value={remainingDays}
             />
           </View>
 
@@ -129,6 +145,8 @@ const GemsCalc = props => {
               style={[styles.inputs, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
+              onChangeText={text => setCurrentGems(text)}
+              value={currentGems}
             />
           </View>
 
@@ -137,7 +155,7 @@ const GemsCalc = props => {
               <Text style={styles.inputLabels}>월정액 충전량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>결과값</Text>
+              <Text style={{ textAlign: "right" }}>{monthly}</Text>
             </View>
           </View>
 
@@ -151,10 +169,12 @@ const GemsCalc = props => {
               style={[styles.inputsMiddle, { flex: 2 }]}
               placeholder=""
               keyboardType="numeric"
+              onChangeText={text => setMockPurchaseCount(text)}
+              value={mockPurchaseCount}
             />
             {/* type number처럼 가능한지? */}
             <View style={[styles.valueLables, { flex: 1 }]}>
-              <Text style={styles.inputLabels}>총 0개</Text>
+              <Text style={styles.inputLabels}>총 {mockGems}개</Text>
             </View>
           </View>
 
@@ -163,7 +183,7 @@ const GemsCalc = props => {
               <Text style={styles.inputLabels}>공유 보석 충전량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>결과값</Text>
+              <Text style={{ textAlign: "right" }}>{shareGems}개</Text>
             </View>
           </View>
 
@@ -172,7 +192,11 @@ const GemsCalc = props => {
               <Text style={styles.inputLabels}>최소 필요량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>결과값</Text>
+              <Text style={{ textAlign: "right" }}>
+                {needGems < 0
+                  ? `충분, ${needGems * -1}개 남음`
+                  : `${needGems}개 필요`}
+              </Text>
             </View>
           </View>
         </View>
