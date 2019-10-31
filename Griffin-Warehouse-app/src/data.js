@@ -52,3 +52,44 @@ export var specialBuffer = {
   Px4Storm: 33,
   ColtPython: 42
 }
+
+
+export var skillListAR = [
+  {id: 1, name: '고속사격T (ST AR-15 MOD, 97식)', percentage: 50},
+  {id: 2, name: '고속사격T (OTs-12)', percentage: 60},
+  {id: 3, name: '강행돌파 (ART556, TAR-21)', percentage: 25},
+  {id: 4, name: '강행돌파 (마갈)', percentage: 20},
+  {id: 5, name: '강행돌파 (L85A1)', percentage: 15},
+  {id: 6, name: '민접사격 (Model L)', percentage: 40},
+  {id: 7, name: '백랑의 눈 (AK-12)', percentage: 35},
+  {id: 8, name: '여명의 기염 (CZ2000)', percentage: 50},
+  {id: 9, name: '미래 예지 (64식 소총)', percentage: 80},
+  {id: 10, name: '설한의 쐐기 (M4A1 MOD2)', percentage: -70},
+  {id: 11, name: '아크 기어스 (G36 MOD2)', percentage: 20},
+  {id: 12, name: '그림자 교살곡 (ACR)', percentage: 50},
+]
+
+export var skillListRF = [
+  {id: 1, name: '고속사격 (WA2000)', percentage: 75},
+  {id: 2, name: '고속사격 (SVD)', percentage: 65},
+  {id: 3, name: '비상사격 (K31)', percentage: 80},
+  {id: 4, name: '고속사격 (wz.29)', percentage: 60},
+  {id: 5, name: '고속사격 (시모노프, BM59)', percentage: 55},
+  {id: 6, name: '고속사격T (SM-1)', percentage: 40},
+  {id: 7, name: '고속사격T (HK33)', percentage: 60},
+  {id: 8, name: '고속사격N (XM3)', percentage: 100},
+  {id: 9, name: '고속사격N (81식 카빈)', percentage: 90},
+  {id: 10, name: '고속사격N (G43)', percentage: 85},
+  {id: 11, name: '민첩사격 (T-5000)', percentage: 50},
+  {id: 12, name: '민첩사격 (OBR)', percentage: 45},
+  {id: 13, name: '육참골단 (IWS 2000)', percentage: -35},
+  {id: 14, name: '분노의 발상 (Mk 12)', percentage: 30},
+  {id: 15, name: '싸늘한 투지 (FN-49 MOD2)', percentage: 15},
+  {id: 16, name: '럭키 트리거 (R93 - 3스택)', percentage: 33.1},
+  {id: 17, name: '데드라인 (4식)', percentage: 55},
+]
+
+export var skillListSG = [
+  {id: 1, name: '광란의 파티 (USAS-12)', percentage: 60},
+  {id: 2, name: '금당현상 (AA-12)', percentage: 80},
+]

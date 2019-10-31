@@ -249,7 +249,7 @@ const GemsCalc = props => {
               <Text style={styles.inputLabels}>월정액 충전량</Text>
             </View>
             <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>{monthly}</Text>
+              <Text style={{ textAlign: "right" }}>{monthly}개</Text>
             </View>
           </View>
 
