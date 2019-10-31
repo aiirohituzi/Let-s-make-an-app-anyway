@@ -61,7 +61,7 @@ const MyDrawerNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "GemsCalc",
+    initialRouteName: "AgiCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },

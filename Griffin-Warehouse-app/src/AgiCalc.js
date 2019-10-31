@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
+  Modal,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -24,6 +25,13 @@ import {
   SWITCH_ACTIVE,
   SWITCH_UNDERLAY,
 } from "./style/color";
+import { skillListAR, skillListRF, skillListSG } from "./data";
+
+const typeList = [
+  { id: 0, type: "AR" },
+  { id: 1, type: "RF" },
+  { id: 2, type: "SG" },
+];
 
 const AgiCalc = props => {
   const [tdollAgi, setTdollAgi] = useState();
@@ -43,6 +51,11 @@ const AgiCalc = props => {
 
   const [needAgiBuff, setNeedAgiBuff] = useState(0);
   const [needAgiBuffAfterSkill, setNeedAgiBuffAfterSkill] = useState(0);
+
+  const [modalTypeVisible, setModalTypeVisible] = useState(false);
+  const [modalSkillVisible, setModalSkillVisible] = useState(false);
+  const [selectedType, setSelectedType] = useState(0);
+  const [selectedSkill, setSelectedSkill] = useState(0);
 
   useEffect(() => {
     let sumAgiBuff =
@@ -196,20 +209,109 @@ const AgiCalc = props => {
             </TouchableHighlight>
           </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>
-                인형 사속 스킬 배율 입력(%)
-              </Text>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={modalTypeVisible}
+          >
+            <View
+              style={{
+                flex: 1,
+                padding: 10,
+                paddingTop: Constants.statusBarHeight,
+              }}
+            >
+              <View
+                style={{
+                  height: 60,
+                  alignItems: "stretch",
+                  justifyContent: "center",
+                  borderBottomWidth: 2,
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    fontSize: 20,
+                  }}
+                >
+                  인형 병종 선택
+                </Text>
+              </View>
+              <ScrollView>
+                {typeList.map(data => {
+                  return (
+                    <TouchableHighlight
+                      key={data.id}
+                      underlayColor={OUTPUT_LABEL}
+                      style={styles.selectItem}
+                      onPress={() => {
+                        setSelectedType(data.id);
+                        setModalTypeVisible(false);
+                      }}
+                    >
+                      <Text style={styles.selectItemText}>{data.type}</Text>
+                    </TouchableHighlight>
+                  );
+                })}
+              </ScrollView>
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              placeholder="스킬 배율(%)"
-              keyboardType="numeric"
-              onChangeText={text => setTdollAgiSkill(text)}
-              value={tdollAgiSkill}
-            />
-          </View>
+          </Modal>
+
+          {!inputFlag ? (
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>
+                  인형 사속 스킬 배율 입력(%)
+                </Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                placeholder="스킬 배율(%)"
+                keyboardType="numeric"
+                onChangeText={text => setTdollAgiSkill(text)}
+                value={tdollAgiSkill}
+              />
+            </View>
+          ) : (
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 2 }]}>
+                <Text style={styles.inputLabels}>스킬 선택</Text>
+              </View>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[styles.selectsView, { flex: 2, borderRightWidth: 0 }]}
+                onPress={() => setModalTypeVisible(true)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {typeList[selectedType].type} ▼
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  {
+                    flex: 8,
+                    borderTopRightRadius: 5,
+                    borderBottomRightRadius: 5,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {typeList[selectedType].type === "AR"
+                    ? skillListAR[selectedSkill].name
+                    : typeList[selectedType].type === "RF"
+                    ? skillListRF[selectedSkill].name
+                    : typeList[selectedType].type === "SG"
+                    ? skillListSG[selectedSkill].name
+                    : null}{" "}
+                  ▼
+                </Text>
+              </TouchableHighlight>
+            </View>
+          )}
 
           {calcMode ? (
             <View>
@@ -553,6 +655,29 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: BORDER_COLOR,
+  },
+  selectsView: {
+    alignItems: "stretch",
+    justifyContent: "center",
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+  },
+  selectItem: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    height: 60,
+    borderColor: BORDER_COLOR,
+    borderTopWidth: 1,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+  selectItemText: {
+    textAlign: "center",
+    fontSize: 18,
   },
 });
 
