@@ -54,8 +54,23 @@ const AgiCalc = props => {
 
   const [modalTypeVisible, setModalTypeVisible] = useState(false);
   const [modalSkillVisible, setModalSkillVisible] = useState(false);
+  const [skillList, setSkillList] = useState([]);
   const [selectedType, setSelectedType] = useState(0);
   const [selectedSkill, setSelectedSkill] = useState(0);
+
+  const openSkillModal = () => {
+    if (typeList[selectedType].type === "AR") {
+      setSkillList(skillListAR);
+    } else if (typeList[selectedType].type === "RF") {
+      setSkillList(skillListRF);
+    } else if (typeList[selectedType].type === "SG") {
+      setSkillList(skillListSG);
+    } else {
+      alert("error");
+      return;
+    }
+    setModalSkillVisible(true);
+  };
 
   useEffect(() => {
     let sumAgiBuff =
@@ -209,6 +224,7 @@ const AgiCalc = props => {
             </TouchableHighlight>
           </View>
 
+          {/* 병종 선택 모달 */}
           <Modal
             animationType="slide"
             transparent={false}
@@ -248,10 +264,62 @@ const AgiCalc = props => {
                       style={styles.selectItem}
                       onPress={() => {
                         setSelectedType(data.id);
+                        setSelectedSkill(0);
                         setModalTypeVisible(false);
                       }}
                     >
                       <Text style={styles.selectItemText}>{data.type}</Text>
+                    </TouchableHighlight>
+                  );
+                })}
+              </ScrollView>
+            </View>
+          </Modal>
+
+          {/* 선택한 병종의 스킬목록 선택 모달 */}
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={modalSkillVisible}
+          >
+            <View
+              style={{
+                flex: 1,
+                padding: 10,
+                paddingTop: Constants.statusBarHeight,
+              }}
+            >
+              <View
+                style={{
+                  height: 60,
+                  alignItems: "stretch",
+                  justifyContent: "center",
+                  borderBottomWidth: 2,
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "600",
+                    fontSize: 20,
+                  }}
+                >
+                  스킬 목록 선택
+                </Text>
+              </View>
+              <ScrollView>
+                {skillList.map(data => {
+                  return (
+                    <TouchableHighlight
+                      key={data.id}
+                      underlayColor={OUTPUT_LABEL}
+                      style={styles.selectItem}
+                      onPress={() => {
+                        setSelectedSkill(data.id);
+                        setModalSkillVisible(false);
+                      }}
+                    >
+                      <Text style={styles.selectItemText}>{data.name}</Text>
                     </TouchableHighlight>
                   );
                 })}
@@ -298,6 +366,7 @@ const AgiCalc = props => {
                     borderBottomRightRadius: 5,
                   },
                 ]}
+                onPress={() => openSkillModal()}
               >
                 <Text style={{ textAlign: "right" }}>
                   {typeList[selectedType].type === "AR"
