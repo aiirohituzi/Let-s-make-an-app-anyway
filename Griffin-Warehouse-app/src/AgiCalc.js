@@ -73,6 +73,21 @@ const AgiCalc = props => {
   };
 
   useEffect(() => {
+    let calc_tdollAgiSkill = 0;
+    if (!inputFlag) {
+      calc_tdollAgiSkill = parseInt(tdollAgiSkill ? tdollAgiSkill : 0);
+    } else {
+      if (typeList[selectedType].type === "AR") {
+        calc_tdollAgiSkill = skillListAR[selectedSkill].percentage;
+      } else if (typeList[selectedType].type === "RF") {
+        calc_tdollAgiSkill = skillListRF[selectedSkill].percentage;
+      } else if (typeList[selectedType].type === "SG") {
+        calc_tdollAgiSkill = skillListSG[selectedSkill].percentage;
+      } else {
+        alert("error");
+        return;
+      }
+    }
     let sumAgiBuff =
       parseInt(buffer1Buff ? buffer1Buff : 0) +
       parseInt(buffer2Buff ? buffer2Buff : 0) +
@@ -93,7 +108,7 @@ const AgiCalc = props => {
       116 /
       (parseInt(tdollAgi ? tdollAgi : 0) *
         (1 + sumAgiBuff / 100) *
-        (1 + parseInt(tdollAgiSkill ? tdollAgiSkill : 0) / 100) *
+        (1 + calc_tdollAgiSkill / 100) *
         mulAgiSkill);
 
     setNeedAgiBuff(Math.ceil((calc_needAgiBuff - 1) * 100));
