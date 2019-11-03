@@ -3,6 +3,7 @@ import { StatusBar } from "react-native";
 import DamageCalc from "./src/DamageCalc";
 import AgiCalc from "./src/AgiCalc";
 import GemsCalc from "./src/GemsCalc";
+import SimCalc from "./src/SimCalc";
 // import Screen3 from './components/screen3';
 // import Screen1 from './components/screen4';
 // import Screen2 from './components/screen5';
@@ -32,36 +33,18 @@ const MyDrawerNavigator = createDrawerNavigator(
         drawerLabel: "필요 보석량 계산기",
       },
     },
-    // Screen3: {
-    //   screen: Screen3,
-    //   navigationOptions: {
-    //     drawerLabel: '화면3',
-    //   }
-    // },
-    // Screen4: {
-    //   screen: Screen4,
-    //   navigationOptions: {
-    //     drawerLabel: '화면4',
-    //   }
-    // },
-    // Screen5: {
-    //   screen: Screen5,
-    //   navigationOptions: {
-    //     drawerLabel: '화면5',
-    //   }
-    // },
-    // Screen6: {
-    //   screen: Screen6,
-    //   navigationOptions: {
-    //     drawerLabel: '화면6',
-    //   }
-    // }
+    SimCalc: {
+      screen: SimCalc,
+      navigationOptions: {
+        drawerLabel: "필요 모의작전점수 계산기",
+      },
+    },
   },
   {
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "AgiCalc",
+    initialRouteName: "SimCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },
