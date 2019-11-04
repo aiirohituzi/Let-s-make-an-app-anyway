@@ -31,7 +31,77 @@ const SimCalc = props => {
   const [needIntermediateData, setNeedIntermediateData] = useState("");
   const [needAdvancedData, setNeedAdvancedData] = useState("");
 
-  useEffect(() => {});
+  const [needSimEnergy_basic, setNeedSimEnergy_basic] = useState(0);
+  const [needSimEnergy_intermediate, setNeedSimEnergy_intermediate] = useState(
+    0,
+  );
+  const [needSimEnergy_advanced, setNeedSimEnergy_advanced] = useState(0);
+  const [needSimEnergy_sum, setNeedSimEnergy_sum] = useState(0);
+  const [needSimPurchase, setNeedSimPurchase] = useState(0);
+
+  const [getBasicData, setGetBasicData] = useState(218);
+  const [getIntermediateData, setGetIntermediateData] = useState(98);
+  const [getAdvancedData, setGetAdvancedData] = useState(53);
+
+  useEffect(() => {
+    if (
+      (needBasicData - basicData) / getBasicData < 0 ||
+      isNaN((needBasicData - basicData) / getBasicData)
+    ) {
+      setNeedSimEnergy_basic(0);
+    } else {
+      setNeedSimEnergy_basic(
+        Math.ceil((needBasicData - basicData) / getBasicData),
+      );
+    }
+    if (
+      (needIntermediateData - intermediateData) / getIntermediateData < 0 ||
+      isNaN((needIntermediateData - intermediateData) / getIntermediateData)
+    ) {
+      setNeedSimEnergy_intermediate(0);
+    } else {
+      setNeedSimEnergy_intermediate(
+        Math.ceil(
+          (needIntermediateData - intermediateData) / getIntermediateData,
+        ) * 2,
+      );
+    }
+    if (
+      (needAdvancedData - advancedData) / getAdvancedData < 0 ||
+      isNaN((needAdvancedData - advancedData) / getAdvancedData)
+    ) {
+      setNeedSimEnergy_advanced(0);
+    } else {
+      setNeedSimEnergy_advanced(
+        Math.ceil((needAdvancedData - advancedData) / getAdvancedData) * 3,
+      );
+    }
+
+    if (
+      needSimEnergy_basic +
+        needSimEnergy_intermediate +
+        needSimEnergy_advanced -
+        currentSimEnergy <
+        0 ||
+      isNaN(
+        needSimEnergy_basic +
+          needSimEnergy_intermediate +
+          needSimEnergy_advanced -
+          currentSimEnergy,
+      )
+    ) {
+      setNeedSimEnergy_sum(0);
+    } else {
+      setNeedSimEnergy_sum(
+        needSimEnergy_basic +
+          needSimEnergy_intermediate +
+          needSimEnergy_advanced -
+          currentSimEnergy,
+      );
+    }
+
+    setNeedSimPurchase(Math.ceil(needSimEnergy_sum / 3));
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -262,7 +332,7 @@ const SimCalc = props => {
                 },
               ]}
             >
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>{needSimEnergy_basic}</Text>
             </View>
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -285,7 +355,9 @@ const SimCalc = props => {
                 },
               ]}
             >
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>
+                {needSimEnergy_intermediate}
+              </Text>
             </View>
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -308,7 +380,9 @@ const SimCalc = props => {
                 },
               ]}
             >
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>
+                {needSimEnergy_advanced}
+              </Text>
             </View>
           </View>
           <View style={styles.flexRowNoMargin}>
@@ -331,7 +405,7 @@ const SimCalc = props => {
                 },
               ]}
             >
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>{needSimEnergy_sum}</Text>
             </View>
           </View>
           <View style={styles.flexRow}>
@@ -354,7 +428,7 @@ const SimCalc = props => {
                 { flex: 1, borderTopWidth: 0, borderBottomRightRadius: 5 },
               ]}
             >
-              <Text style={{ textAlign: "right" }}>0</Text>
+              <Text style={{ textAlign: "right" }}>{needSimPurchase}</Text>
             </View>
           </View>
         </View>
