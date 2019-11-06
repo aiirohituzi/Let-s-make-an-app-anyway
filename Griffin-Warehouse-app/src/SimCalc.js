@@ -117,13 +117,19 @@ const SimCalc = props => {
           </TouchableOpacity>
           <View style={styles.status}>
             <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              필요 보석량 계산기
+              필요 모의작전점수 계산기
             </Text>
           </View>
           <View style={{ width: 50 }} />
         </View>
 
         <View style={{ padding: "5%" }}>
+          <View style={[styles.flexRow, { justifyContent: "center" }]}>
+            <Text>
+              모의작전 1회당 스킬칩 획득량 / 초급:{getBasicData}, 중급:
+              {getIntermediateData}, 고급:{getAdvancedData}
+            </Text>
+          </View>
           <View style={[styles.baseLabelsView, styles.radiusTitle]}>
             <Text style={styles.baseLabelsAlignCenter}>
               스킬칩 및 모의점수 보유량 입력
