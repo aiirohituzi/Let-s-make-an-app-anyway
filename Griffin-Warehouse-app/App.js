@@ -4,6 +4,7 @@ import DamageCalc from "./src/DamageCalc";
 import AgiCalc from "./src/AgiCalc";
 import GemsCalc from "./src/GemsCalc";
 import SimCalc from "./src/SimCalc";
+import ExpCalc from "./src/ExpCalc";
 // import Screen3 from './components/screen3';
 // import Screen1 from './components/screen4';
 // import Screen2 from './components/screen5';
@@ -39,12 +40,18 @@ const MyDrawerNavigator = createDrawerNavigator(
         drawerLabel: "필요 모의작전점수 계산기",
       },
     },
+    ExpCalc: {
+      screen: ExpCalc,
+      navigationOptions: {
+        drawerLabel: "경험치 계산기",
+      },
+    },
   },
   {
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "SimCalc",
+    initialRouteName: "ExpCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },
