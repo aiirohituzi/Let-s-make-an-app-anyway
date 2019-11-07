@@ -28,20 +28,12 @@ import {
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
 
-  useEffect(() => {});
+  const [fairyCurrentLv, setFairyCurrentLv] = useState("1");
+  const [fairyCurrentExp, setFairyCurrentExp] = useState();
+  const [fairyTarget, setFairyTarget] = useState();
+  const [fairyNeedReport, setFairyNeedReport] = useState();
 
-  // 이곳에서 각 탭의 화면 편집
-  tabInstance = [
-    <View>
-      <Text>1</Text>
-    </View>,
-    <View>
-      <Text>2</Text>
-    </View>,
-    <View>
-      <Text>3</Text>
-    </View>,
-  ];
+  useEffect(() => {});
 
   return (
     <SafeAreaView style={styles.container}>
@@ -126,7 +118,85 @@ const ExpCalc = props => {
           </TouchableHighlight>
         </View>
 
-        <View style={{ padding: "5%" }}>{tabInstance[tab]}</View>
+        <View style={{ padding: "5%" }}>
+          {tab === 0 ? (
+            // =============================탭1====================================
+            <View>
+              <Text>1</Text>
+            </View>
+          ) : tab === 1 ? (
+            // =============================탭2====================================
+            <View>
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyCurrentLv(text)}
+                  value={fairyCurrentLv}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 경험치</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyCurrentExp(text)}
+                  value={fairyCurrentExp}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyTarget(text)}
+                  value={fairyTarget}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>필요 작전보고서</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {fairyNeedReport}개
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>
+                    작보 제작에 필요한 전지
+                  </Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {fairyNeedReport * 3}개
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ) : tab === 2 ? (
+            // =============================탭3====================================
+            <View>
+              <Text>3</Text>
+            </View>
+          ) : null}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -227,6 +297,43 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: OUTPUT_LABEL,
     alignItems: "stretch",
+    justifyContent: "center",
+  },
+  inputLabelsView: {
+    // flex: 3,
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    backgroundColor: ADDON_LABEL,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  inputLabels: {
+    // flex: 3,
+    // height: 40,
+    // lineHeight: 40,
+    textAlign: "right",
+
+    // borderColor: 'gray',
+    // borderWidth: 1,
+    // borderTopLeftRadius: 5,
+    // borderBottomLeftRadius: 5,
+  },
+  valueLables: {
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderWidth: 1,
+    borderColor: BORDER_COLOR,
+    backgroundColor: OUTPUT_LABEL,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
     justifyContent: "center",
   },
 });
