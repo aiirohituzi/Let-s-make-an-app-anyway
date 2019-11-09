@@ -24,6 +24,7 @@ import {
   TAB_INACTIVE,
   TAB_UNDERLAY,
 } from "./style/color";
+import { expFairy } from "./data";
 
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
@@ -31,9 +32,19 @@ const ExpCalc = props => {
   const [fairyCurrentLv, setFairyCurrentLv] = useState("1");
   const [fairyCurrentExp, setFairyCurrentExp] = useState();
   const [fairyTarget, setFairyTarget] = useState();
-  const [fairyNeedReport, setFairyNeedReport] = useState();
+  const [fairyNeedReport, setFairyNeedReport] = useState(0);
 
-  useEffect(() => {});
+  useEffect(() => {
+    let fairyNeedExp =
+      expFairy[parseInt(fairyTarget ? fairyTarget : 0) - 1] -
+      (expFairy[parseInt(fairyCurrentLv ? fairyCurrentLv : 0) - 1] +
+        parseInt(fairyCurrentExp ? fairyCurrentExp : 0));
+    if (isNaN(fairyNeedExp)) {
+      fairyNeedExp = 0;
+    } else {
+      setFairyNeedReport(Math.ceil(fairyNeedExp / 3000));
+    }
+  });
 
   return (
     <SafeAreaView style={styles.container}>
