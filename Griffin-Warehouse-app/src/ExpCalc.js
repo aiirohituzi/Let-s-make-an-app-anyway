@@ -34,6 +34,12 @@ const ExpCalc = props => {
   const [fairyTarget, setFairyTarget] = useState();
   const [fairyNeedReport, setFairyNeedReport] = useState(0);
 
+  const [FSTCurrentLv, setFSTCurrentLv] = useState("1");
+  const [FSTCurrentExp, setFSTCurrentExp] = useState();
+  const [FSTTarget, setFSTTarget] = useState();
+  const [FSTNeedReport, setFSTNeedReport] = useState(0);
+  const [FSTTime, setFSTTime] = useState(0);
+
   useEffect(() => {
     let fairyNeedExp =
       expFairy[parseInt(fairyTarget ? fairyTarget : 0) - 1] -
@@ -204,7 +210,84 @@ const ExpCalc = props => {
           ) : tab === 2 ? (
             // =============================탭3====================================
             <View>
-              <Text>3</Text>
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFSTCurrentLv(text)}
+                  value={FSTCurrentLv}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 경험치</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFSTCurrentExp(text)}
+                  value={FSTCurrentExp}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFSTTarget(text)}
+                  value={FSTTarget}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>필요 특수작전보고서</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>{FSTNeedReport}개</Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>소요 시간</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>{FSTTime}시간</Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>소모 전지</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>{FSTTime * 5}개</Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>
+                    특작보 제작에 필요한 전지
+                  </Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {FSTNeedReport * 3}개
+                  </Text>
+                </View>
+              </View>
             </View>
           ) : null}
         </View>
