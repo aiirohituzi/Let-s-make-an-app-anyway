@@ -24,7 +24,7 @@ import {
   TAB_INACTIVE,
   TAB_UNDERLAY,
 } from "./style/color";
-import { expFairy } from "./data";
+import { expFairy, expFST } from "./data";
 
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
@@ -46,9 +46,23 @@ const ExpCalc = props => {
       (expFairy[parseInt(fairyCurrentLv ? fairyCurrentLv : 0) - 1] +
         parseInt(fairyCurrentExp ? fairyCurrentExp : 0));
     if (isNaN(fairyNeedExp)) {
-      fairyNeedExp = 0;
+      // fairyNeedExp = 0;
+      setFairyNeedReport(0);
     } else {
       setFairyNeedReport(Math.ceil(fairyNeedExp / 3000));
+    }
+
+    let FSTNeedExp =
+      expFST[parseInt(FSTTarget ? FSTTarget : 0) - 1] -
+      (expFST[parseInt(FSTCurrentLv ? FSTCurrentLv : 0) - 1] +
+        parseInt(FSTCurrentExp ? FSTCurrentExp : 0));
+    if (isNaN(FSTNeedExp)) {
+      // FSTNeedExp = 0
+      setFSTNeedReport(0);
+      setFSTTime(0);
+    } else {
+      setFSTNeedReport(Math.ceil(FSTNeedExp / 3000));
+      setFSTTime(Math.ceil(FSTNeedReport / 15));
     }
   });
 
