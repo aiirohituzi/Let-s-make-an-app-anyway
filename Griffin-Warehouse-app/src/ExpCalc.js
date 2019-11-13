@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
+  Slider,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -28,6 +29,7 @@ import { expFairy, expFST } from "./data";
 
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [fairyCurrentLv, setFairyCurrentLv] = useState("1");
   const [fairyCurrentExp, setFairyCurrentExp] = useState();
@@ -39,6 +41,8 @@ const ExpCalc = props => {
   const [FSTTarget, setFSTTarget] = useState();
   const [FSTNeedReport, setFSTNeedReport] = useState(0);
   const [FSTTime, setFSTTime] = useState(0);
+
+  const [dummy, setDummy] = useState(5);
 
   useEffect(() => {
     let fairyNeedExp =
@@ -153,7 +157,157 @@ const ExpCalc = props => {
           {tab === 0 ? (
             // =============================탭1====================================
             <View>
-              <Text>1</Text>
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyCurrentLv(text)}
+                  value={fairyCurrentLv}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>현재 경험치</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyCurrentExp(text)}
+                  value={fairyCurrentExp}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                </View>
+                <TextInput
+                  style={[styles.inputs, { flex: 2 }]}
+                  placeholder=""
+                  keyboardType="numeric"
+                  onChangeText={text => setFairyTarget(text)}
+                  value={fairyTarget}
+                />
+              </View>
+
+              <View style={styles.flexRow}>
+                <View
+                  style={[
+                    styles.sliderValueView,
+                    {
+                      flex: 2,
+                      justifyContent: "center",
+                      borderTopLeftRadius: 5,
+                      borderBottomLeftRadius: 5,
+                    },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>최대 링크수 제한</Text>
+                </View>
+                <View
+                  style={[
+                    styles.inputLabelsView,
+                    {
+                      flex: 3,
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                    },
+                  ]}
+                >
+                  <Slider
+                    minimumValue={1}
+                    maximumValue={5}
+                    step={1}
+                    maximumTrackTintColor={"#fff"}
+                    value={dummy}
+                    onSlidingComplete={value => setDummy(value)}
+                  />
+                </View>
+                <View
+                  style={[
+                    styles.sliderValueView,
+                    {
+                      flex: 1,
+                      justifyContent: "center",
+                      borderTopRightRadius: 5,
+                      borderBottomRightRadius: 5,
+                    },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>{dummy}링크</Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 2 }]}>
+                  <Text style={styles.inputLabels}>레벨링 지역</Text>
+                </View>
+                <TouchableHighlight
+                  underlayColor={OUTPUT_LABEL}
+                  style={[styles.selectsView, { flex: 3, borderRightWidth: 0 }]}
+                  onPress={() => setModalVisible(true)}
+                >
+                  <Text style={{ textAlign: "right" }}>
+                    {/* {fairyPassive[fairySelected].name} ▼ */}
+                    asdf ▼
+                  </Text>
+                </TouchableHighlight>
+                <View style={[styles.valueLables, { flex: 4 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    1회당 입수 경험치 {fairyNeedReport}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>남은 경험치</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>{fairyNeedReport}</Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>남은 횟수</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {fairyNeedReport}회
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>필요 작전보고서</Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {fairyNeedReport}개
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                  <Text style={styles.inputLabels}>
+                    작보 제작에 필요한 전지
+                  </Text>
+                </View>
+                <View style={[styles.valueLables, { flex: 2 }]}>
+                  <Text style={{ textAlign: "right" }}>
+                    {fairyNeedReport * 3}개
+                  </Text>
+                </View>
+              </View>
             </View>
           ) : tab === 1 ? (
             // =============================탭2====================================
@@ -443,6 +597,22 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     justifyContent: "center",
+  },
+  sliderValueView: {
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: BORDER_COLOR,
+    backgroundColor: OUTPUT_LABEL,
+  },
+  selectsView: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
   },
 });
 
