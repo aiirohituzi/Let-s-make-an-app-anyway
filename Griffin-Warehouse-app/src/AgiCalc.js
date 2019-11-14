@@ -117,66 +117,66 @@ const AgiCalc = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.navbar}>
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => props.navigation.openDrawer()}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="ios-menu" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.status}>
+          <Text style={{ fontSize: 20, fontWeight: "600" }}>
+            최대사속 계산기
+          </Text>
+        </View>
+        <View style={{ width: 50 }} />
+      </View>
+
+      <View style={styles.flexRowNoMargin}>
+        <TouchableHighlight
+          style={[
+            styles.tab,
+            calcMode
+              ? {}
+              : {
+                  backgroundColor: TAB_ACTIVE,
+                  borderBottomWidth: 1.5,
+                  borderRightWidth: 1,
+                  borderBottomColor: BORDER_SHADOW,
+                  borderRightColor: BORDER_SHADOW,
+                },
+          ]}
+          underlayColor={TAB_UNDERLAY}
+          onPress={() => setCalcMode(false)}
+        >
+          <Text style={{ textAlign: "center" }}>단순계산</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[
+            styles.tab,
+            {
+              borderLeftWidth: 0,
+            },
+            calcMode
+              ? {
+                  backgroundColor: TAB_ACTIVE,
+                  borderBottomWidth: 1.5,
+                  borderRightWidth: 1,
+                  borderBottomColor: BORDER_SHADOW,
+                  borderRightColor: BORDER_SHADOW,
+                }
+              : {},
+          ]}
+          underlayColor={TAB_UNDERLAY}
+          onPress={() => setCalcMode(true)}
+        >
+          <Text style={{ textAlign: "center" }}>상세계산</Text>
+        </TouchableHighlight>
+      </View>
+
       <ScrollView>
-        <View style={styles.navbar}>
-          <TouchableOpacity
-            style={styles.btnMenu}
-            onPress={() => props.navigation.openDrawer()}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-              <Icon name="ios-menu" size={30} color="#555" />
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.status}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              최대사속 계산기
-            </Text>
-          </View>
-          <View style={{ width: 50 }} />
-        </View>
-
-        <View style={styles.flexRow}>
-          <TouchableHighlight
-            style={[
-              styles.tab,
-              calcMode
-                ? {}
-                : {
-                    backgroundColor: TAB_ACTIVE,
-                    borderBottomWidth: 1.5,
-                    borderRightWidth: 1,
-                    borderBottomColor: BORDER_SHADOW,
-                    borderRightColor: BORDER_SHADOW,
-                  },
-            ]}
-            underlayColor={TAB_UNDERLAY}
-            onPress={() => setCalcMode(false)}
-          >
-            <Text style={{ textAlign: "center" }}>단순계산</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={[
-              styles.tab,
-              {
-                borderLeftWidth: 0,
-              },
-              calcMode
-                ? {
-                    backgroundColor: TAB_ACTIVE,
-                    borderBottomWidth: 1.5,
-                    borderRightWidth: 1,
-                    borderBottomColor: BORDER_SHADOW,
-                    borderRightColor: BORDER_SHADOW,
-                  }
-                : {},
-            ]}
-            underlayColor={TAB_UNDERLAY}
-            onPress={() => setCalcMode(true)}
-          >
-            <Text style={{ textAlign: "center" }}>상세계산</Text>
-          </TouchableHighlight>
-        </View>
-
         <View style={{ padding: "5%" }}>
           <View style={styles.flexRow}>
             <View style={[styles.inputLabelsView, { flex: 3 }]}>

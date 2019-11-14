@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   TextInput,
   Slider,
+  Switch,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -30,6 +31,7 @@ import { expFairy, expFST } from "./data";
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const [inputFlag, setInputFlag] = useState(false);
 
   const [fairyCurrentLv, setFairyCurrentLv] = useState("1");
   const [fairyCurrentExp, setFairyCurrentExp] = useState();
@@ -72,87 +74,84 @@ const ExpCalc = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.navbar}>
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => props.navigation.openDrawer()}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="ios-menu" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.status}>
+          <Text style={{ fontSize: 20, fontWeight: "600" }}>경험치 계산기</Text>
+        </View>
+        <View style={{ width: 50 }} />
+      </View>
+      <View style={styles.flexRowNoMargin}>
+        <TouchableHighlight
+          style={[
+            styles.tab,
+            tab === 0
+              ? {
+                  backgroundColor: TAB_ACTIVE,
+                  borderBottomWidth: 1.5,
+                  borderRightWidth: 1,
+                  borderBottomColor: BORDER_SHADOW,
+                  borderRightColor: BORDER_SHADOW,
+                }
+              : {},
+          ]}
+          underlayColor={TAB_UNDERLAY}
+          onPress={() => setTab(0)}
+        >
+          <Text style={{ textAlign: "center" }}>인형</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[
+            styles.tab,
+            {
+              borderLeftWidth: 0,
+            },
+            tab === 1
+              ? {
+                  backgroundColor: TAB_ACTIVE,
+                  borderBottomWidth: 1.5,
+                  borderRightWidth: 1,
+                  borderBottomColor: BORDER_SHADOW,
+                  borderRightColor: BORDER_SHADOW,
+                }
+              : {},
+          ]}
+          underlayColor={TAB_UNDERLAY}
+          onPress={() => setTab(1)}
+        >
+          <Text style={{ textAlign: "center" }}>요정</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[
+            styles.tab,
+            {
+              borderLeftWidth: 0,
+            },
+            tab === 2
+              ? {
+                  backgroundColor: TAB_ACTIVE,
+                  borderBottomWidth: 1.5,
+                  borderRightWidth: 1,
+                  borderBottomColor: BORDER_SHADOW,
+                  borderRightColor: BORDER_SHADOW,
+                }
+              : {},
+          ]}
+          underlayColor={TAB_UNDERLAY}
+          onPress={() => setTab(2)}
+        >
+          <Text style={{ textAlign: "center" }}>화력지원소대</Text>
+        </TouchableHighlight>
+      </View>
+
       <ScrollView>
-        <View style={styles.navbar}>
-          <TouchableOpacity
-            style={styles.btnMenu}
-            onPress={() => props.navigation.openDrawer()}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-              <Icon name="ios-menu" size={30} color="#555" />
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.status}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              경험치 계산기
-            </Text>
-          </View>
-          <View style={{ width: 50 }} />
-        </View>
-
-        <View style={styles.flexRow}>
-          <TouchableHighlight
-            style={[
-              styles.tab,
-              tab === 0
-                ? {
-                    backgroundColor: TAB_ACTIVE,
-                    borderBottomWidth: 1.5,
-                    borderRightWidth: 1,
-                    borderBottomColor: BORDER_SHADOW,
-                    borderRightColor: BORDER_SHADOW,
-                  }
-                : {},
-            ]}
-            underlayColor={TAB_UNDERLAY}
-            onPress={() => setTab(0)}
-          >
-            <Text style={{ textAlign: "center" }}>인형</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={[
-              styles.tab,
-              {
-                borderLeftWidth: 0,
-              },
-              tab === 1
-                ? {
-                    backgroundColor: TAB_ACTIVE,
-                    borderBottomWidth: 1.5,
-                    borderRightWidth: 1,
-                    borderBottomColor: BORDER_SHADOW,
-                    borderRightColor: BORDER_SHADOW,
-                  }
-                : {},
-            ]}
-            underlayColor={TAB_UNDERLAY}
-            onPress={() => setTab(1)}
-          >
-            <Text style={{ textAlign: "center" }}>요정</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={[
-              styles.tab,
-              {
-                borderLeftWidth: 0,
-              },
-              tab === 2
-                ? {
-                    backgroundColor: TAB_ACTIVE,
-                    borderBottomWidth: 1.5,
-                    borderRightWidth: 1,
-                    borderBottomColor: BORDER_SHADOW,
-                    borderRightColor: BORDER_SHADOW,
-                  }
-                : {},
-            ]}
-            underlayColor={TAB_UNDERLAY}
-            onPress={() => setTab(2)}
-          >
-            <Text style={{ textAlign: "center" }}>화력지원소대</Text>
-          </TouchableHighlight>
-        </View>
-
         <View style={{ padding: "5%" }}>
           {tab === 0 ? (
             // =============================탭1====================================
@@ -183,6 +182,54 @@ const ExpCalc = props => {
                 />
               </View>
 
+              <View style={[styles.flexRow, { marginTop: 5 }]}>
+                <TouchableHighlight
+                  style={[
+                    styles.switch,
+                    {
+                      borderTopLeftRadius: 5,
+                      borderBottomLeftRadius: 5,
+                    },
+                    inputFlag
+                      ? {}
+                      : {
+                          backgroundColor: SWITCH_ACTIVE,
+                          borderBottomWidth: 1.5,
+                          borderRightWidth: 1,
+                          borderBottomColor: BORDER_SHADOW,
+                          borderRightColor: BORDER_SHADOW,
+                        },
+                  ]}
+                  underlayColor={SWITCH_UNDERLAY}
+                  onPress={() => setInputFlag(false)}
+                >
+                  <Text style={{ textAlign: "center" }}>목표 레벨</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={[
+                    styles.switch,
+                    {
+                      borderLeftWidth: 0,
+                      borderTopRightRadius: 5,
+                      borderBottomRightRadius: 5,
+                    },
+                    inputFlag
+                      ? {
+                          backgroundColor: SWITCH_ACTIVE,
+                          borderBottomWidth: 1.5,
+                          borderRightWidth: 1,
+                          borderBottomColor: BORDER_SHADOW,
+                          borderRightColor: BORDER_SHADOW,
+                        }
+                      : {},
+                  ]}
+                  underlayColor={SWITCH_UNDERLAY}
+                  onPress={() => setInputFlag(true)}
+                >
+                  <Text style={{ textAlign: "center" }}>목표 경험치</Text>
+                </TouchableHighlight>
+              </View>
+
               <View style={styles.flexRow}>
                 <View style={[styles.inputLabelsView, { flex: 3 }]}>
                   <Text style={styles.inputLabels}>목표 레벨</Text>
@@ -194,6 +241,75 @@ const ExpCalc = props => {
                   onChangeText={text => setFairyTarget(text)}
                   value={fairyTarget}
                 />
+              </View>
+
+              <View
+                style={[
+                  styles.flexRow,
+                  { justifyContent: "space-between", marginTop: 5 },
+                ]}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    flex: 1,
+                  }}
+                >
+                  <Text>리더</Text>
+                  <Switch></Switch>
+                </View>
+
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    flex: 2,
+                  }}
+                >
+                  <Text>MVP</Text>
+                  <Switch></Switch>
+                </View>
+
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    flex: 2,
+                  }}
+                >
+                  <Text>서약 여부</Text>
+                  <Switch></Switch>
+                </View>
+              </View>
+              <View style={[styles.flexRow]}>
+                <View style={{ flex: 1 }}></View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    flex: 2,
+                  }}
+                >
+                  <Text>지휘요정 발동</Text>
+                  <Switch></Switch>
+                </View>
+
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    flex: 2,
+                  }}
+                >
+                  <Text>경험치 이벤트</Text>
+                  <Switch></Switch>
+                </View>
               </View>
 
               <View style={styles.flexRow}>
@@ -613,6 +729,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     borderColor: BORDER_COLOR,
     borderWidth: 1,
+  },
+  switch: {
+    flex: 1,
+    justifyContent: "center",
+    height: 40,
+    borderWidth: 1,
+    borderColor: BORDER_COLOR,
   },
 });
 

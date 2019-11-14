@@ -105,24 +105,24 @@ const SimCalc = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.navbar}>
-          <TouchableOpacity
-            style={styles.btnMenu}
-            onPress={() => props.navigation.openDrawer()}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-              <Icon name="ios-menu" size={30} color="#555" />
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.status}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              필요 모의작전점수 계산기
-            </Text>
-          </View>
-          <View style={{ width: 50 }} />
+      <View style={styles.navbar}>
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => props.navigation.openDrawer()}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="ios-menu" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.status}>
+          <Text style={{ fontSize: 20, fontWeight: "600" }}>
+            필요 모의작전점수 계산기
+          </Text>
         </View>
+        <View style={{ width: 50 }} />
+      </View>
 
+      <ScrollView>
         <View style={{ padding: "5%" }}>
           <View style={[styles.flexRow, { justifyContent: "center" }]}>
             <Text>
