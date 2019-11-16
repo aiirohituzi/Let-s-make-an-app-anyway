@@ -45,11 +45,12 @@ const ExpCalc = props => {
   const [mvpCoefficient, setMvpCoefficient] = useState(1);
   const [pledge, setPledge] = useState(false);
   const [pledgeCoefficient, setPledgeCoefficient] = useState(1);
+  const commandSkill = [5, 8, 10, 12, 14, 16, 18, 20, 22, 25];
   const [command, setCommand] = useState(false);
   const [commandSkillLv, setCommandSkillLv] = useState(10);
   const [commandCoefficient, setCommandCoefficient] = useState(1);
   const [event, setEvent] = useState(false);
-  const [eventCoefficient, setEventCoefficient] = useState(2);
+  const [eventCoefficient, setEventCoefficient] = useState("2");
   const [needExp, setNeedExp] = useState(0);
   const [needCount, setNeedCount] = useState(0);
   const [tdollNeedReport, setTdollNeedReport] = useState(0);
@@ -333,6 +334,77 @@ const ExpCalc = props => {
                   <Switch onChange={() => setEvent(!event)} value={event} />
                 </View>
               </View>
+
+              {event ? (
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>
+                      경험치 이벤트 배율 입력
+                    </Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setEventCoefficient(text)}
+                    value={eventCoefficient}
+                  />
+                </View>
+              ) : null}
+
+              {command ? (
+                <View style={styles.flexRow}>
+                  <View
+                    style={[
+                      styles.sliderValueView,
+                      {
+                        flex: 2,
+                        justifyContent: "center",
+                        borderTopLeftRadius: 5,
+                        borderBottomLeftRadius: 5,
+                      },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>
+                      지휘요정 스킬 레벨
+                    </Text>
+                  </View>
+                  <View
+                    style={[
+                      styles.inputLabelsView,
+                      {
+                        flex: 3,
+                        borderTopLeftRadius: 0,
+                        borderBottomLeftRadius: 0,
+                      },
+                    ]}
+                  >
+                    <Slider
+                      minimumValue={1}
+                      maximumValue={10}
+                      step={1}
+                      maximumTrackTintColor={"#fff"}
+                      value={commandSkillLv}
+                      onSlidingComplete={value => setCommandSkillLv(value)}
+                    />
+                  </View>
+                  <View
+                    style={[
+                      styles.sliderValueView,
+                      {
+                        flex: 1,
+                        justifyContent: "center",
+                        borderTopRightRadius: 5,
+                        borderBottomRightRadius: 5,
+                      },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>
+                      {commandSkillLv}Lv {commandSkill[commandSkillLv - 1]}%
+                    </Text>
+                  </View>
+                </View>
+              ) : null}
 
               <View style={styles.flexRow}>
                 <View
