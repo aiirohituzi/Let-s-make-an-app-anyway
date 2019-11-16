@@ -33,6 +33,27 @@ const ExpCalc = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [inputFlag, setInputFlag] = useState(false);
 
+  const [tdollCurrentLv, setTdollCurrentLv] = useState("1");
+  const [tdollCurrentExp, setTdollCurrentExp] = useState();
+  const [tdollTarget, setTdollTarget] = useState();
+  const [areaSelected, setAreaSelected] = useState(0);
+  const [getExp, setGetExp] = useState(370 * 4);
+  const [dummy, setDummy] = useState(5);
+  const [leader, setLeader] = useState(false);
+  const [leaderCoefficient, setLeaderCoefficient] = useState(1);
+  const [mvp, setMvp] = useState(false);
+  const [mvpCoefficient, setMvpCoefficient] = useState(1);
+  const [pledge, setPledge] = useState(false);
+  const [pledgeCoefficient, setPledgeCoefficient] = useState(1);
+  const [command, setCommand] = useState(false);
+  const [commandSkillLv, setCommandSkillLv] = useState(10);
+  const [commandCoefficient, setCommandCoefficient] = useState(1);
+  const [event, setEvent] = useState(false);
+  const [eventCoefficient, setEventCoefficient] = useState(2);
+  const [needExp, setNeedExp] = useState(0);
+  const [needCount, setNeedCount] = useState(0);
+  const [tdollNeedReport, setTdollNeedReport] = useState(0);
+
   const [fairyCurrentLv, setFairyCurrentLv] = useState("1");
   const [fairyCurrentExp, setFairyCurrentExp] = useState();
   const [fairyTarget, setFairyTarget] = useState();
@@ -43,8 +64,6 @@ const ExpCalc = props => {
   const [FSTTarget, setFSTTarget] = useState();
   const [FSTNeedReport, setFSTNeedReport] = useState(0);
   const [FSTTime, setFSTTime] = useState(0);
-
-  const [dummy, setDummy] = useState(5);
 
   useEffect(() => {
     let fairyNeedExp =
@@ -164,8 +183,8 @@ const ExpCalc = props => {
                   style={[styles.inputs, { flex: 2 }]}
                   placeholder=""
                   keyboardType="numeric"
-                  onChangeText={text => setFairyCurrentLv(text)}
-                  value={fairyCurrentLv}
+                  onChangeText={text => setTdollCurrentLv(text)}
+                  value={tdollCurrentLv}
                 />
               </View>
 
@@ -177,8 +196,8 @@ const ExpCalc = props => {
                   style={[styles.inputs, { flex: 2 }]}
                   placeholder=""
                   keyboardType="numeric"
-                  onChangeText={text => setFairyCurrentExp(text)}
-                  value={fairyCurrentExp}
+                  onChangeText={text => setTdollCurrentExp(text)}
+                  value={tdollCurrentExp}
                 />
               </View>
 
@@ -238,8 +257,8 @@ const ExpCalc = props => {
                   style={[styles.inputs, { flex: 2 }]}
                   placeholder=""
                   keyboardType="numeric"
-                  onChangeText={text => setFairyTarget(text)}
-                  value={fairyTarget}
+                  onChangeText={text => setTdollTarget(text)}
+                  value={tdollTarget}
                 />
               </View>
 
@@ -258,7 +277,7 @@ const ExpCalc = props => {
                   }}
                 >
                   <Text>리더</Text>
-                  <Switch></Switch>
+                  <Switch onChange={() => setLeader(!leader)} value={leader} />
                 </View>
 
                 <View
@@ -270,7 +289,7 @@ const ExpCalc = props => {
                   }}
                 >
                   <Text>MVP</Text>
-                  <Switch></Switch>
+                  <Switch onChange={() => setMvp(!mvp)} value={mvp} />
                 </View>
 
                 <View
@@ -282,7 +301,7 @@ const ExpCalc = props => {
                   }}
                 >
                   <Text>서약 여부</Text>
-                  <Switch></Switch>
+                  <Switch onChange={() => setPledge(!pledge)} value={pledge} />
                 </View>
               </View>
               <View style={[styles.flexRow]}>
@@ -296,7 +315,10 @@ const ExpCalc = props => {
                   }}
                 >
                   <Text>지휘요정 발동</Text>
-                  <Switch></Switch>
+                  <Switch
+                    onChange={() => setCommand(!command)}
+                    value={command}
+                  />
                 </View>
 
                 <View
@@ -308,7 +330,7 @@ const ExpCalc = props => {
                   }}
                 >
                   <Text>경험치 이벤트</Text>
-                  <Switch></Switch>
+                  <Switch onChange={() => setEvent(!event)} value={event} />
                 </View>
               </View>
 
@@ -386,7 +408,7 @@ const ExpCalc = props => {
                   <Text style={styles.inputLabels}>남은 경험치</Text>
                 </View>
                 <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{fairyNeedReport}</Text>
+                  <Text style={{ textAlign: "right" }}>{needExp}</Text>
                 </View>
               </View>
 
@@ -395,9 +417,7 @@ const ExpCalc = props => {
                   <Text style={styles.inputLabels}>남은 횟수</Text>
                 </View>
                 <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {fairyNeedReport}회
-                  </Text>
+                  <Text style={{ textAlign: "right" }}>{needCount}회</Text>
                 </View>
               </View>
 
@@ -407,7 +427,7 @@ const ExpCalc = props => {
                 </View>
                 <View style={[styles.valueLables, { flex: 2 }]}>
                   <Text style={{ textAlign: "right" }}>
-                    {fairyNeedReport}개
+                    {tdollNeedReport}개
                   </Text>
                 </View>
               </View>
@@ -420,7 +440,7 @@ const ExpCalc = props => {
                 </View>
                 <View style={[styles.valueLables, { flex: 2 }]}>
                   <Text style={{ textAlign: "right" }}>
-                    {fairyNeedReport * 3}개
+                    {tdollNeedReport * 3}개
                   </Text>
                 </View>
               </View>
