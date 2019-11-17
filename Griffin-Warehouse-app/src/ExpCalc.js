@@ -422,7 +422,9 @@ const ExpCalc = props => {
 
               <View style={styles.flexRow}>
                 <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                  <Text style={styles.inputLabels}>
+                    {!inputFlag ? "목표 레벨" : "목표 경험치"}
+                  </Text>
                 </View>
                 <TextInput
                   style={[styles.inputs, { flex: 2 }]}
@@ -624,6 +626,7 @@ const ExpCalc = props => {
                 </View>
               </View>
 
+              {/* ★ 이어서 처리해야 할 부분 */}
               <View style={styles.flexRow}>
                 <View style={[styles.inputLabelsView, { flex: 2 }]}>
                   <Text style={styles.inputLabels}>레벨링 지역</Text>
