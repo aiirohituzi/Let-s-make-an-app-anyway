@@ -26,7 +26,7 @@ import {
   TAB_INACTIVE,
   TAB_UNDERLAY,
 } from "./style/color";
-import { expFairy, expFST } from "./data";
+import { exp, expPledge, expFairy, expFST, area } from "./data";
 
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
@@ -66,31 +66,201 @@ const ExpCalc = props => {
   const [FSTNeedReport, setFSTNeedReport] = useState(0);
   const [FSTTime, setFSTTime] = useState(0);
 
-  useEffect(() => {
-    let fairyNeedExp =
-      expFairy[parseInt(fairyTarget ? fairyTarget : 0) - 1] -
-      (expFairy[parseInt(fairyCurrentLv ? fairyCurrentLv : 0) - 1] +
-        parseInt(fairyCurrentExp ? fairyCurrentExp : 0));
-    if (isNaN(fairyNeedExp)) {
-      // fairyNeedExp = 0;
-      setFairyNeedReport(0);
+  (getExpFinal = (cumulativeExp, penaltyLv) => {
+    if (getPenalty(cumulativeExp, penaltyLv) == 0) {
+      return 10;
     } else {
-      setFairyNeedReport(Math.ceil(fairyNeedExp / 3000));
+      return (
+        getExp * getPenalty(cumulativeExp, penaltyLv) * getDummy(cumulativeExp)
+      );
     }
+  }),
+    (getPenalty = (cumulativeExp, penaltyLv) => {
+      if (cumulativeExp >= exp[penaltyLv + 50 - 1]) {
+        return 0;
+      } else if (cumulativeExp > exp[penaltyLv + 40 - 1]) {
+        return 0.2;
+      } else if (cumulativeExp > exp[penaltyLv + 30 - 1]) {
+        return 0.4;
+      } else if (cumulativeExp > exp[penaltyLv + 20 - 1]) {
+        return 0.6;
+      } else if (cumulativeExp > exp[penaltyLv + 10 - 1]) {
+        return 0.8;
+      } else {
+        return 1;
+      }
+    }),
+    (getDummy = cumulativeExp => {
+      if (cumulativeExp >= exp[89]) {
+        if (dummy < 5) {
+          return 0.5 + 0.5 * dummy;
+        } else {
+          return 3;
+        }
+      } else if (cumulativeExp >= exp[69]) {
+        if (dummy < 4) {
+          return 0.5 + 0.5 * dummy;
+        } else {
+          return 2.5;
+        }
+      } else if (cumulativeExp >= exp[29]) {
+        if (dummy < 3) {
+          return 0.5 + 0.5 * dummy;
+        } else {
+          return 2;
+        }
+      } else if (cumulativeExp >= exp[9]) {
+        if (dummy < 2) {
+          return 0.5 + 0.5 * dummy;
+        } else {
+          return 1.5;
+        }
+      } else {
+        return 1;
+      }
+    }),
+    useEffect(() => {
+      setGetExp(area[areaSelected].exp);
 
-    let FSTNeedExp =
-      expFST[parseInt(FSTTarget ? FSTTarget : 0) - 1] -
-      (expFST[parseInt(FSTCurrentLv ? FSTCurrentLv : 0) - 1] +
-        parseInt(FSTCurrentExp ? FSTCurrentExp : 0));
-    if (isNaN(FSTNeedExp)) {
-      // FSTNeedExp = 0
-      setFSTNeedReport(0);
-      setFSTTime(0);
-    } else {
-      setFSTNeedReport(Math.ceil(FSTNeedExp / 3000));
-      setFSTTime(Math.ceil(FSTNeedReport / 15));
-    }
-  });
+      let calc_tdollCurrentLv = parseInt(tdollCurrentLv ? tdollCurrentLv : 0);
+      let calc_tdollCurrentExp = parseInt(
+        tdollCurrentExp ? tdollCurrentExp : 0,
+      );
+      let calc_tdollTarget = parseInt(tdollTarget ? tdollTarget : 0);
+      let cumulativeExp = exp[calc_tdollCurrentLv - 1] + calc_tdollCurrentExp;
+      let tdollTargetExp;
+      let calc_needExp;
+      let calc_needCount = 0;
+      let penaltyLv = parseInt(area[areaSelected].penalty);
+      let calc_eventCoefficient = 1;
+      let regnondig = /\D+/;
+
+      if (areaSelected == 7) {
+        if (
+          regnondig.test(area[areaSelected].exp) ||
+          regnondig.test(area[areaSelected].penalty) ||
+          area[areaSelected].exp < 100
+        ) {
+          return;
+        }
+      }
+
+      if (!inputFlag) {
+        tdollTargetExp = exp[calc_tdollTarget - 1];
+        calc_needExp =
+          exp[calc_tdollTarget - 1] -
+          (exp[calc_tdollCurrentLv - 1] + calc_tdollCurrentExp);
+        if (isNaN(calc_needExp)) {
+          setNeedExp(0);
+        } else {
+          setNeedExp(calc_needExp);
+        }
+      } else {
+        tdollTargetExp = calc_tdollTarget;
+        calc_needExp =
+          tdollTargetExp -
+          (exp[calc_tdollCurrentLv - 1] + calc_tdollCurrentExp);
+        if (isNaN(calc_needExp)) {
+          setNeedExp(0);
+        } else {
+          setNeedExp(calc_needExp);
+        }
+      }
+
+      if (!pledge) {
+        setTdollNeedReport(Math.ceil(needExp / 3000));
+      } else {
+        setTdollNeedReport(
+          Math.ceil(
+            (expPledge[calc_tdollTarget - 1] -
+              (expPledge[calc_tdollCurrentLv - 1] + calc_tdollCurrentExp / 2)) /
+              3000,
+          ),
+        );
+      }
+
+      for (
+        calc_needCount = 0;
+        cumulativeExp < tdollTargetExp;
+        calc_needCount++
+      ) {
+        if (getExpFinal(cumulativeExp, penaltyLv) == 10) {
+          break;
+        }
+
+        if (pledge) {
+          if (cumulativeExp >= exp[99]) {
+            setPledgeCoefficient(2);
+          }
+        } else {
+          setPledgeCoefficient(1);
+        }
+
+        if (mvp) {
+          setMvpCoefficient(1.3);
+        } else {
+          setMvpCoefficient(1);
+        }
+
+        if (leader) {
+          setLeaderCoefficient(1.2);
+        } else {
+          setLeaderCoefficient(1);
+        }
+
+        if (command) {
+          setCommandCoefficient(1 + commandSkill[commandSkillLv - 1] / 100);
+        } else {
+          setCommandCoefficient(1);
+        }
+
+        if (event) {
+          if (eventCoefficient != "" && eventCoefficient > 0) {
+            calc_eventCoefficient = eventCoefficient;
+          }
+        }
+
+        cumulativeExp +=
+          getExpFinal(cumulativeExp, penaltyLv) *
+          pledgeCoefficient *
+          mvpCoefficient *
+          leaderCoefficient *
+          commandCoefficient *
+          calc_eventCoefficient;
+      }
+
+      if (getExpFinal(cumulativeExp, penaltyLv) == 10) {
+        setNeedCount(calc_needCount + "회 + α (이후 경험치는 10으로 고정)");
+      } else {
+        setNeedCount(calc_needCount);
+      }
+
+      // 요정 계산
+      let fairyNeedExp =
+        expFairy[parseInt(fairyTarget ? fairyTarget : 0) - 1] -
+        (expFairy[parseInt(fairyCurrentLv ? fairyCurrentLv : 0) - 1] +
+          parseInt(fairyCurrentExp ? fairyCurrentExp : 0));
+      if (isNaN(fairyNeedExp)) {
+        // fairyNeedExp = 0;
+        setFairyNeedReport(0);
+      } else {
+        setFairyNeedReport(Math.ceil(fairyNeedExp / 3000));
+      }
+
+      // 화력지원소대 계산
+      let FSTNeedExp =
+        expFST[parseInt(FSTTarget ? FSTTarget : 0) - 1] -
+        (expFST[parseInt(FSTCurrentLv ? FSTCurrentLv : 0) - 1] +
+          parseInt(FSTCurrentExp ? FSTCurrentExp : 0));
+      if (isNaN(FSTNeedExp)) {
+        // FSTNeedExp = 0
+        setFSTNeedReport(0);
+        setFSTTime(0);
+      } else {
+        setFSTNeedReport(Math.ceil(FSTNeedExp / 3000));
+        setFSTTime(Math.ceil(FSTNeedReport / 15));
+      }
+    });
 
   return (
     <SafeAreaView style={styles.container}>
