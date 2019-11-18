@@ -11,6 +11,7 @@ import {
   TextInput,
   Slider,
   Switch,
+  Modal,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -626,6 +627,56 @@ const ExpCalc = props => {
                 </View>
               </View>
 
+              <Modal
+                animationType="slide"
+                transparent={false}
+                visible={modalVisible}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    padding: 10,
+                    paddingTop: Constants.statusBarHeight,
+                  }}
+                >
+                  <View
+                    style={{
+                      height: 60,
+                      alignItems: "stretch",
+                      justifyContent: "center",
+                      borderBottomWidth: 2,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        fontWeight: "600",
+                        fontSize: 20,
+                      }}
+                    >
+                      요정 특성 선택
+                    </Text>
+                  </View>
+                  <ScrollView>
+                    {area.map(data => {
+                      return (
+                        <TouchableHighlight
+                          key={data.id}
+                          underlayColor={OUTPUT_LABEL}
+                          style={styles.selectItem}
+                          onPress={() => {
+                            setAreaSelected(data.id);
+                            setModalVisible(false);
+                          }}
+                        >
+                          <Text style={styles.selectItemText}>{data.name}</Text>
+                        </TouchableHighlight>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              </Modal>
+
               {/* ★ 이어서 처리해야 할 부분 */}
               <View style={styles.flexRow}>
                 <View style={[styles.inputLabelsView, { flex: 2 }]}>
@@ -637,13 +688,12 @@ const ExpCalc = props => {
                   onPress={() => setModalVisible(true)}
                 >
                   <Text style={{ textAlign: "right" }}>
-                    {/* {fairyPassive[fairySelected].name} ▼ */}
-                    asdf ▼
+                    {area[areaSelected].name} ▼
                   </Text>
                 </TouchableHighlight>
                 <View style={[styles.valueLables, { flex: 4 }]}>
                   <Text style={{ textAlign: "right" }}>
-                    1회당 입수 경험치 {fairyNeedReport}
+                    1회당 입수 경험치 {area[areaSelected].exp}
                   </Text>
                 </View>
               </View>
@@ -1001,6 +1051,21 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: BORDER_COLOR,
+  },
+
+  selectItem: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    height: 60,
+    borderColor: BORDER_COLOR,
+    borderTopWidth: 1,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+  selectItemText: {
+    textAlign: "center",
+    fontSize: 18,
   },
 });
 
