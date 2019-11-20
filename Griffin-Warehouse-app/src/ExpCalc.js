@@ -38,7 +38,8 @@ const ExpCalc = props => {
   const [tdollCurrentExp, setTdollCurrentExp] = useState();
   const [tdollTarget, setTdollTarget] = useState();
   const [areaSelected, setAreaSelected] = useState(0);
-  const [areaDirectInput, setAreaDirectInput] = useState();
+  const [areaExpDirectInput, setAreaExpDirectInput] = useState("0");
+  const [areaPenaltyDirectInput, setAreaPenaltyDirectInput] = useState("0");
   const [getExp, setGetExp] = useState(370 * 4);
   const [dummy, setDummy] = useState(5);
   const [leader, setLeader] = useState(false);
@@ -126,7 +127,7 @@ const ExpCalc = props => {
 
   useEffect(() => {
     setGetExp(
-      areaSelected != 7 ? area[areaSelected].exp : parseInt(areaDirectInput),
+      areaSelected != 7 ? area[areaSelected].exp : parseInt(areaExpDirectInput),
     );
 
     let calc_tdollCurrentLv = parseInt(tdollCurrentLv ? tdollCurrentLv : 0);
@@ -136,15 +137,17 @@ const ExpCalc = props => {
     let tdollTargetExp;
     let calc_needExp;
     let calc_needCount = 0;
-    let penaltyLv = parseInt(area[areaSelected].penalty);
+    let penaltyLv = parseInt(
+      areaSelected != 7 ? area[areaSelected].penalty : areaPenaltyDirectInput,
+    );
     let calc_eventCoefficient = 1;
     let regnondig = /\D+/;
 
     if (areaSelected == 7) {
       if (
-        regnondig.test(areaDirectInput) ||
-        regnondig.test(areaDirectInput) ||
-        areaDirectInput < 100
+        regnondig.test(areaExpDirectInput) ||
+        regnondig.test(areaExpDirectInput) ||
+        areaExpDirectInput < 100
       ) {
         console.log("???");
         return;
@@ -693,7 +696,10 @@ const ExpCalc = props => {
                 </TouchableHighlight>
                 <View style={[styles.valueLables, { flex: 4 }]}>
                   <Text style={{ textAlign: "right" }}>
-                    1회당 입수 경험치 {area[areaSelected].exp}
+                    1회당 입수 경험치{" "}
+                    {areaSelected != 7
+                      ? area[areaSelected].exp
+                      : areaExpDirectInput}
                   </Text>
                 </View>
               </View>
@@ -702,26 +708,26 @@ const ExpCalc = props => {
                 <View>
                   <View style={styles.flexRow}>
                     <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                      <Text style={styles.inputLabels}>""</Text>
+                      <Text style={styles.inputLabels}>1전역당 경험치</Text>
                     </View>
                     <TextInput
                       style={[styles.inputs, { flex: 2 }]}
                       placeholder=""
                       keyboardType="numeric"
-                      onChangeText={text => setTdollTarget(text)}
-                      value={tdollTarget}
+                      onChangeText={text => setAreaExpDirectInput(text)}
+                      value={areaExpDirectInput}
                     />
                   </View>
                   <View style={styles.flexRow}>
                     <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                      <Text style={styles.inputLabels}>""</Text>
+                      <Text style={styles.inputLabels}>전역 패널티</Text>
                     </View>
                     <TextInput
                       style={[styles.inputs, { flex: 2 }]}
                       placeholder=""
                       keyboardType="numeric"
-                      onChangeText={text => setAreaDirectInput(text)}
-                      value={areaDirectInput}
+                      onChangeText={text => setAreaPenaltyDirectInput(text)}
+                      value={areaPenaltyDirectInput}
                     />
                   </View>
                 </View>
