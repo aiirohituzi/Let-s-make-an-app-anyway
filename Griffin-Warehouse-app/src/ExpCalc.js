@@ -12,6 +12,7 @@ import {
   Slider,
   Switch,
   Modal,
+  KeyboardAvoidingView,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -149,7 +150,6 @@ const ExpCalc = props => {
         regnondig.test(areaExpDirectInput) ||
         areaExpDirectInput < 100
       ) {
-        console.log("???");
         return;
       }
     }
@@ -345,190 +345,250 @@ const ExpCalc = props => {
         </TouchableHighlight>
       </View>
 
-      <ScrollView>
-        <View style={{ padding: "5%" }}>
-          {tab === 0 ? (
-            // =============================탭1====================================
-            <View>
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 레벨</Text>
-                </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setTdollCurrentLv(text)}
-                  value={tdollCurrentLv}
-                />
-              </View>
-
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 경험치</Text>
-                </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setTdollCurrentExp(text)}
-                  value={tdollCurrentExp}
-                />
-              </View>
-
-              <View style={[styles.flexRow, { marginTop: 5 }]}>
-                <TouchableHighlight
-                  style={[
-                    styles.switch,
-                    {
-                      borderTopLeftRadius: 5,
-                      borderBottomLeftRadius: 5,
-                    },
-                    inputFlag
-                      ? {}
-                      : {
-                          backgroundColor: SWITCH_ACTIVE,
-                          borderBottomWidth: 1.5,
-                          borderRightWidth: 1,
-                          borderBottomColor: BORDER_SHADOW,
-                          borderRightColor: BORDER_SHADOW,
-                        },
-                  ]}
-                  underlayColor={SWITCH_UNDERLAY}
-                  onPress={() => setInputFlag(false)}
-                >
-                  <Text style={{ textAlign: "center" }}>목표 레벨</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={[
-                    styles.switch,
-                    {
-                      borderLeftWidth: 0,
-                      borderTopRightRadius: 5,
-                      borderBottomRightRadius: 5,
-                    },
-                    inputFlag
-                      ? {
-                          backgroundColor: SWITCH_ACTIVE,
-                          borderBottomWidth: 1.5,
-                          borderRightWidth: 1,
-                          borderBottomColor: BORDER_SHADOW,
-                          borderRightColor: BORDER_SHADOW,
-                        }
-                      : {},
-                  ]}
-                  underlayColor={SWITCH_UNDERLAY}
-                  onPress={() => setInputFlag(true)}
-                >
-                  <Text style={{ textAlign: "center" }}>목표 경험치</Text>
-                </TouchableHighlight>
-              </View>
-
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>
-                    {!inputFlag ? "목표 레벨" : "목표 경험치"}
-                  </Text>
-                </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setTdollTarget(text)}
-                  value={tdollTarget}
-                />
-              </View>
-
-              <View
-                style={[
-                  styles.flexRow,
-                  { justifyContent: "space-between", marginTop: 5 },
-                ]}
-              >
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    flex: 1,
-                  }}
-                >
-                  <Text>리더</Text>
-                  <Switch onChange={() => setLeader(!leader)} value={leader} />
-                </View>
-
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    flex: 2,
-                  }}
-                >
-                  <Text>MVP</Text>
-                  <Switch onChange={() => setMvp(!mvp)} value={mvp} />
-                </View>
-
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    flex: 2,
-                  }}
-                >
-                  <Text>서약 여부</Text>
-                  <Switch onChange={() => setPledge(!pledge)} value={pledge} />
-                </View>
-              </View>
-              <View style={[styles.flexRow]}>
-                <View style={{ flex: 1 }}></View>
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    flex: 2,
-                  }}
-                >
-                  <Text>지휘요정 발동</Text>
-                  <Switch
-                    onChange={() => setCommand(!command)}
-                    value={command}
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+        <ScrollView>
+          <View style={{ padding: "5%" }}>
+            {tab === 0 ? (
+              // =============================탭1====================================
+              <View>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setTdollCurrentLv(text)}
+                    value={tdollCurrentLv}
                   />
                 </View>
 
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    flex: 2,
-                  }}
-                >
-                  <Text>경험치 이벤트</Text>
-                  <Switch onChange={() => setEvent(!event)} value={event} />
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 경험치</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setTdollCurrentExp(text)}
+                    value={tdollCurrentExp}
+                  />
                 </View>
-              </View>
 
-              {event ? (
+                <View style={[styles.flexRow, { marginTop: 5 }]}>
+                  <TouchableHighlight
+                    style={[
+                      styles.switch,
+                      {
+                        borderTopLeftRadius: 5,
+                        borderBottomLeftRadius: 5,
+                      },
+                      inputFlag
+                        ? {}
+                        : {
+                            backgroundColor: SWITCH_ACTIVE,
+                            borderBottomWidth: 1.5,
+                            borderRightWidth: 1,
+                            borderBottomColor: BORDER_SHADOW,
+                            borderRightColor: BORDER_SHADOW,
+                          },
+                    ]}
+                    underlayColor={SWITCH_UNDERLAY}
+                    onPress={() => setInputFlag(false)}
+                  >
+                    <Text style={{ textAlign: "center" }}>목표 레벨</Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={[
+                      styles.switch,
+                      {
+                        borderLeftWidth: 0,
+                        borderTopRightRadius: 5,
+                        borderBottomRightRadius: 5,
+                      },
+                      inputFlag
+                        ? {
+                            backgroundColor: SWITCH_ACTIVE,
+                            borderBottomWidth: 1.5,
+                            borderRightWidth: 1,
+                            borderBottomColor: BORDER_SHADOW,
+                            borderRightColor: BORDER_SHADOW,
+                          }
+                        : {},
+                    ]}
+                    underlayColor={SWITCH_UNDERLAY}
+                    onPress={() => setInputFlag(true)}
+                  >
+                    <Text style={{ textAlign: "center" }}>목표 경험치</Text>
+                  </TouchableHighlight>
+                </View>
+
                 <View style={styles.flexRow}>
                   <View style={[styles.inputLabelsView, { flex: 3 }]}>
                     <Text style={styles.inputLabels}>
-                      경험치 이벤트 배율 입력
+                      {!inputFlag ? "목표 레벨" : "목표 경험치"}
                     </Text>
                   </View>
                   <TextInput
                     style={[styles.inputs, { flex: 2 }]}
                     placeholder=""
                     keyboardType="numeric"
-                    onChangeText={text => setEventCoefficient(text)}
-                    value={eventCoefficient}
+                    onChangeText={text => setTdollTarget(text)}
+                    value={tdollTarget}
                   />
                 </View>
-              ) : null}
 
-              {command ? (
+                <View
+                  style={[
+                    styles.flexRow,
+                    { justifyContent: "space-between", marginTop: 5 },
+                  ]}
+                >
+                  <View
+                    style={{
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 1,
+                    }}
+                  >
+                    <Text>리더</Text>
+                    <Switch
+                      onChange={() => setLeader(!leader)}
+                      value={leader}
+                    />
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 2,
+                    }}
+                  >
+                    <Text>MVP</Text>
+                    <Switch onChange={() => setMvp(!mvp)} value={mvp} />
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 2,
+                    }}
+                  >
+                    <Text>서약 여부</Text>
+                    <Switch
+                      onChange={() => setPledge(!pledge)}
+                      value={pledge}
+                    />
+                  </View>
+                </View>
+                <View style={[styles.flexRow]}>
+                  <View style={{ flex: 1 }}></View>
+                  <View
+                    style={{
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 2,
+                    }}
+                  >
+                    <Text>지휘요정 발동</Text>
+                    <Switch
+                      onChange={() => setCommand(!command)}
+                      value={command}
+                    />
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 2,
+                    }}
+                  >
+                    <Text>경험치 이벤트</Text>
+                    <Switch onChange={() => setEvent(!event)} value={event} />
+                  </View>
+                </View>
+
+                {event ? (
+                  <View style={styles.flexRow}>
+                    <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                      <Text style={styles.inputLabels}>
+                        경험치 이벤트 배율 입력
+                      </Text>
+                    </View>
+                    <TextInput
+                      style={[styles.inputs, { flex: 2 }]}
+                      placeholder=""
+                      keyboardType="numeric"
+                      onChangeText={text => setEventCoefficient(text)}
+                      value={eventCoefficient}
+                    />
+                  </View>
+                ) : null}
+
+                {command ? (
+                  <View style={styles.flexRow}>
+                    <View
+                      style={[
+                        styles.sliderValueView,
+                        {
+                          flex: 2,
+                          justifyContent: "center",
+                          borderTopLeftRadius: 5,
+                          borderBottomLeftRadius: 5,
+                        },
+                      ]}
+                    >
+                      <Text style={{ textAlign: "center" }}>
+                        지휘요정 스킬 레벨
+                      </Text>
+                    </View>
+                    <View
+                      style={[
+                        styles.inputLabelsView,
+                        {
+                          flex: 3,
+                          borderTopLeftRadius: 0,
+                          borderBottomLeftRadius: 0,
+                        },
+                      ]}
+                    >
+                      <Slider
+                        minimumValue={1}
+                        maximumValue={10}
+                        step={1}
+                        maximumTrackTintColor={"#fff"}
+                        value={commandSkillLv}
+                        onSlidingComplete={value => setCommandSkillLv(value)}
+                      />
+                    </View>
+                    <View
+                      style={[
+                        styles.sliderValueView,
+                        {
+                          flex: 1,
+                          justifyContent: "center",
+                          borderTopRightRadius: 5,
+                          borderBottomRightRadius: 5,
+                        },
+                      ]}
+                    >
+                      <Text style={{ textAlign: "center" }}>
+                        {commandSkillLv}Lv {commandSkill[commandSkillLv - 1]}%
+                      </Text>
+                    </View>
+                  </View>
+                ) : null}
+
                 <View style={styles.flexRow}>
                   <View
                     style={[
@@ -542,7 +602,7 @@ const ExpCalc = props => {
                     ]}
                   >
                     <Text style={{ textAlign: "center" }}>
-                      지휘요정 스킬 레벨
+                      최대 링크수 제한
                     </Text>
                   </View>
                   <View
@@ -557,11 +617,11 @@ const ExpCalc = props => {
                   >
                     <Slider
                       minimumValue={1}
-                      maximumValue={10}
+                      maximumValue={5}
                       step={1}
                       maximumTrackTintColor={"#fff"}
-                      value={commandSkillLv}
-                      onSlidingComplete={value => setCommandSkillLv(value)}
+                      value={dummy}
+                      onSlidingComplete={value => setDummy(value)}
                     />
                   </View>
                   <View
@@ -575,357 +635,314 @@ const ExpCalc = props => {
                       },
                     ]}
                   >
-                    <Text style={{ textAlign: "center" }}>
-                      {commandSkillLv}Lv {commandSkill[commandSkillLv - 1]}%
-                    </Text>
+                    <Text style={{ textAlign: "center" }}>{dummy}링크</Text>
                   </View>
                 </View>
-              ) : null}
 
-              <View style={styles.flexRow}>
-                <View
-                  style={[
-                    styles.sliderValueView,
-                    {
-                      flex: 2,
-                      justifyContent: "center",
-                      borderTopLeftRadius: 5,
-                      borderBottomLeftRadius: 5,
-                    },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>최대 링크수 제한</Text>
-                </View>
-                <View
-                  style={[
-                    styles.inputLabelsView,
-                    {
-                      flex: 3,
-                      borderTopLeftRadius: 0,
-                      borderBottomLeftRadius: 0,
-                    },
-                  ]}
-                >
-                  <Slider
-                    minimumValue={1}
-                    maximumValue={5}
-                    step={1}
-                    maximumTrackTintColor={"#fff"}
-                    value={dummy}
-                    onSlidingComplete={value => setDummy(value)}
-                  />
-                </View>
-                <View
-                  style={[
-                    styles.sliderValueView,
-                    {
-                      flex: 1,
-                      justifyContent: "center",
-                      borderTopRightRadius: 5,
-                      borderBottomRightRadius: 5,
-                    },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>{dummy}링크</Text>
-                </View>
-              </View>
-
-              <Modal
-                animationType="slide"
-                transparent={false}
-                visible={modalVisible}
-              >
-                <View
-                  style={{
-                    flex: 1,
-                    padding: 10,
-                    paddingTop: Constants.statusBarHeight,
-                  }}
+                <Modal
+                  animationType="slide"
+                  transparent={false}
+                  visible={modalVisible}
                 >
                   <View
                     style={{
-                      height: 60,
-                      alignItems: "stretch",
-                      justifyContent: "center",
-                      borderBottomWidth: 2,
+                      flex: 1,
+                      padding: 10,
+                      paddingTop: Constants.statusBarHeight,
                     }}
                   >
-                    <Text
+                    <View
                       style={{
-                        textAlign: "center",
-                        fontWeight: "600",
-                        fontSize: 20,
+                        height: 60,
+                        alignItems: "stretch",
+                        justifyContent: "center",
+                        borderBottomWidth: 2,
                       }}
                     >
-                      요정 특성 선택
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          fontWeight: "600",
+                          fontSize: 20,
+                        }}
+                      >
+                        요정 특성 선택
+                      </Text>
+                    </View>
+                    <ScrollView>
+                      {area.map(data => {
+                        return (
+                          <TouchableHighlight
+                            key={data.id}
+                            underlayColor={OUTPUT_LABEL}
+                            style={styles.selectItem}
+                            onPress={() => {
+                              setAreaSelected(data.id);
+                              setModalVisible(false);
+                            }}
+                          >
+                            <Text style={styles.selectItemText}>
+                              {data.name}
+                            </Text>
+                          </TouchableHighlight>
+                        );
+                      })}
+                    </ScrollView>
+                  </View>
+                </Modal>
+
+                {/* ★ 이어서 처리해야 할 부분 */}
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 2 }]}>
+                    <Text style={styles.inputLabels}>레벨링 지역</Text>
+                  </View>
+                  <TouchableHighlight
+                    underlayColor={OUTPUT_LABEL}
+                    style={[
+                      styles.selectsView,
+                      { flex: 3, borderRightWidth: 0 },
+                    ]}
+                    onPress={() => setModalVisible(true)}
+                  >
+                    <Text style={{ textAlign: "right" }}>
+                      {area[areaSelected].name} ▼
+                    </Text>
+                  </TouchableHighlight>
+                  <View style={[styles.valueLables, { flex: 4 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      1회당 입수 경험치{" "}
+                      {areaSelected != 7
+                        ? area[areaSelected].exp
+                        : areaExpDirectInput}
                     </Text>
                   </View>
-                  <ScrollView>
-                    {area.map(data => {
-                      return (
-                        <TouchableHighlight
-                          key={data.id}
-                          underlayColor={OUTPUT_LABEL}
-                          style={styles.selectItem}
-                          onPress={() => {
-                            setAreaSelected(data.id);
-                            setModalVisible(false);
-                          }}
-                        >
-                          <Text style={styles.selectItemText}>{data.name}</Text>
-                        </TouchableHighlight>
-                      );
-                    })}
-                  </ScrollView>
                 </View>
-              </Modal>
 
-              {/* ★ 이어서 처리해야 할 부분 */}
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 2 }]}>
-                  <Text style={styles.inputLabels}>레벨링 지역</Text>
-                </View>
-                <TouchableHighlight
-                  underlayColor={OUTPUT_LABEL}
-                  style={[styles.selectsView, { flex: 3, borderRightWidth: 0 }]}
-                  onPress={() => setModalVisible(true)}
-                >
-                  <Text style={{ textAlign: "right" }}>
-                    {area[areaSelected].name} ▼
-                  </Text>
-                </TouchableHighlight>
-                <View style={[styles.valueLables, { flex: 4 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    1회당 입수 경험치{" "}
-                    {areaSelected != 7
-                      ? area[areaSelected].exp
-                      : areaExpDirectInput}
-                  </Text>
-                </View>
-              </View>
-
-              {areaSelected == 7 ? (
-                <View>
-                  <View style={styles.flexRow}>
-                    <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                      <Text style={styles.inputLabels}>1전역당 경험치</Text>
+                {areaSelected == 7 ? (
+                  <View>
+                    <View style={styles.flexRow}>
+                      <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                        <Text style={styles.inputLabels}>1전역당 경험치</Text>
+                      </View>
+                      <TextInput
+                        style={[styles.inputs, { flex: 2 }]}
+                        placeholder=""
+                        keyboardType="numeric"
+                        onChangeText={text => setAreaExpDirectInput(text)}
+                        value={areaExpDirectInput}
+                      />
                     </View>
-                    <TextInput
-                      style={[styles.inputs, { flex: 2 }]}
-                      placeholder=""
-                      keyboardType="numeric"
-                      onChangeText={text => setAreaExpDirectInput(text)}
-                      value={areaExpDirectInput}
-                    />
+                    <View style={styles.flexRow}>
+                      <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                        <Text style={styles.inputLabels}>전역 패널티</Text>
+                      </View>
+                      <TextInput
+                        style={[styles.inputs, { flex: 2 }]}
+                        placeholder=""
+                        keyboardType="numeric"
+                        onChangeText={text => setAreaPenaltyDirectInput(text)}
+                        value={areaPenaltyDirectInput}
+                      />
+                    </View>
                   </View>
-                  <View style={styles.flexRow}>
-                    <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                      <Text style={styles.inputLabels}>전역 패널티</Text>
-                    </View>
-                    <TextInput
-                      style={[styles.inputs, { flex: 2 }]}
-                      placeholder=""
-                      keyboardType="numeric"
-                      onChangeText={text => setAreaPenaltyDirectInput(text)}
-                      value={areaPenaltyDirectInput}
-                    />
+                ) : null}
+
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>남은 경험치</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>{needExp}</Text>
                   </View>
                 </View>
-              ) : null}
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>남은 경험치</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>남은 횟수</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>{needCount}회</Text>
+                  </View>
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{needExp}</Text>
-                </View>
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>남은 횟수</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>필요 작전보고서</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {tdollNeedReport}개
+                    </Text>
+                  </View>
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{needCount}회</Text>
-                </View>
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>필요 작전보고서</Text>
-                </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {tdollNeedReport}개
-                  </Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>
+                      작보 제작에 필요한 전지
+                    </Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {tdollNeedReport * 3}개
+                    </Text>
+                  </View>
                 </View>
               </View>
+            ) : tab === 1 ? (
+              // =============================탭2====================================
+              <View>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFairyCurrentLv(text)}
+                    value={fairyCurrentLv}
+                  />
+                </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>
-                    작보 제작에 필요한 전지
-                  </Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 경험치</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFairyCurrentExp(text)}
+                    value={fairyCurrentExp}
+                  />
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {tdollNeedReport * 3}개
-                  </Text>
-                </View>
-              </View>
-            </View>
-          ) : tab === 1 ? (
-            // =============================탭2====================================
-            <View>
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 레벨</Text>
-                </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFairyCurrentLv(text)}
-                  value={fairyCurrentLv}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 경험치</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>목표 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFairyTarget(text)}
+                    value={fairyTarget}
+                  />
                 </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFairyCurrentExp(text)}
-                  value={fairyCurrentExp}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>필요 작전보고서</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {fairyNeedReport}개
+                    </Text>
+                  </View>
                 </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFairyTarget(text)}
-                  value={fairyTarget}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>필요 작전보고서</Text>
-                </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {fairyNeedReport}개
-                  </Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>
+                      작보 제작에 필요한 전지
+                    </Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {fairyNeedReport * 3}개
+                    </Text>
+                  </View>
                 </View>
               </View>
+            ) : tab === 2 ? (
+              // =============================탭3====================================
+              <View>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFSTCurrentLv(text)}
+                    value={FSTCurrentLv}
+                  />
+                </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>
-                    작보 제작에 필요한 전지
-                  </Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>현재 경험치</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFSTCurrentExp(text)}
+                    value={FSTCurrentExp}
+                  />
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {fairyNeedReport * 3}개
-                  </Text>
-                </View>
-              </View>
-            </View>
-          ) : tab === 2 ? (
-            // =============================탭3====================================
-            <View>
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 레벨</Text>
-                </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFSTCurrentLv(text)}
-                  value={FSTCurrentLv}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>현재 경험치</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>목표 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    placeholder=""
+                    keyboardType="numeric"
+                    onChangeText={text => setFSTTarget(text)}
+                    value={FSTTarget}
+                  />
                 </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFSTCurrentExp(text)}
-                  value={FSTCurrentExp}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>목표 레벨</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>필요 특수작전보고서</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {FSTNeedReport}개
+                    </Text>
+                  </View>
                 </View>
-                <TextInput
-                  style={[styles.inputs, { flex: 2 }]}
-                  placeholder=""
-                  keyboardType="numeric"
-                  onChangeText={text => setFSTTarget(text)}
-                  value={FSTTarget}
-                />
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>필요 특수작전보고서</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>소요 시간</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>{FSTTime}시간</Text>
+                  </View>
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{FSTNeedReport}개</Text>
-                </View>
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>소요 시간</Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>소모 전지</Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>{FSTTime * 5}개</Text>
+                  </View>
                 </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{FSTTime}시간</Text>
-                </View>
-              </View>
 
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>소모 전지</Text>
-                </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>{FSTTime * 5}개</Text>
-                </View>
-              </View>
-
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 3 }]}>
-                  <Text style={styles.inputLabels}>
-                    특작보 제작에 필요한 전지
-                  </Text>
-                </View>
-                <View style={[styles.valueLables, { flex: 2 }]}>
-                  <Text style={{ textAlign: "right" }}>
-                    {FSTNeedReport * 3}개
-                  </Text>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={styles.inputLabels}>
+                      특작보 제작에 필요한 전지
+                    </Text>
+                  </View>
+                  <View style={[styles.valueLables, { flex: 2 }]}>
+                    <Text style={{ textAlign: "right" }}>
+                      {FSTNeedReport * 3}개
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          ) : null}
-        </View>
-      </ScrollView>
+            ) : null}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

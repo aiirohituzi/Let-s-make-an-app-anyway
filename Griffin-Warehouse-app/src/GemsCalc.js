@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -148,153 +149,157 @@ const GemsCalc = props => {
         <View style={{ width: 50 }} />
       </View>
 
-      <ScrollView>
-        <View style={{ padding: "5%" }}>
-          <View style={styles.flexRow}>
-            <TouchableHighlight
-              style={[
-                styles.switch,
-                {
-                  borderTopLeftRadius: 5,
-                  borderBottomLeftRadius: 5,
-                },
-                inputFlag
-                  ? {}
-                  : {
-                      backgroundColor: SWITCH_ACTIVE,
-                      borderBottomWidth: 1.5,
-                      borderRightWidth: 1,
-                      borderBottomColor: BORDER_SHADOW,
-                      borderRightColor: BORDER_SHADOW,
-                    },
-              ]}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => setInputFlag(false)}
-            >
-              <Text style={{ textAlign: "center" }}>매일 패키지 계산</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={[
-                styles.switch,
-                {
-                  borderLeftWidth: 0,
-                  borderTopRightRadius: 5,
-                  borderBottomRightRadius: 5,
-                },
-                inputFlag
-                  ? {
-                      backgroundColor: SWITCH_ACTIVE,
-                      borderBottomWidth: 1.5,
-                      borderRightWidth: 1,
-                      borderBottomColor: BORDER_SHADOW,
-                      borderRightColor: BORDER_SHADOW,
-                    }
-                  : {},
-              ]}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => setInputFlag(true)}
-            >
-              <Text style={{ textAlign: "center" }}>목표 보석량으로 계산</Text>
-            </TouchableHighlight>
-          </View>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+        <ScrollView>
+          <View style={{ padding: "5%" }}>
+            <View style={styles.flexRow}>
+              <TouchableHighlight
+                style={[
+                  styles.switch,
+                  {
+                    borderTopLeftRadius: 5,
+                    borderBottomLeftRadius: 5,
+                  },
+                  inputFlag
+                    ? {}
+                    : {
+                        backgroundColor: SWITCH_ACTIVE,
+                        borderBottomWidth: 1.5,
+                        borderRightWidth: 1,
+                        borderBottomColor: BORDER_SHADOW,
+                        borderRightColor: BORDER_SHADOW,
+                      },
+                ]}
+                underlayColor={SWITCH_UNDERLAY}
+                onPress={() => setInputFlag(false)}
+              >
+                <Text style={{ textAlign: "center" }}>매일 패키지 계산</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[
+                  styles.switch,
+                  {
+                    borderLeftWidth: 0,
+                    borderTopRightRadius: 5,
+                    borderBottomRightRadius: 5,
+                  },
+                  inputFlag
+                    ? {
+                        backgroundColor: SWITCH_ACTIVE,
+                        borderBottomWidth: 1.5,
+                        borderRightWidth: 1,
+                        borderBottomColor: BORDER_SHADOW,
+                        borderRightColor: BORDER_SHADOW,
+                      }
+                    : {},
+                ]}
+                underlayColor={SWITCH_UNDERLAY}
+                onPress={() => setInputFlag(true)}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  목표 보석량으로 계산
+                </Text>
+              </TouchableHighlight>
+            </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 2 }]}>
-              <Text style={styles.inputLabels}>가격 / 수량 입력</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 2 }]}>
+                <Text style={styles.inputLabels}>가격 / 수량 입력</Text>
+              </View>
+              <TextInput
+                style={[styles.inputsMiddle, { flex: 2 }]}
+                placeholder=""
+                keyboardType="numeric"
+                onChangeText={text => setInputGems(text)}
+                value={inputGems}
+              />
+              <View style={[styles.valueLables, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>
+                  {!inputFlag
+                    ? `${inputGems}개 * ${remainingDays}일 = ${gemXDay}개`
+                    : `${inputGems}개`}
+                </Text>
+              </View>
             </View>
-            <TextInput
-              style={[styles.inputsMiddle, { flex: 2 }]}
-              placeholder=""
-              keyboardType="numeric"
-              onChangeText={text => setInputGems(text)}
-              value={inputGems}
-            />
-            <View style={[styles.valueLables, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>
-                {!inputFlag
-                  ? `${inputGems}개 * ${remainingDays}일 = ${gemXDay}개`
-                  : `${inputGems}개`}
-              </Text>
-            </View>
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>남은 일수 입력</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>남은 일수 입력</Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                placeholder=""
+                keyboardType="numeric"
+                onChangeText={text => setRemainingDays(text)}
+                value={remainingDays}
+              />
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              placeholder=""
-              keyboardType="numeric"
-              onChangeText={text => setRemainingDays(text)}
-              value={remainingDays}
-            />
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>현재 보석 보유량 입력</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>현재 보석 보유량 입력</Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                placeholder=""
+                keyboardType="numeric"
+                onChangeText={text => setCurrentGems(text)}
+                value={currentGems}
+              />
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              placeholder=""
-              keyboardType="numeric"
-              onChangeText={text => setCurrentGems(text)}
-              value={currentGems}
-            />
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>월정액 충전량</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>월정액 충전량</Text>
+              </View>
+              <View style={[styles.valueLables, { flex: 2 }]}>
+                <Text style={{ textAlign: "right" }}>{monthly}개</Text>
+              </View>
             </View>
-            <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>{monthly}개</Text>
-            </View>
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>
-                모의점수 하루 구매횟수 입력
-              </Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>
+                  모의점수 하루 구매횟수 입력
+                </Text>
+              </View>
+              <TextInput
+                style={[styles.inputsMiddle, { flex: 2 }]}
+                placeholder=""
+                keyboardType="numeric"
+                onChangeText={text => setMockPurchaseCount(text)}
+                value={mockPurchaseCount}
+              />
+              {/* type number처럼 가능한지? */}
+              <View style={[styles.valueLables, { flex: 1 }]}>
+                <Text style={styles.inputLabels}>총 {mockGems}개</Text>
+              </View>
             </View>
-            <TextInput
-              style={[styles.inputsMiddle, { flex: 2 }]}
-              placeholder=""
-              keyboardType="numeric"
-              onChangeText={text => setMockPurchaseCount(text)}
-              value={mockPurchaseCount}
-            />
-            {/* type number처럼 가능한지? */}
-            <View style={[styles.valueLables, { flex: 1 }]}>
-              <Text style={styles.inputLabels}>총 {mockGems}개</Text>
-            </View>
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>공유 보석 충전량</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>공유 보석 충전량</Text>
+              </View>
+              <View style={[styles.valueLables, { flex: 2 }]}>
+                <Text style={{ textAlign: "right" }}>{shareGems}개</Text>
+              </View>
             </View>
-            <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>{shareGems}개</Text>
-            </View>
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>최소 필요량</Text>
-            </View>
-            <View style={[styles.valueLables, { flex: 2 }]}>
-              <Text style={{ textAlign: "right" }}>
-                {needGems < 0
-                  ? `충분, ${needGems * -1}개 남음`
-                  : `${needGems}개 필요`}
-              </Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>최소 필요량</Text>
+              </View>
+              <View style={[styles.valueLables, { flex: 2 }]}>
+                <Text style={{ textAlign: "right" }}>
+                  {needGems < 0
+                    ? `충분, ${needGems * -1}개 남음`
+                    : `${needGems}개 필요`}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

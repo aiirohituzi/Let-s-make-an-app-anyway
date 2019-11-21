@@ -12,6 +12,7 @@ import {
   Modal,
   TouchableHighlight,
   Slider,
+  KeyboardAvoidingView,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -272,75 +273,396 @@ const DamageCalc = props => {
         <View style={{ width: 50 }} />
       </View>
 
-      <ScrollView>
-        <View style={{ padding: "5%" }}>
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+        <ScrollView>
+          <View style={{ padding: "5%" }}>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>인형 순수 화력 스탯 입력</Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                onChangeText={text => setTdollAtk(text)}
+                value={tdollAtk}
+                placeholder="화력(호감도포함)"
+                keyboardType="numeric"
+              />
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              onChangeText={text => setTdollAtk(text)}
-              value={tdollAtk}
-              placeholder="화력(호감도포함)"
-              keyboardType="numeric"
-            />
-          </View>
-          {/* <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text> */}
+            {/* <Text style={{textAlign: 'right', marginTop: 5, marginBottom: 5}}>입력값 state 변화 확인용 : {value1}</Text> */}
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>
-                인형 스킬 화력 배율(%) 입력
-              </Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>
+                  인형 스킬 화력 배율(%) 입력
+                </Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                onChangeText={text => setTdollSkill(text)}
+                value={tdollSkill}
+                placeholder="스킬 배율"
+                keyboardType="numeric"
+              />
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              onChangeText={text => setTdollSkill(text)}
-              value={tdollSkill}
-              placeholder="스킬 배율"
-              keyboardType="numeric"
-            />
-          </View>
 
-          <View style={styles.flexRow}>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>장비 치명상 입력</Text>
+            <View style={styles.flexRow}>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>장비 치명상 입력</Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 2 }]}
+                onChangeText={text => setEquipCritical(text)}
+                value={equipCritical}
+                placeholder="장비 치명상"
+                keyboardType="numeric"
+              />
             </View>
-            <TextInput
-              style={[styles.inputs, { flex: 2 }]}
-              onChangeText={text => setEquipCritical(text)}
-              value={equipCritical}
-              placeholder="장비 치명상"
-              keyboardType="numeric"
-            />
-          </View>
 
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={modalBufferVisible}
-          >
-            <View
-              style={{
-                flex: 1,
-                padding: 10,
-                paddingTop: Constants.statusBarHeight,
-              }}
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={modalBufferVisible}
             >
               <View
                 style={{
-                  height: 60,
-                  flexDirection: "row",
-                  borderBottomWidth: 2,
+                  flex: 1,
+                  padding: 10,
+                  paddingTop: Constants.statusBarHeight,
                 }}
               >
-                <View style={{ width: 50 }} />
                 <View
                   style={{
+                    height: 60,
+                    flexDirection: "row",
+                    borderBottomWidth: 2,
+                  }}
+                >
+                  <View style={{ width: 50 }} />
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        fontWeight: "600",
+                        fontSize: 20,
+                      }}
+                    >
+                      {modalTitle}
+                    </Text>
+                  </View>
+                  <TouchableOpacity
+                    style={{
+                      width: 50,
+                      height: "100%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    onPress={() => setModalBufferVisible(false)}
+                  >
+                    <Icon name="ios-close" size={30} color="#555" />
+                  </TouchableOpacity>
+                </View>
+                <ScrollView>
+                  {!itemList
+                    ? ""
+                    : itemList.map(data => {
+                        return (
+                          <TouchableHighlight
+                            key={data.id}
+                            underlayColor={OUTPUT_LABEL}
+                            style={styles.selectItem}
+                            onPress={() => {
+                              modalSelected(data.id);
+                              setModalBufferVisible(false);
+                            }}
+                          >
+                            <Text style={styles.selectItemText} key={data.id}>
+                              {data.name}
+                            </Text>
+                          </TouchableHighlight>
+                        );
+                      })}
+                </ScrollView>
+              </View>
+            </Modal>
+
+            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+              <Text style={styles.baseLabelsAlignCenter}>
+                화력 버퍼 정보 입력
+              </Text>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={styles.baseLabelsAlignCenter}>버퍼 인형 선택</Text>
+              </View>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={styles.baseLabelsAlignCenter}>화력 진형버프</Text>
+              </View>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={styles.baseLabelsAlignCenter}>버프 스킬 배율</Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  { borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+                onPress={() => modalSelectOpen("인형1", tdollAtkBuffer, 1)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {tdollAtkBuffer[selected[0]].name} ▼
+                </Text>
+              </TouchableHighlight>
+              <TextInput
+                style={[
+                  styles.inputsMiddle,
+                  { flex: 1, borderTopWidth: 0 },
+                  selected[0] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer1Buff(text)}
+                value={buffer1Buff}
+                placeholder="인형1 진형버프"
+                keyboardType="numeric"
+                editable={selected[0] === 1}
+              />
+              <TextInput
+                style={[
+                  styles.inputs,
+                  {
                     flex: 1,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                    borderTopWidth: 0,
+                  },
+                  selected[0] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer1Skill(text)}
+                value={buffer1Skill}
+                placeholder="인형1 스킬배율"
+                keyboardType="numeric"
+                editable={selected[0] === 1}
+              />
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  { borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+                onPress={() => modalSelectOpen("인형2", tdollAtkBuffer, 2)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {tdollAtkBuffer[selected[1]].name} ▼
+                </Text>
+              </TouchableHighlight>
+              <TextInput
+                style={[
+                  styles.inputsMiddle,
+                  { flex: 1, borderTopWidth: 0 },
+                  selected[1] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer2Buff(text)}
+                value={buffer2Buff}
+                placeholder="인형2 진형버프"
+                keyboardType="numeric"
+                editable={selected[1] === 1}
+              />
+              <TextInput
+                style={[
+                  styles.inputs,
+                  {
+                    flex: 1,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                    borderTopWidth: 0,
+                  },
+                  selected[1] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer2Skill(text)}
+                value={buffer2Skill}
+                placeholder="인형2 스킬배율"
+                keyboardType="numeric"
+                editable={selected[1] === 1}
+              />
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  { borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+                onPress={() => modalSelectOpen("인형3", tdollAtkBuffer, 3)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {tdollAtkBuffer[selected[2]].name} ▼
+                </Text>
+              </TouchableHighlight>
+              <TextInput
+                style={[
+                  styles.inputsMiddle,
+                  { flex: 1, borderTopWidth: 0 },
+                  selected[2] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer3Buff(text)}
+                value={buffer3Buff}
+                placeholder="인형3 진형버프"
+                keyboardType="numeric"
+                editable={selected[2] === 1}
+              />
+              <TextInput
+                style={[
+                  styles.inputs,
+                  {
+                    flex: 1,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                    borderTopWidth: 0,
+                  },
+                  selected[2] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer3Skill(text)}
+                value={buffer3Skill}
+                placeholder="인형3 스킬배율"
+                keyboardType="numeric"
+                editable={selected[2] === 1}
+              />
+            </View>
+            <View style={styles.flexRow}>
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  {
+                    borderTopWidth: 0,
+                    borderRightWidth: 0,
+                    borderBottomLeftRadius: 5,
+                  },
+                ]}
+                onPress={() => modalSelectOpen("인형4", tdollAtkBuffer, 4)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {tdollAtkBuffer[selected[3]].name} ▼
+                </Text>
+              </TouchableHighlight>
+              <TextInput
+                style={[
+                  styles.inputsMiddle,
+                  { flex: 1, borderTopWidth: 0 },
+                  selected[3] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer4Buff(text)}
+                value={buffer4Buff}
+                placeholder="인형4 진형버프"
+                keyboardType="numeric"
+                editable={selected[3] === 1}
+              />
+              <TextInput
+                style={[
+                  styles.inputs,
+                  { flex: 1, borderTopRightRadius: 0, borderTopWidth: 0 },
+                  selected[3] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
+                ]}
+                onChangeText={text => setBuffer4Skill(text)}
+                value={buffer4Skill}
+                placeholder="인형4 스킬배율"
+                keyboardType="numeric"
+                editable={selected[3] === 1}
+              />
+            </View>
+            {pythonOn ? (
+              <View style={{ flex: 1, marginBottom: 5 }}>
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <View
+                    style={[
+                      styles.inputLabelsView,
+                      {
+                        flex: 7,
+                        borderBottomLeftRadius: 0,
+                        borderBottomColor: "#ddd",
+                      },
+                    ]}
+                  >
+                    <Slider
+                      minimumValue={1}
+                      maximumValue={6}
+                      step={1}
+                      maximumTrackTintColor={"#fff"}
+                      value={pythonStack}
+                      onSlidingComplete={value => setPythonStack(value)}
+                    />
+                  </View>
+                  <View
+                    style={[
+                      styles.sliderValueView,
+                      { flex: 3, borderTopRightRadius: 5 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>
+                      스킬 {pythonStack} 스택
+                    </Text>
+                  </View>
+                </View>
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <View
+                    style={[
+                      styles.inputLabelsView,
+                      { flex: 7, borderTopLeftRadius: 0, borderTopWidth: 0 },
+                    ]}
+                  >
+                    <Slider
+                      minimumValue={0}
+                      maximumValue={5}
+                      step={1}
+                      maximumTrackTintColor={"#fff"}
+                      value={pythonReflectStack}
+                      onSlidingComplete={value => setPythonReflectStack(value)}
+                    />
+                  </View>
+                  <View
+                    style={[
+                      styles.sliderValueView,
+                      {
+                        flex: 3,
+                        borderTopWidth: 0,
+                        borderBottomRightRadius: 5,
+                      },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>
+                      반사 {pythonReflectStack} 스택
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            ) : null}
+
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={modalFairyVisible}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  padding: 10,
+                  paddingTop: Constants.statusBarHeight,
+                }}
+              >
+                <View
+                  style={{
+                    height: 60,
+                    alignItems: "stretch",
                     justifyContent: "center",
-                    alignItems: "center",
+                    borderBottomWidth: 2,
                   }}
                 >
                   <Text
@@ -350,629 +672,222 @@ const DamageCalc = props => {
                       fontSize: 20,
                     }}
                   >
-                    {modalTitle}
+                    요정 특성 선택
                   </Text>
                 </View>
-                <TouchableOpacity
-                  style={{
-                    width: 50,
-                    height: "100%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onPress={() => setModalBufferVisible(false)}
-                >
-                  <Icon name="ios-close" size={30} color="#555" />
-                </TouchableOpacity>
+                <ScrollView>
+                  {fairyPassive.map(data => {
+                    return (
+                      <TouchableHighlight
+                        key={data.id}
+                        underlayColor={OUTPUT_LABEL}
+                        style={styles.selectItem}
+                        onPress={() => {
+                          setFairySelected(data.id);
+                          setModalFairyVisible(false);
+                        }}
+                      >
+                        <Text style={styles.selectItemText}>{data.name}</Text>
+                      </TouchableHighlight>
+                    );
+                  })}
+                </ScrollView>
               </View>
-              <ScrollView>
-                {!itemList
-                  ? ""
-                  : itemList.map(data => {
-                      return (
-                        <TouchableHighlight
-                          key={data.id}
-                          underlayColor={OUTPUT_LABEL}
-                          style={styles.selectItem}
-                          onPress={() => {
-                            modalSelected(data.id);
-                            setModalBufferVisible(false);
-                          }}
-                        >
-                          <Text style={styles.selectItemText} key={data.id}>
-                            {data.name}
-                          </Text>
-                        </TouchableHighlight>
-                      );
-                    })}
-              </ScrollView>
-            </View>
-          </Modal>
+            </Modal>
 
-          <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-            <Text style={styles.baseLabelsAlignCenter}>
-              화력 버퍼 정보 입력
-            </Text>
-          </View>
-          <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={styles.baseLabelsAlignCenter}>버퍼 인형 선택</Text>
+            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+              <Text style={styles.baseLabelsAlignCenter}>요정 정보 입력</Text>
             </View>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={styles.baseLabelsAlignCenter}>화력 진형버프</Text>
+            <View style={styles.flexRowNoMargin}>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
+                  화력 진형버프
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
+                  치명상 진형버프
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
+                  특성 선택
+                </Text>
+              </View>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
+                  스킬 화력 배율
+                </Text>
+              </View>
             </View>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={styles.baseLabelsAlignCenter}>버프 스킬 배율</Text>
+            <View style={styles.flexRow}>
+              <TextInput
+                style={[
+                  styles.inputsMiddle,
+                  { flex: 1, borderTopWidth: 0, borderBottomLeftRadius: 5 },
+                ]}
+                onChangeText={text => setFairyStrBuff(text)}
+                value={fairyStrBuff}
+                placeholder="요정 진형버프"
+                keyboardType="numeric"
+              />
+              <TextInput
+                style={[styles.inputsMiddle, { flex: 1, borderTopWidth: 0 }]}
+                onChangeText={text => setFairyCriticalBuff(text)}
+                value={fairyCriticalBuff}
+                placeholder="요정 치명상"
+                keyboardType="numeric"
+              />
+              <TouchableHighlight
+                underlayColor={OUTPUT_LABEL}
+                style={[
+                  styles.selectsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+                onPress={() => setModalFairyVisible(true)}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {fairyPassive[fairySelected].name} ▼
+                </Text>
+              </TouchableHighlight>
+              <TextInput
+                style={[
+                  styles.inputs,
+                  { flex: 1, borderTopRightRadius: 0, borderTopWidth: 0 },
+                ]}
+                onChangeText={text => setFairySkill(text)}
+                value={fairySkill}
+                placeholder="요정 스킬배율"
+                keyboardType="numeric"
+              />
             </View>
-          </View>
-          <View style={styles.flexRowNoMargin}>
-            <TouchableHighlight
-              underlayColor={OUTPUT_LABEL}
-              style={[
-                styles.selectsView,
-                { borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-              onPress={() => modalSelectOpen("인형1", tdollAtkBuffer, 1)}
-            >
-              <Text style={{ textAlign: "right" }}>
-                {tdollAtkBuffer[selected[0]].name} ▼
-              </Text>
-            </TouchableHighlight>
-            <TextInput
-              style={[
-                styles.inputsMiddle,
-                { flex: 1, borderTopWidth: 0 },
-                selected[0] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer1Buff(text)}
-              value={buffer1Buff}
-              placeholder="인형1 진형버프"
-              keyboardType="numeric"
-              editable={selected[0] === 1}
-            />
-            <TextInput
-              style={[
-                styles.inputs,
-                {
-                  flex: 1,
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderTopWidth: 0,
-                },
-                selected[0] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer1Skill(text)}
-              value={buffer1Skill}
-              placeholder="인형1 스킬배율"
-              keyboardType="numeric"
-              editable={selected[0] === 1}
-            />
-          </View>
-          <View style={styles.flexRowNoMargin}>
-            <TouchableHighlight
-              underlayColor={OUTPUT_LABEL}
-              style={[
-                styles.selectsView,
-                { borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-              onPress={() => modalSelectOpen("인형2", tdollAtkBuffer, 2)}
-            >
-              <Text style={{ textAlign: "right" }}>
-                {tdollAtkBuffer[selected[1]].name} ▼
-              </Text>
-            </TouchableHighlight>
-            <TextInput
-              style={[
-                styles.inputsMiddle,
-                { flex: 1, borderTopWidth: 0 },
-                selected[1] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer2Buff(text)}
-              value={buffer2Buff}
-              placeholder="인형2 진형버프"
-              keyboardType="numeric"
-              editable={selected[1] === 1}
-            />
-            <TextInput
-              style={[
-                styles.inputs,
-                {
-                  flex: 1,
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderTopWidth: 0,
-                },
-                selected[1] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer2Skill(text)}
-              value={buffer2Skill}
-              placeholder="인형2 스킬배율"
-              keyboardType="numeric"
-              editable={selected[1] === 1}
-            />
-          </View>
-          <View style={styles.flexRowNoMargin}>
-            <TouchableHighlight
-              underlayColor={OUTPUT_LABEL}
-              style={[
-                styles.selectsView,
-                { borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-              onPress={() => modalSelectOpen("인형3", tdollAtkBuffer, 3)}
-            >
-              <Text style={{ textAlign: "right" }}>
-                {tdollAtkBuffer[selected[2]].name} ▼
-              </Text>
-            </TouchableHighlight>
-            <TextInput
-              style={[
-                styles.inputsMiddle,
-                { flex: 1, borderTopWidth: 0 },
-                selected[2] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer3Buff(text)}
-              value={buffer3Buff}
-              placeholder="인형3 진형버프"
-              keyboardType="numeric"
-              editable={selected[2] === 1}
-            />
-            <TextInput
-              style={[
-                styles.inputs,
-                {
-                  flex: 1,
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderTopWidth: 0,
-                },
-                selected[2] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer3Skill(text)}
-              value={buffer3Skill}
-              placeholder="인형3 스킬배율"
-              keyboardType="numeric"
-              editable={selected[2] === 1}
-            />
-          </View>
-          <View style={styles.flexRow}>
-            <TouchableHighlight
-              underlayColor={OUTPUT_LABEL}
-              style={[
-                styles.selectsView,
-                {
-                  borderTopWidth: 0,
-                  borderRightWidth: 0,
-                  borderBottomLeftRadius: 5,
-                },
-              ]}
-              onPress={() => modalSelectOpen("인형4", tdollAtkBuffer, 4)}
-            >
-              <Text style={{ textAlign: "right" }}>
-                {tdollAtkBuffer[selected[3]].name} ▼
-              </Text>
-            </TouchableHighlight>
-            <TextInput
-              style={[
-                styles.inputsMiddle,
-                { flex: 1, borderTopWidth: 0 },
-                selected[3] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer4Buff(text)}
-              value={buffer4Buff}
-              placeholder="인형4 진형버프"
-              keyboardType="numeric"
-              editable={selected[3] === 1}
-            />
-            <TextInput
-              style={[
-                styles.inputs,
-                { flex: 1, borderTopRightRadius: 0, borderTopWidth: 0 },
-                selected[3] === 1 ? {} : { backgroundColor: OUTPUT_LABEL },
-              ]}
-              onChangeText={text => setBuffer4Skill(text)}
-              value={buffer4Skill}
-              placeholder="인형4 스킬배율"
-              keyboardType="numeric"
-              editable={selected[3] === 1}
-            />
-          </View>
-          {pythonOn ? (
-            <View style={{ flex: 1, marginBottom: 5 }}>
-              <View style={{ flex: 1, flexDirection: "row" }}>
+
+            {fairySelected === 3 ? (
+              <View style={styles.flexRow}>
+                <View
+                  style={[
+                    styles.sliderValueView,
+                    {
+                      flex: 1,
+                      justifyContent: "center",
+                      borderTopLeftRadius: 5,
+                      borderBottomLeftRadius: 5,
+                    },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>격양계</Text>
+                </View>
                 <View
                   style={[
                     styles.inputLabelsView,
                     {
-                      flex: 7,
+                      flex: 3,
+                      borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
-                      borderBottomColor: "#ddd",
                     },
                   ]}
                 >
                   <Slider
                     minimumValue={1}
-                    maximumValue={6}
+                    maximumValue={3}
                     step={1}
                     maximumTrackTintColor={"#fff"}
-                    value={pythonStack}
-                    onSlidingComplete={value => setPythonStack(value)}
+                    value={fairyPassiveRageStack}
+                    onSlidingComplete={value => setFairyPassiveRageStack(value)}
                   />
                 </View>
                 <View
                   style={[
                     styles.sliderValueView,
-                    { flex: 3, borderTopRightRadius: 5 },
+                    {
+                      flex: 1,
+                      justifyContent: "center",
+                      borderTopRightRadius: 5,
+                      borderBottomRightRadius: 5,
+                    },
                   ]}
                 >
                   <Text style={{ textAlign: "center" }}>
-                    스킬 {pythonStack} 스택
+                    {fairyPassiveRageStack} 스택
                   </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <View
-                  style={[
-                    styles.inputLabelsView,
-                    { flex: 7, borderTopLeftRadius: 0, borderTopWidth: 0 },
-                  ]}
-                >
-                  <Slider
-                    minimumValue={0}
-                    maximumValue={5}
-                    step={1}
-                    maximumTrackTintColor={"#fff"}
-                    value={pythonReflectStack}
-                    onSlidingComplete={value => setPythonReflectStack(value)}
-                  />
-                </View>
-                <View
-                  style={[
-                    styles.sliderValueView,
-                    { flex: 3, borderTopWidth: 0, borderBottomRightRadius: 5 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>
-                    반사 {pythonReflectStack} 스택
-                  </Text>
-                </View>
-              </View>
-            </View>
-          ) : null}
+            ) : null}
 
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={modalFairyVisible}
-          >
-            <View
-              style={{
-                flex: 1,
-                padding: 10,
-                paddingTop: Constants.statusBarHeight,
-              }}
-            >
-              <View
-                style={{
-                  height: 60,
-                  alignItems: "stretch",
-                  justifyContent: "center",
-                  borderBottomWidth: 2,
-                }}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "600",
-                    fontSize: 20,
-                  }}
-                >
-                  요정 특성 선택
-                </Text>
-              </View>
-              <ScrollView>
-                {fairyPassive.map(data => {
-                  return (
-                    <TouchableHighlight
-                      key={data.id}
-                      underlayColor={OUTPUT_LABEL}
-                      style={styles.selectItem}
-                      onPress={() => {
-                        setFairySelected(data.id);
-                        setModalFairyVisible(false);
-                      }}
-                    >
-                      <Text style={styles.selectItemText}>{data.name}</Text>
-                    </TouchableHighlight>
-                  );
-                })}
-              </ScrollView>
-            </View>
-          </Modal>
-
-          <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-            <Text style={styles.baseLabelsAlignCenter}>요정 정보 입력</Text>
-          </View>
-          <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
-                화력 진형버프
-              </Text>
-            </View>
-            <View
-              style={[styles.baseLabelsView, { flex: 1, borderRightWidth: 0 }]}
-            >
-              <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
-                치명상 진형버프
-              </Text>
-            </View>
-            <View
-              style={[styles.baseLabelsView, { flex: 1, borderRightWidth: 0 }]}
-            >
-              <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
-                특성 선택
-              </Text>
-            </View>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={[styles.baseLabelsAlignCenter, { fontSize: 10 }]}>
-                스킬 화력 배율
-              </Text>
-            </View>
-          </View>
-          <View style={styles.flexRow}>
-            <TextInput
-              style={[
-                styles.inputsMiddle,
-                { flex: 1, borderTopWidth: 0, borderBottomLeftRadius: 5 },
-              ]}
-              onChangeText={text => setFairyStrBuff(text)}
-              value={fairyStrBuff}
-              placeholder="요정 진형버프"
-              keyboardType="numeric"
-            />
-            <TextInput
-              style={[styles.inputsMiddle, { flex: 1, borderTopWidth: 0 }]}
-              onChangeText={text => setFairyCriticalBuff(text)}
-              value={fairyCriticalBuff}
-              placeholder="요정 치명상"
-              keyboardType="numeric"
-            />
-            <TouchableHighlight
-              underlayColor={OUTPUT_LABEL}
-              style={[
-                styles.selectsView,
-                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-              onPress={() => setModalFairyVisible(true)}
-            >
-              <Text style={{ textAlign: "right" }}>
-                {fairyPassive[fairySelected].name} ▼
-              </Text>
-            </TouchableHighlight>
-            <TextInput
-              style={[
-                styles.inputs,
-                { flex: 1, borderTopRightRadius: 0, borderTopWidth: 0 },
-              ]}
-              onChangeText={text => setFairySkill(text)}
-              value={fairySkill}
-              placeholder="요정 스킬배율"
-              keyboardType="numeric"
-            />
-          </View>
-
-          {fairySelected === 3 ? (
             <View style={styles.flexRow}>
-              <View
-                style={[
-                  styles.sliderValueView,
-                  {
-                    flex: 1,
-                    justifyContent: "center",
-                    borderTopLeftRadius: 5,
-                    borderBottomLeftRadius: 5,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>격양계</Text>
+              <View style={{ justifyContent: "center", marginRight: 5 }}>
+                <Switch onChange={() => setArmorOn(!armorOn)} value={armorOn} />
               </View>
-              <View
-                style={[
-                  styles.inputLabelsView,
-                  {
-                    flex: 3,
-                    borderTopLeftRadius: 0,
-                    borderBottomLeftRadius: 0,
-                  },
-                ]}
-              >
-                <Slider
-                  minimumValue={1}
-                  maximumValue={3}
-                  step={1}
-                  maximumTrackTintColor={"#fff"}
-                  value={fairyPassiveRageStack}
-                  onSlidingComplete={value => setFairyPassiveRageStack(value)}
-                />
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>장갑 적용</Text>
               </View>
-              <View
-                style={[
-                  styles.sliderValueView,
-                  {
-                    flex: 1,
-                    justifyContent: "center",
-                    borderTopRightRadius: 5,
-                    borderBottomRightRadius: 5,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {fairyPassiveRageStack} 스택
-                </Text>
-              </View>
-            </View>
-          ) : null}
-
-          <View style={styles.flexRow}>
-            <View style={{ justifyContent: "center", marginRight: 5 }}>
-              <Switch onChange={() => setArmorOn(!armorOn)} value={armorOn} />
-            </View>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>장갑 적용</Text>
-            </View>
-            <TextInput
-              style={[styles.inputs, { flex: 1 }]}
-              onChangeText={text => setArmor(text)}
-              value={armor}
-              placeholder="적 장갑"
-              keyboardType="numeric"
-              editable={armorOn}
-              backgroundColor={armorOn ? "#ecf0f1" : OUTPUT_LABEL}
-            />
-          </View>
-
-          <View style={styles.flexRow}>
-            <View style={{ justifyContent: "center", marginRight: 5 }}>
-              <Switch
-                onChange={() => setCriticalOn(!criticalOn)}
-                value={criticalOn}
+              <TextInput
+                style={[styles.inputs, { flex: 1 }]}
+                onChangeText={text => setArmor(text)}
+                value={armor}
+                placeholder="적 장갑"
+                keyboardType="numeric"
+                editable={armorOn}
+                backgroundColor={armorOn ? "#ecf0f1" : OUTPUT_LABEL}
               />
             </View>
-            <View style={[styles.inputLabelsView, { flex: 3 }]}>
-              <Text style={styles.inputLabels}>
-                치명타 적용 (치명상 배율(%) 입력)
-              </Text>
-            </View>
-            <TextInput
-              style={[styles.inputs, { flex: 1 }]}
-              onChangeText={text => setCritical(text)}
-              value={critical}
-              placeholder="인형 치명상"
-              keyboardType="numeric"
-              editable={criticalOn}
-              backgroundColor={criticalOn ? "#ecf0f1" : OUTPUT_LABEL}
-            />
-          </View>
 
-          <View style={styles.flexRowNoMargin}>
-            <View
-              style={[
-                styles.baseLabelsView,
-                { flex: 1, borderTopLeftRadius: 5 },
-              ]}
-            ></View>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={styles.baseLabelsAlignCenter}>1링크</Text>
+            <View style={styles.flexRow}>
+              <View style={{ justifyContent: "center", marginRight: 5 }}>
+                <Switch
+                  onChange={() => setCriticalOn(!criticalOn)}
+                  value={criticalOn}
+                />
+              </View>
+              <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                <Text style={styles.inputLabels}>
+                  치명타 적용 (치명상 배율(%) 입력)
+                </Text>
+              </View>
+              <TextInput
+                style={[styles.inputs, { flex: 1 }]}
+                onChangeText={text => setCritical(text)}
+                value={critical}
+                placeholder="인형 치명상"
+                keyboardType="numeric"
+                editable={criticalOn}
+                backgroundColor={criticalOn ? "#ecf0f1" : OUTPUT_LABEL}
+              />
             </View>
-            <View
-              style={[
-                styles.baseLabelsView,
-                { flex: 1, borderTopRightRadius: 5 },
-              ]}
-            >
-              <Text style={styles.baseLabelsAlignCenter}>5링크</Text>
-            </View>
-          </View>
 
-          <View style={styles.flexRowNoMargin}>
-            <View style={[styles.baseLabelsView, { flex: 1 }]}>
-              <Text style={styles.baseLabelsAlignCenter}>최소데미지</Text>
-            </View>
-            <View
-              style={[
-                styles.resultLabelsView,
-                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-            >
-              <Text style={styles.baseLabelsAlignRight}>
-                {Math.ceil(finalStatMin)}
-              </Text>
-            </View>
-            <View
-              style={[styles.resultLabelsView, { flex: 1, borderTopWidth: 0 }]}
-            >
-              <Text style={styles.baseLabelsAlignRight}>
-                {Math.ceil(finalStatMin * 5)}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.flexRow}>
-            <View
-              style={[
-                styles.baseLabelsView,
-                { flex: 1, borderBottomLeftRadius: 5 },
-              ]}
-            >
-              <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
-            </View>
-            <View
-              style={[
-                styles.resultLabelsView,
-                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-              ]}
-            >
-              <Text style={styles.baseLabelsAlignRight}>
-                {Math.ceil(finalStatMax)}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.resultLabelsView,
-                { flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0 },
-              ]}
-            >
-              <Text style={styles.baseLabelsAlignRight}>
-                {Math.ceil(finalStatMax * 5)}
-              </Text>
-            </View>
-          </View>
-
-          {contenderOn ? (
             <View style={styles.flexRowNoMargin}>
               <View
                 style={[
                   styles.baseLabelsView,
                   { flex: 1, borderTopLeftRadius: 5 },
                 ]}
-              >
-                <Text style={styles.baseLabelsAlignCenter}>
-                  최소데미지(컨텐더)
-                </Text>
+              ></View>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={styles.baseLabelsAlignCenter}>1링크</Text>
               </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  { flex: 1, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={styles.baseLabelsAlignRight}>
-                  {Math.ceil(finalStatMin * 1.4)}
-                </Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  { flex: 1, borderTopRightRadius: 5 },
-                ]}
-              >
-                <Text style={styles.baseLabelsAlignRight}>
-                  {Math.ceil(finalStatMin * 1.4) * 5}
-                </Text>
-              </View>
-            </View>
-          ) : null}
-
-          {contenderOn ? (
-            <View style={styles.flexRowNoMargin}>
               <View
                 style={[
                   styles.baseLabelsView,
-                  { flex: 1, borderBottomLeftRadius: 5 },
+                  { flex: 1, borderTopRightRadius: 5 },
                 ]}
               >
-                <Text style={styles.baseLabelsAlignCenter}>
-                  최대데미지(컨텐더)
-                </Text>
+                <Text style={styles.baseLabelsAlignCenter}>5링크</Text>
+              </View>
+            </View>
+
+            <View style={styles.flexRowNoMargin}>
+              <View style={[styles.baseLabelsView, { flex: 1 }]}>
+                <Text style={styles.baseLabelsAlignCenter}>최소데미지</Text>
               </View>
               <View
                 style={[
@@ -981,7 +896,38 @@ const DamageCalc = props => {
                 ]}
               >
                 <Text style={styles.baseLabelsAlignRight}>
-                  {Math.ceil(finalStatMax * 1.4)}
+                  {Math.ceil(finalStatMin)}
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  { flex: 1, borderTopWidth: 0 },
+                ]}
+              >
+                <Text style={styles.baseLabelsAlignRight}>
+                  {Math.ceil(finalStatMin * 5)}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.flexRow}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderBottomLeftRadius: 5 },
+                ]}
+              >
+                <Text style={styles.baseLabelsAlignCenter}>최대데미지</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={styles.baseLabelsAlignRight}>
+                  {Math.ceil(finalStatMax)}
                 </Text>
               </View>
               <View
@@ -991,13 +937,83 @@ const DamageCalc = props => {
                 ]}
               >
                 <Text style={styles.baseLabelsAlignRight}>
-                  {Math.ceil(finalStatMax * 1.4) * 5}
+                  {Math.ceil(finalStatMax * 5)}
                 </Text>
               </View>
             </View>
-          ) : null}
-        </View>
-      </ScrollView>
+
+            {contenderOn ? (
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopLeftRadius: 5 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignCenter}>
+                    최소데미지(컨텐더)
+                  </Text>
+                </View>
+                <View
+                  style={[
+                    styles.resultLabelsView,
+                    { flex: 1, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignRight}>
+                    {Math.ceil(finalStatMin * 1.4)}
+                  </Text>
+                </View>
+                <View
+                  style={[
+                    styles.resultLabelsView,
+                    { flex: 1, borderTopRightRadius: 5 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignRight}>
+                    {Math.ceil(finalStatMin * 1.4) * 5}
+                  </Text>
+                </View>
+              </View>
+            ) : null}
+
+            {contenderOn ? (
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderBottomLeftRadius: 5 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignCenter}>
+                    최대데미지(컨텐더)
+                  </Text>
+                </View>
+                <View
+                  style={[
+                    styles.resultLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignRight}>
+                    {Math.ceil(finalStatMax * 1.4)}
+                  </Text>
+                </View>
+                <View
+                  style={[
+                    styles.resultLabelsView,
+                    { flex: 1, borderBottomRightRadius: 5, borderTopWidth: 0 },
+                  ]}
+                >
+                  <Text style={styles.baseLabelsAlignRight}>
+                    {Math.ceil(finalStatMax * 1.4) * 5}
+                  </Text>
+                </View>
+              </View>
+            ) : null}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
