@@ -33,6 +33,7 @@ import { exp, expPledge, expFairy, expFST, area } from "./data";
 const ExpCalc = props => {
   const [tab, setTab] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const [penaltyTableVisible, setPenaltyTableVisible] = useState(false);
   const [inputFlag, setInputFlag] = useState(false);
 
   const [tdollCurrentLv, setTdollCurrentLv] = useState("1");
@@ -280,7 +281,14 @@ const ExpCalc = props => {
         <View style={styles.status}>
           <Text style={{ fontSize: 20, fontWeight: "600" }}>경험치 계산기</Text>
         </View>
-        <View style={{ width: 50 }} />
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => setPenaltyTableVisible(true)}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="md-clock" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.flexRowNoMargin}>
         <TouchableHighlight
@@ -344,6 +352,46 @@ const ExpCalc = props => {
           <Text style={{ textAlign: "center" }}>화력지원소대</Text>
         </TouchableHighlight>
       </View>
+
+      <Modal animationType="slide" visible={penaltyTableVisible}>
+        <View
+          style={{
+            flex: 1,
+            padding: 10,
+            paddingTop: Constants.statusBarHeight,
+          }}
+        >
+          <View
+            style={{
+              height: 60,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderBottomWidth: 2,
+            }}
+          >
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setPenaltyTableVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "600",
+                fontSize: 20,
+              }}
+            >
+              경험치 패널티 표
+            </Text>
+            <View style={{ width: 50 }} />
+          </View>
+          <ScrollView></ScrollView>
+        </View>
+      </Modal>
 
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ScrollView>
@@ -968,6 +1016,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     height: 50,
     flexDirection: "row",
+    justifyContent: "space-between",
     borderBottomWidth: 1,
     borderBottomColor: "#d6d7da",
   },
