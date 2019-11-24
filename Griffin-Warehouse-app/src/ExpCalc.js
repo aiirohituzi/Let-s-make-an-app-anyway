@@ -286,7 +286,7 @@ const ExpCalc = props => {
           onPress={() => setPenaltyTableVisible(true)}
         >
           <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            <Icon name="md-clock" size={30} color="#555" />
+            <Icon name="md-information-circle-outline" size={30} color="#555" />
           </Text>
         </TouchableOpacity>
       </View>
@@ -389,7 +389,107 @@ const ExpCalc = props => {
             </Text>
             <View style={{ width: 50 }} />
           </View>
-          <ScrollView></ScrollView>
+          <ScrollView>
+            <View style={[styles.penaltyTable, { marginTop: 20 }]}>
+              <View style={[styles.penaltyTableHeader, { flex: 1 }]}>
+                <Text>레벨링 지역</Text>
+              </View>
+              <View style={[styles.penaltyTableHeader, { flex: 1 }]}>
+                <Text>패널티 레벨</Text>
+              </View>
+              <View style={[styles.penaltyTableHeader, { flex: 1 }]}>
+                <Text>입수 경험치</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>4-3e</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>65</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>370 * 4</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>0-2</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>100</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>490 * 5</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>8-1n</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>111</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>500 * 5</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>11-5</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>120</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>550 * 5</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>5-4e 보스런</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>83</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>430 * 5</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>0-4 보스런</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>106</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>500 * 4</Text>
+              </View>
+            </View>
+            <View style={styles.penaltyTable}>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>특이점 4드라런</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>106</Text>
+              </View>
+              <View style={[styles.penaltyTableBody, { flex: 1 }]}>
+                <Text>500 * 4</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 20,
+              }}
+            >
+              <Text>패널티 레벨을 초과할 시, 10레벨 당 획득치 20% 감소</Text>
+              <Text>50레벨 이상 높을 경우, 획득경험치 10으로 고정</Text>
+            </View>
+          </ScrollView>
         </View>
       </Modal>
 
@@ -1167,6 +1267,26 @@ const styles = StyleSheet.create({
   selectItemText: {
     textAlign: "center",
     fontSize: 18,
+  },
+
+  penaltyTable: {
+    flex: 1,
+    flexDirection: "row",
+    height: 50,
+  },
+  penaltyTableHeader: {
+    backgroundColor: ADDON_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+  },
+  penaltyTableBody: {
+    backgroundColor: OUTPUT_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
   },
 });
 
