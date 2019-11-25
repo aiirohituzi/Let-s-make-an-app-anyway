@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
+  Modal,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -23,6 +24,8 @@ import {
 } from "./style/color";
 
 const SimCalc = props => {
+  const [dataTableVisible, setDataTableVisible] = useState(false);
+
   const [basicData, setBasicData] = useState("");
   const [intermediateData, setIntermediateData] = useState("");
   const [advancedData, setAdvancedData] = useState("");
@@ -120,8 +123,207 @@ const SimCalc = props => {
             필요 모의작전점수 계산기
           </Text>
         </View>
-        <View style={{ width: 50 }} />
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => setDataTableVisible(true)}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="md-information-circle-outline" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
       </View>
+
+      <Modal animationType="slide" visible={dataTableVisible}>
+        <View
+          style={{
+            flex: 1,
+            padding: 10,
+            paddingTop: Constants.statusBarHeight,
+          }}
+        >
+          <View
+            style={{
+              height: 60,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderBottomWidth: 2,
+            }}
+          >
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setDataTableVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "600",
+                fontSize: 20,
+              }}
+            >
+              경험치 패널티 표
+            </Text>
+            <View style={{ width: 50 }} />
+          </View>
+          <ScrollView>
+            <View style={[styles.dataTable, { marginTop: 10 }]}>
+              <View style={[styles.dataTableHeader, { flex: 1 }]}>
+                <Text>연구 레벨</Text>
+              </View>
+              <View style={[styles.dataTableHeader, { flex: 1 }]}>
+                <Text>인형</Text>
+              </View>
+              <View style={[styles.dataTableHeader, { flex: 1 }]}>
+                <Text>전략요정</Text>
+              </View>
+              <View style={[styles.dataTableHeader, { flex: 1 }]}>
+                <Text>전투요정</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>1 → 2</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>100</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>300</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>2 → 3</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>3 → 4</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>300</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>4 → 5</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>120</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>240</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>5 → 6</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>6 → 7</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>300</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>7 → 8</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>800</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>8 → 9</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>200</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>400</Text>
+              </View>
+            </View>
+            <View style={styles.dataTable}>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>9 → 10</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>300</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+              <View style={[styles.dataTableBody, { flex: 1 }]}>
+                <Text>600</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 20,
+              }}
+            >
+              <Text>패널티 레벨을 초과할 시, 10레벨 당 획득치 20% 감소</Text>
+              <Text>50레벨 이상 높을 경우, 획득경험치 10으로 고정</Text>
+            </View>
+          </ScrollView>
+        </View>
+      </Modal>
 
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ScrollView>
@@ -534,6 +736,26 @@ const styles = StyleSheet.create({
     backgroundColor: OUTPUT_LABEL,
     alignItems: "stretch",
     justifyContent: "center",
+  },
+
+  dataTable: {
+    flex: 1,
+    flexDirection: "row",
+    height: 50,
+  },
+  dataTableHeader: {
+    backgroundColor: ADDON_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+  },
+  dataTableBody: {
+    backgroundColor: OUTPUT_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
   },
 });
 

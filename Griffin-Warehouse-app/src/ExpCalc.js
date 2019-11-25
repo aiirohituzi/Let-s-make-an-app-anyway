@@ -390,7 +390,7 @@ const ExpCalc = props => {
             <View style={{ width: 50 }} />
           </View>
           <ScrollView>
-            <View style={[styles.penaltyTable, { marginTop: 20 }]}>
+            <View style={[styles.penaltyTable, { marginTop: 10 }]}>
               <View style={[styles.penaltyTableHeader, { flex: 1 }]}>
                 <Text>레벨링 지역</Text>
               </View>
