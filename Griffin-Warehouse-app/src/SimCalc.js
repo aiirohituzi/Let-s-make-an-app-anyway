@@ -128,7 +128,7 @@ const SimCalc = props => {
           onPress={() => setDataTableVisible(true)}
         >
           <Text style={{ fontSize: 18, fontWeight: "600" }}>
-            <Icon name="md-information-circle-outline" size={30} color="#555" />
+            <Icon name="md-save" size={30} color="#555" />
           </Text>
         </TouchableOpacity>
       </View>
@@ -165,7 +165,7 @@ const SimCalc = props => {
                 fontSize: 20,
               }}
             >
-              경험치 패널티 표
+              각 레벨별 스킬칩 요구량
             </Text>
             <View style={{ width: 50 }} />
           </View>
@@ -188,13 +188,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>1 → 2</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>100</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>300</Text>
               </View>
             </View>
@@ -202,13 +202,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>2 → 3</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
             </View>
@@ -216,13 +216,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>3 → 4</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>300</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyBasic, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
             </View>
@@ -230,13 +230,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>4 → 5</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>120</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>240</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
             </View>
@@ -244,13 +244,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>5 → 6</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
             </View>
@@ -258,13 +258,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>6 → 7</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>300</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
             </View>
@@ -272,13 +272,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>7 → 8</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyIntermediate, { flex: 1 }]}>
                 <Text>800</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
             </View>
@@ -286,13 +286,13 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>8 → 9</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>200</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>400</Text>
               </View>
             </View>
@@ -300,26 +300,15 @@ const SimCalc = props => {
               <View style={[styles.dataTableBody, { flex: 1 }]}>
                 <Text>9 → 10</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>300</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
-              <View style={[styles.dataTableBody, { flex: 1 }]}>
+              <View style={[styles.dataTableBodyAdvanced, { flex: 1 }]}>
                 <Text>600</Text>
               </View>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                margin: 20,
-              }}
-            >
-              <Text>패널티 레벨을 초과할 시, 10레벨 당 획득치 20% 감소</Text>
-              <Text>50레벨 이상 높을 경우, 획득경험치 10으로 고정</Text>
             </View>
           </ScrollView>
         </View>
@@ -749,6 +738,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 1,
+    borderRadius: 5,
   },
   dataTableBody: {
     backgroundColor: OUTPUT_LABEL,
@@ -756,6 +746,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 1,
+    borderRadius: 5,
+  },
+  dataTableBodyBasic: {
+    backgroundColor: "#449977b2",
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  dataTableBodyIntermediate: {
+    backgroundColor: "#5E8107b2",
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  dataTableBodyAdvanced: {
+    backgroundColor: "#C8DA4Bb2",
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
 

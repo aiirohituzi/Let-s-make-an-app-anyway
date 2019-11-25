@@ -1280,6 +1280,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 1,
+    borderRadius: 5,
   },
   penaltyTableBody: {
     backgroundColor: OUTPUT_LABEL,
@@ -1287,6 +1288,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 1,
+    borderRadius: 5,
   },
 });
 
