@@ -26,7 +26,7 @@ import {
   SWITCH_ACTIVE,
   SWITCH_UNDERLAY,
 } from "./style/color";
-import { skillListAR, skillListRF, skillListSG } from "./data";
+import { skillListAR, skillListRF, skillListSG, AGIFrameTable } from "./data";
 
 const typeList = [
   { id: 0, type: "AR" },
@@ -35,6 +35,8 @@ const typeList = [
 ];
 
 const AgiCalc = props => {
+  const [agiFrameVisible, setAgiFrameVisible] = useState(false);
+
   const [tdollAgi, setTdollAgi] = useState();
   const [tdollAgiSkill, setTdollAgiSkill] = useState();
 
@@ -116,6 +118,34 @@ const AgiCalc = props => {
     setNeedAgiBuffAfterSkill(Math.ceil((calc_needAgiBuffAfterSkill - 1) * 100));
   });
 
+  const tableInstance = [];
+  for (let i = 0; i < AGIFrameTable.length / 2; i++) {
+    tableInstance.push(
+      <View style={styles.agiFrameTable} key={i}>
+        <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+          <Text>{AGIFrameTable[i].agi}</Text>
+        </View>
+        <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+          <Text>{AGIFrameTable[i].frame}</Text>
+        </View>
+        <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+          <Text>
+            {AGIFrameTable[Math.ceil(AGIFrameTable.length / 2) + i]
+              ? AGIFrameTable[Math.ceil(AGIFrameTable.length / 2) + i].agi
+              : null}
+          </Text>
+        </View>
+        <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+          <Text>
+            {AGIFrameTable[Math.ceil(AGIFrameTable.length / 2) + i]
+              ? AGIFrameTable[Math.ceil(AGIFrameTable.length / 2) + i].frame
+              : null}
+          </Text>
+        </View>
+      </View>,
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navbar}>
@@ -132,8 +162,88 @@ const AgiCalc = props => {
             최대사속 계산기
           </Text>
         </View>
-        <View style={{ width: 50 }} />
+
+        <TouchableOpacity
+          style={styles.btnMenu}
+          onPress={() => setAgiFrameVisible(true)}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>
+            <Icon name="md-information-circle-outline" size={30} color="#555" />
+          </Text>
+        </TouchableOpacity>
       </View>
+
+      <Modal animationType="slide" visible={agiFrameVisible}>
+        <View
+          style={{
+            flex: 1,
+            padding: 10,
+            paddingTop: Constants.statusBarHeight,
+          }}
+        >
+          <View
+            style={{
+              height: 60,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderBottomWidth: 2,
+            }}
+          >
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setAgiFrameVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "600",
+                fontSize: 20,
+              }}
+            >
+              경험치 패널티 표
+            </Text>
+            <View style={{ width: 50 }} />
+          </View>
+          <ScrollView>
+            <View style={[styles.agiFrameTable, { marginTop: 10 }]}>
+              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                <Text>사속</Text>
+              </View>
+              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                <Text>공격당 프레임</Text>
+              </View>
+              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                <Text>사속</Text>
+              </View>
+              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                <Text>공격당 프레임</Text>
+              </View>
+            </View>
+            {/* {AGIFrameTable.map((item, index) => (
+              <View style={styles.agiFrameTable}>
+                <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+                  <Text>{item.agi}</Text>
+                </View>
+                <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+                  <Text>{item.frame}</Text>
+                </View>
+                <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+                  <Text>{item.agi}</Text>
+                </View>
+                <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
+                  <Text>{item.frame}</Text>
+                </View>
+              </View>
+            ))} */}
+            {tableInstance}
+          </ScrollView>
+        </View>
+      </Modal>
 
       <View style={styles.flexRowNoMargin}>
         <TouchableHighlight
@@ -779,6 +889,28 @@ const styles = StyleSheet.create({
   selectItemText: {
     textAlign: "center",
     fontSize: 18,
+  },
+
+  agiFrameTable: {
+    flex: 1,
+    flexDirection: "row",
+    height: 50,
+  },
+  agiFrameTableHeader: {
+    backgroundColor: ADDON_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  agiFrameTableBody: {
+    backgroundColor: OUTPUT_LABEL,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
 
