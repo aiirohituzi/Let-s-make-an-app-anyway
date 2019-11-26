@@ -177,7 +177,7 @@ const AgiCalc = props => {
         <View
           style={{
             flex: 1,
-            padding: 10,
+            // padding: 10,
             paddingTop: Constants.statusBarHeight,
           }}
         >
@@ -205,12 +205,12 @@ const AgiCalc = props => {
                 fontSize: 20,
               }}
             >
-              경험치 패널티 표
+              사속 프레임 표
             </Text>
             <View style={{ width: 50 }} />
           </View>
-          <ScrollView>
-            <View style={[styles.agiFrameTable, { marginTop: 10 }]}>
+          <ScrollView indicatorStyle="black" style={{ padding: 10 }}>
+            <View style={[styles.agiFrameTable]}>
               <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
                 <Text>사속</Text>
               </View>
