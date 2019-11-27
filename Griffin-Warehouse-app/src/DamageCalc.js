@@ -326,7 +326,7 @@ const DamageCalc = props => {
               <View
                 style={{
                   flex: 1,
-                  padding: 10,
+                  // padding: 10,
                   paddingTop: Constants.statusBarHeight,
                 }}
               >
@@ -364,7 +364,9 @@ const DamageCalc = props => {
                     }}
                     onPress={() => setModalBufferVisible(false)}
                   >
-                    <Icon name="ios-close" size={30} color="#555" />
+                    <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                      <Icon name="md-close" size={30} color="#555" />
+                    </Text>
                   </TouchableOpacity>
                 </View>
                 <ScrollView>
@@ -653,7 +655,7 @@ const DamageCalc = props => {
               <View
                 style={{
                   flex: 1,
-                  padding: 10,
+                  // padding: 10,
                   paddingTop: Constants.statusBarHeight,
                 }}
               >

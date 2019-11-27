@@ -357,7 +357,7 @@ const ExpCalc = props => {
         <View
           style={{
             flex: 1,
-            padding: 10,
+            // padding: 10,
             paddingTop: Constants.statusBarHeight,
           }}
         >
@@ -370,14 +370,7 @@ const ExpCalc = props => {
               borderBottomWidth: 2,
             }}
           >
-            <TouchableOpacity
-              style={styles.btnMenu}
-              onPress={() => setPenaltyTableVisible(false)}
-            >
-              <Text style={{ fontSize: 18, fontWeight: "600" }}>
-                <Icon name="md-close" size={30} color="#555" />
-              </Text>
-            </TouchableOpacity>
+            <View style={{ width: 50 }} />
             <Text
               style={{
                 textAlign: "center",
@@ -387,10 +380,17 @@ const ExpCalc = props => {
             >
               경험치 패널티 표
             </Text>
-            <View style={{ width: 50 }} />
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setPenaltyTableVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
           </View>
-          <ScrollView>
-            <View style={[styles.penaltyTable, { marginTop: 10 }]}>
+          <ScrollView style={{ padding: 10 }}>
+            <View style={styles.penaltyTable}>
               <View style={[styles.penaltyTableHeader, { flex: 1 }]}>
                 <Text>레벨링 지역</Text>
               </View>

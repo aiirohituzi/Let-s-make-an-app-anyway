@@ -190,14 +190,7 @@ const AgiCalc = props => {
               borderBottomWidth: 2,
             }}
           >
-            <TouchableOpacity
-              style={styles.btnMenu}
-              onPress={() => setAgiFrameVisible(false)}
-            >
-              <Text style={{ fontSize: 18, fontWeight: "600" }}>
-                <Icon name="md-close" size={30} color="#555" />
-              </Text>
-            </TouchableOpacity>
+            <View style={{ width: 50 }} />
             <Text
               style={{
                 textAlign: "center",
@@ -207,10 +200,17 @@ const AgiCalc = props => {
             >
               사속 프레임 표
             </Text>
-            <View style={{ width: 50 }} />
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setAgiFrameVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
           </View>
           <ScrollView indicatorStyle="black" style={{ padding: 10 }}>
-            <View style={[styles.agiFrameTable]}>
+            <View style={styles.agiFrameTable}>
               <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
                 <Text>사속</Text>
               </View>

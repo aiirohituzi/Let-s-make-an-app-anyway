@@ -137,7 +137,7 @@ const SimCalc = props => {
         <View
           style={{
             flex: 1,
-            padding: 10,
+            // padding: 10,
             paddingTop: Constants.statusBarHeight,
           }}
         >
@@ -150,14 +150,7 @@ const SimCalc = props => {
               borderBottomWidth: 2,
             }}
           >
-            <TouchableOpacity
-              style={styles.btnMenu}
-              onPress={() => setDataTableVisible(false)}
-            >
-              <Text style={{ fontSize: 18, fontWeight: "600" }}>
-                <Icon name="md-close" size={30} color="#555" />
-              </Text>
-            </TouchableOpacity>
+            <View style={{ width: 50 }} />
             <Text
               style={{
                 textAlign: "center",
@@ -167,10 +160,17 @@ const SimCalc = props => {
             >
               각 레벨별 스킬칩 요구량
             </Text>
-            <View style={{ width: 50 }} />
+            <TouchableOpacity
+              style={styles.btnMenu}
+              onPress={() => setDataTableVisible(false)}
+            >
+              <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                <Icon name="md-close" size={30} color="#555" />
+              </Text>
+            </TouchableOpacity>
           </View>
-          <ScrollView>
-            <View style={[styles.dataTable, { marginTop: 10 }]}>
+          <ScrollView style={{ padding: 10 }}>
+            <View style={styles.dataTable}>
               <View style={[styles.dataTableHeader, { flex: 1 }]}>
                 <Text>연구 레벨</Text>
               </View>
