@@ -5,10 +5,7 @@ import AgiCalc from "./src/AgiCalc";
 import GemsCalc from "./src/GemsCalc";
 import SimCalc from "./src/SimCalc";
 import ExpCalc from "./src/ExpCalc";
-// import Screen3 from './components/screen3';
-// import Screen1 from './components/screen4';
-// import Screen2 from './components/screen5';
-// import Screen3 from './components/screen5';
+import OperationalEffectivenessCalc from "./src/OperationalEffectivenessCalc";
 
 import { createAppContainer } from "react-navigation";
 // import {createStackNavigator} from 'react-navigation-stack';
@@ -46,12 +43,18 @@ const MyDrawerNavigator = createDrawerNavigator(
         drawerLabel: "경험치 계산기",
       },
     },
+    OperationalEffectivenessCalc: {
+      screen: OperationalEffectivenessCalc,
+      navigationOptions: {
+        drawerLabel: "작전능력 계산기",
+      },
+    },
   },
   {
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "ExpCalc",
+    initialRouteName: "OperationalEffectivenessCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },
