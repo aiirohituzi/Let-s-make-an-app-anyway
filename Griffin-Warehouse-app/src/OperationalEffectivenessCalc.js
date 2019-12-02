@@ -83,495 +83,499 @@ const OperationalEffectivenessCalc = props => {
               </Text>
             </TouchableOpacity>
           </View>
-          <ScrollView indicatorStyle="black" style={{ padding: 10 }}>
-            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-              <Text style={styles.baseLabelsAlignCenter}>필요 사용량 입력</Text>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>편제 수</Text>
+          <ScrollView indicatorStyle="black">
+            <View style={{ padding: 10 }}>
+              <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+                <Text style={styles.baseLabelsAlignCenter}>
+                  필요 사용량 입력
+                </Text>
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => setNeedBasicData(text)}
-                // value={needBasicData}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>장탄 수</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>편제 수</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => setNeedBasicData(text)}
+                  // value={needBasicData}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>화력</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>장탄 수</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>관통</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>화력</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>장갑</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>관통</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>치명률</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>장갑</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>치명상</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>치명률</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>사속</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>치명상</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>명중</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>사속</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>체력</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>명중</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>회피</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>체력</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>등급(별 수)</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>회피</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>스킬 1레벨</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>등급(별 수)</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRow}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderRightWidth: 0,
-                    borderBottomLeftRadius: 5,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>스킬2 레벨</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>스킬 1레벨</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
+              <View style={styles.flexRow}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderRightWidth: 0,
+                      borderBottomLeftRadius: 5,
+                    },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>스킬2 레벨</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
+              </View>
 
-            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-              <Text style={styles.baseLabelsAlignCenter}>
-                인형이 받는 진형버프
-              </Text>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>화력</Text>
+              <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+                <Text style={styles.baseLabelsAlignCenter}>
+                  인형이 받는 진형버프
+                </Text>
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>장갑</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>화력</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>치명률</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>장갑</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>사속</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>치명률</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>명중</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>사속</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.flexRow}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderRightWidth: 0,
-                    borderBottomLeftRadius: 5,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>회피</Text>
+              <View style={styles.flexRowNoMargin}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>명중</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
               </View>
-              <TextInput
-                style={[
-                  styles.inputs,
-                  { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
-                ]}
-                // onChangeText={text => set(text)}
-                // value={}
-                keyboardType="numeric"
-              />
+              <View style={styles.flexRow}>
+                <View
+                  style={[
+                    styles.baseLabelsView,
+                    {
+                      flex: 1,
+                      borderTopWidth: 0,
+                      borderRightWidth: 0,
+                      borderBottomLeftRadius: 5,
+                    },
+                  ]}
+                >
+                  <Text style={{ textAlign: "center" }}>회피</Text>
+                </View>
+                <TextInput
+                  style={[
+                    styles.inputs,
+                    { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
+                  ]}
+                  // onChangeText={text => set(text)}
+                  // value={}
+                  keyboardType="numeric"
+                />
+              </View>
             </View>
           </ScrollView>
         </View>

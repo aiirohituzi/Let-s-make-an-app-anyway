@@ -209,22 +209,23 @@ const AgiCalc = props => {
               </Text>
             </TouchableOpacity>
           </View>
-          <ScrollView indicatorStyle="black" style={{ padding: 10 }}>
-            <View style={styles.agiFrameTable}>
-              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
-                <Text>사속</Text>
+          <ScrollView indicatorStyle="black">
+            <View style={{ padding: 10 }}>
+              <View style={styles.agiFrameTable}>
+                <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                  <Text>사속</Text>
+                </View>
+                <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                  <Text>공격당 프레임</Text>
+                </View>
+                <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                  <Text>사속</Text>
+                </View>
+                <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
+                  <Text>공격당 프레임</Text>
+                </View>
               </View>
-              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
-                <Text>공격당 프레임</Text>
-              </View>
-              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
-                <Text>사속</Text>
-              </View>
-              <View style={[styles.agiFrameTableHeader, { flex: 1 }]}>
-                <Text>공격당 프레임</Text>
-              </View>
-            </View>
-            {/* {AGIFrameTable.map((item, index) => (
+              {/* {AGIFrameTable.map((item, index) => (
               <View style={styles.agiFrameTable}>
                 <View style={[styles.agiFrameTableBody, { flex: 1 }]}>
                   <Text>{item.agi}</Text>
@@ -240,7 +241,8 @@ const AgiCalc = props => {
                 </View>
               </View>
             ))} */}
-            {tableInstance}
+              {tableInstance}
+            </View>
           </ScrollView>
         </View>
       </Modal>
