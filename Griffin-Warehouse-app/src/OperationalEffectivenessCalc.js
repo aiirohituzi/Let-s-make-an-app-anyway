@@ -25,8 +25,31 @@ import {
 
 const OperationalEffectivenessCalc = props => {
   const [modalVisible, setModalVisible] = useState(true);
+  const [selected, setSelected] = useState(0);
+  const [tdollStat1, setTdollStat1] = useState([]);
+  const [tdollStat2, setTdollStat2] = useState([]);
+  const [tdollStat3, setTdollStat3] = useState([]);
+  const [tdollStat4, setTdollStat4] = useState([]);
+  const [tdollStat5, setTdollStat5] = useState([]);
 
-  useEffect(() => {});
+  const tdollStats = [
+    tdollStat1,
+    tdollStat2,
+    tdollStat3,
+    tdollStat4,
+    tdollStat5,
+  ];
+  const setTdollStats = [
+    setTdollStat1,
+    setTdollStat2,
+    setTdollStat3,
+    setTdollStat4,
+    setTdollStat5,
+  ];
+
+  useEffect(() => {
+    console.log(tdollStats);
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -72,7 +95,7 @@ const OperationalEffectivenessCalc = props => {
                 fontSize: 20,
               }}
             >
-              사속 프레임 표
+              인형 {selected + 1} 정보 입력
             </Text>
             <TouchableOpacity
               style={styles.btnMenu}
@@ -109,8 +132,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => setNeedBasicData(text)}
-                  // value={needBasicData}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      link: text,
+                    })
+                  }
+                  value={tdollStats[selected].link}
                   keyboardType="numeric"
                 />
               </View>
