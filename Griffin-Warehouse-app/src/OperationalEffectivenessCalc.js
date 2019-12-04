@@ -209,8 +209,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      bullet: text,
+                    })
+                  }
+                  value={tdollStats[selected].bullet}
                   keyboardType="numeric"
                 />
               </View>
@@ -233,8 +238,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      str: text,
+                    })
+                  }
+                  value={tdollStats[selected].str}
                   keyboardType="numeric"
                 />
               </View>
@@ -257,8 +267,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      armorPenetration: text,
+                    })
+                  }
+                  value={tdollStats[selected].armorPenetration}
                   keyboardType="numeric"
                 />
               </View>
@@ -281,8 +296,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      armor: text,
+                    })
+                  }
+                  value={tdollStats[selected].armor}
                   keyboardType="numeric"
                 />
               </View>
@@ -305,8 +325,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      criticalRate: text,
+                    })
+                  }
+                  value={tdollStats[selected].criticalRate}
                   keyboardType="numeric"
                 />
               </View>
@@ -329,8 +354,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      criticalDamageRate: text,
+                    })
+                  }
+                  value={tdollStats[selected].criticalDamageRate}
                   keyboardType="numeric"
                 />
               </View>
@@ -353,8 +383,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      agi: text,
+                    })
+                  }
+                  value={tdollStats[selected].agi}
                   keyboardType="numeric"
                 />
               </View>
@@ -377,8 +412,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      dex: text,
+                    })
+                  }
+                  value={tdollStats[selected].dex}
                   keyboardType="numeric"
                 />
               </View>
@@ -401,8 +441,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      hp: text,
+                    })
+                  }
+                  value={tdollStats[selected].hp}
                   keyboardType="numeric"
                 />
               </View>
@@ -425,8 +470,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      agl: text,
+                    })
+                  }
+                  value={tdollStats[selected].agl}
                   keyboardType="numeric"
                 />
               </View>
@@ -449,8 +499,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      rating: text,
+                    })
+                  }
+                  value={tdollStats[selected].rating}
                   keyboardType="numeric"
                 />
               </View>
@@ -473,8 +528,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      skill1Lv: text,
+                    })
+                  }
+                  value={tdollStats[selected].skill1Lv}
                   keyboardType="numeric"
                 />
               </View>
@@ -497,8 +557,13 @@ const OperationalEffectivenessCalc = props => {
                     styles.inputs,
                     { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      skill2Lv: text,
+                    })
+                  }
+                  value={tdollStats[selected].skill2Lv}
                   keyboardType="numeric"
                 />
               </View>
@@ -527,8 +592,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      strBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].strBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -551,8 +621,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      armorBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].armorBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -575,8 +650,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      criticalRateBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].criticalRateBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -599,8 +679,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      agiBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].agiBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -623,8 +708,13 @@ const OperationalEffectivenessCalc = props => {
                       borderBottomRightRadius: 0,
                     },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      dexBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].dexBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -647,8 +737,13 @@ const OperationalEffectivenessCalc = props => {
                     styles.inputs,
                     { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
                   ]}
-                  // onChangeText={text => set(text)}
-                  // value={}
+                  onChangeText={text =>
+                    setTdollStats[selected]({
+                      ...tdollStats[selected],
+                      aglBuff: text,
+                    })
+                  }
+                  value={tdollStats[selected].aglBuff}
                   keyboardType="numeric"
                 />
               </View>
@@ -735,6 +830,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomColor: BORDER_SHADOW,
     borderRightColor: BORDER_SHADOW,
+    marginBottom: 5,
   },
 });
 
