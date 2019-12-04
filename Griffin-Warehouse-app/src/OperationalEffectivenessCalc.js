@@ -10,6 +10,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Modal,
+  TouchableHighlight,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -24,7 +25,7 @@ import {
 } from "./style/color";
 
 const OperationalEffectivenessCalc = props => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const [tdollStat1, setTdollStat1] = useState([]);
   const [tdollStat2, setTdollStat2] = useState([]);
@@ -51,6 +52,11 @@ const OperationalEffectivenessCalc = props => {
     console.log(tdollStats);
   });
 
+  const modalOpen = select => {
+    setSelected(select);
+    setModalVisible(true);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.navbar}>
@@ -69,6 +75,48 @@ const OperationalEffectivenessCalc = props => {
         </View>
         <View style={{ width: 50 }} />
       </View>
+
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+        <ScrollView>
+          <View style={{ padding: "5%" }}>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => modalOpen(0)}
+            >
+              <Text style={{ textAlign: "center" }}>인형1 정보입력</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => modalOpen(1)}
+            >
+              <Text style={{ textAlign: "center" }}>인형2 정보입력</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => modalOpen(2)}
+            >
+              <Text style={{ textAlign: "center" }}>인형3 정보입력</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => modalOpen(3)}
+            >
+              <Text style={{ textAlign: "center" }}>인형4 정보입력</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => modalOpen(4)}
+            >
+              <Text style={{ textAlign: "center" }}>인형5 정보입력</Text>
+            </TouchableHighlight>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
 
       <Modal visible={modalVisible} animationType="slide">
         <View
@@ -608,12 +656,6 @@ const OperationalEffectivenessCalc = props => {
           </ScrollView>
         </View>
       </Modal>
-
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
-        <ScrollView>
-          <View style={{ padding: "5%" }}></View>
-        </ScrollView>
-      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -679,6 +721,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
+  },
+
+  btn: {
+    flex: 1,
+    justifyContent: "center",
+    height: 40,
+    borderWidth: 1,
+    borderColor: BORDER_COLOR,
+    borderRadius: 5,
+    backgroundColor: SWITCH_ACTIVE,
+    borderBottomWidth: 1.5,
+    borderRightWidth: 1,
+    borderBottomColor: BORDER_SHADOW,
+    borderRightColor: BORDER_SHADOW,
   },
 });
 
