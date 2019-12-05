@@ -50,7 +50,7 @@ const OperationalEffectivenessCalc = props => {
 
   useEffect(() => {
     console.log(tdollStats);
-  });
+  }, [tdollStats]);
 
   const modalOpen = select => {
     setSelected(select);
@@ -114,6 +114,162 @@ const OperationalEffectivenessCalc = props => {
             >
               <Text style={{ textAlign: "center" }}>인형5 정보입력</Text>
             </TouchableHighlight>
+            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+              <Text style={styles.baseLabelsAlignCenter}>필요 사용량 입력</Text>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>인형1 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  {tdollStats[0].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>인형2 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  {tdollStats[1].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>인형3 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  {tdollStats[2].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>인형4 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  {tdollStats[3].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>인형5 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>
+                  {tdollStats[4].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.flexRowNoMargin}>
+              <View
+                style={[
+                  styles.baseLabelsView,
+                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                ]}
+              >
+                <Text style={{ textAlign: "center" }}>제대 작전능력</Text>
+              </View>
+              <View
+                style={[
+                  styles.resultLabelsView,
+                  {
+                    flex: 1,
+                    borderTopWidth: 0,
+                    borderBottomRightRadius: 5,
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: "right" }}>
+                  {tdollStats[0].operationalEffectiveness +
+                    tdollStats[1].operationalEffectiveness +
+                    tdollStats[2].operationalEffectiveness +
+                    tdollStats[3].operationalEffectiveness +
+                    tdollStats[4].operationalEffectiveness}
+                </Text>
+              </View>
+            </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -816,6 +972,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
+  },
+  resultLabelsView: {
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    backgroundColor: OUTPUT_LABEL,
+    alignItems: "stretch",
+    justifyContent: "center",
   },
 
   btn: {
