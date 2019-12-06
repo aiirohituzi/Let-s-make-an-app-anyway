@@ -27,11 +27,21 @@ import {
 const OperationalEffectivenessCalc = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selected, setSelected] = useState(0);
-  const [tdollStat1, setTdollStat1] = useState([]);
-  const [tdollStat2, setTdollStat2] = useState([]);
-  const [tdollStat3, setTdollStat3] = useState([]);
-  const [tdollStat4, setTdollStat4] = useState([]);
-  const [tdollStat5, setTdollStat5] = useState([]);
+  const [tdollStat1, setTdollStat1] = useState({
+    operationalEffectiveness: 0,
+  });
+  const [tdollStat2, setTdollStat2] = useState({
+    operationalEffectiveness: 0,
+  });
+  const [tdollStat3, setTdollStat3] = useState({
+    operationalEffectiveness: 0,
+  });
+  const [tdollStat4, setTdollStat4] = useState({
+    operationalEffectiveness: 0,
+  });
+  const [tdollStat5, setTdollStat5] = useState({
+    operationalEffectiveness: 0,
+  });
 
   const tdollStats = [
     tdollStat1,
@@ -49,7 +59,56 @@ const OperationalEffectivenessCalc = props => {
   ];
 
   useEffect(() => {
-    console.log(tdollStats);
+    // console.log(tdollStats);
+
+    let attack = 0;
+    let defense = 0;
+    let skill = 0;
+
+    for (let i = 0; i < 5; i++) {
+      let armor = Math.ceil(
+        parseInt(tdollStats[i].armor ? tdollStats[i].armor : 0) *
+          (1 +
+            parseInt(tdollStats[i].armorBuff ? tdollStats[i].armorBuff : 0) /
+              100),
+      );
+      let armorCoefficient = 1;
+      if (armor < 75) {
+        armorCoefficient = 75 - armor;
+      }
+
+      let str = Math.ceil(
+        parseInt(tdollStats[i].str ? tdollStats[i].str : 0) *
+          (1 +
+            parseInt(tdollStats[i].strBuff ? tdollStats[i].strBuff : 0) / 100),
+      );
+      let criticalRate = Math.ceil(
+        parseInt(tdollStats[i].criticalRate ? tdollStats[i].criticalRate : 0) *
+          (1 +
+            parseInt(
+              tdollStats[i].criticalRateBuff
+                ? tdollStats[i].criticalRateBuff
+                : 0,
+            ) /
+              100),
+      );
+      let agi = Math.ceil(
+        parseInt(tdollStats[i].agi ? tdollStats[i].agi : 0) *
+          (1 +
+            parseInt(tdollStats[i].agiBuff ? tdollStats[i].agiBuff : 0) / 100),
+      );
+      let dex = Math.ceil(
+        parseInt(tdollStats[i].dex ? tdollStats[i].dex : 0) *
+          (1 +
+            parseInt(tdollStats[i].dexBuff ? tdollStats[i].dexBuff : 0) / 100),
+      );
+      let agl = Math.ceil(
+        parseInt(tdollStats[i].agl ? tdollStats[i].agl : 0) *
+          (1 +
+            parseInt(tdollStats[i].aglBuff ? tdollStats[i].aglBuff : 0) / 100),
+      );
+      console.log(i, armor, str, criticalRate, agi, dex, agl);
+    }
   }, [tdollStats]);
 
   const modalOpen = select => {
@@ -261,7 +320,7 @@ const OperationalEffectivenessCalc = props => {
                   },
                 ]}
               >
-                <Text style={{ textAlign: "right" }}>
+                <Text style={{ textAlign: "center" }}>
                   {tdollStats[0].operationalEffectiveness +
                     tdollStats[1].operationalEffectiveness +
                     tdollStats[2].operationalEffectiveness +
