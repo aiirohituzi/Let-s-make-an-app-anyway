@@ -426,7 +426,6 @@ const OperationalEffectivenessCalc = props => {
                       marginTop: -30,
                     }}
                     onValueChange={(itemValue, itemIndex) => {
-                      console.log(tdollStats[selected].type);
                       setTdollStats[selected]({
                         ...tdollStats[selected],
                         type: itemValue,
@@ -446,9 +445,21 @@ const OperationalEffectivenessCalc = props => {
           ) : null}
           <ScrollView indicatorStyle="black">
             <View style={{ padding: 10 }}>
-              <TouchableOpacity onPress={() => setPickerVisible(true)}>
-                <Text>피커 열기</Text>
-              </TouchableOpacity>
+              <View style={styles.flexRow}>
+                <View style={[styles.inputLabelsView, { flex: 1 }]}>
+                  <Text style={{ textAlign: "center" }}>병종 선택</Text>
+                </View>
+                <TouchableHighlight
+                  underlayColor={OUTPUT_LABEL}
+                  style={[styles.selectsView, { flex: 1 }]}
+                  onPress={() => setPickerVisible(true)}
+                >
+                  <Text style={{ textAlign: "right" }}>
+                    {tdollStats[selected].type} ▼
+                  </Text>
+                </TouchableHighlight>
+              </View>
+
               <View style={[styles.baseLabelsView, styles.radiusTitle]}>
                 <Text style={styles.baseLabelsAlignCenter}>
                   편성창에서 장비표시를 눌렀을 때 보이는 스탯 입력
@@ -1135,6 +1146,35 @@ const styles = StyleSheet.create({
     borderBottomColor: BORDER_SHADOW,
     borderRightColor: BORDER_SHADOW,
     marginBottom: 5,
+  },
+
+  selectsView: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+
+  inputLabelsView: {
+    // flex: 3,
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    backgroundColor: ADDON_LABEL,
+    alignItems: "stretch",
+    justifyContent: "center",
   },
 });
 
