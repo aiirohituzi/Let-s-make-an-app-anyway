@@ -30,18 +30,23 @@ const OperationalEffectivenessCalc = props => {
   const [pickerVisible, setPickerVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const [tdollStat1, setTdollStat1] = useState({
+    type: "MG",
     operationalEffectiveness: 0,
   });
   const [tdollStat2, setTdollStat2] = useState({
+    type: "MG",
     operationalEffectiveness: 0,
   });
   const [tdollStat3, setTdollStat3] = useState({
+    type: "MG",
     operationalEffectiveness: 0,
   });
   const [tdollStat4, setTdollStat4] = useState({
+    type: "MG",
     operationalEffectiveness: 0,
   });
   const [tdollStat5, setTdollStat5] = useState({
+    type: "MG",
     operationalEffectiveness: 0,
   });
 
@@ -61,7 +66,7 @@ const OperationalEffectivenessCalc = props => {
   ];
 
   useEffect(() => {
-    // console.log(tdollStats);
+    console.log(tdollStats);
 
     let attack = 0;
     let defense = 0;
@@ -390,7 +395,7 @@ const OperationalEffectivenessCalc = props => {
                 <View
                   style={{
                     flexDirection: "row",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-end",
                     // height: 50,
                     backgroundColor: "#ddd",
                     borderBottomWidth: 0.2,
@@ -403,15 +408,7 @@ const OperationalEffectivenessCalc = props => {
                     }}
                     onPress={() => setPickerVisible(false)}
                   >
-                    <Text style={{ fontSize: 20, color: "#409BFD" }}>취소</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{
-                      justifyContent: "center",
-                      padding: 10,
-                    }}
-                  >
-                    <Text style={{ fontSize: 20, color: "#409BFD" }}>확인</Text>
+                    <Text style={{ fontSize: 20, color: "#409BFD" }}>닫기</Text>
                   </TouchableOpacity>
                 </View>
                 <View
@@ -422,15 +419,22 @@ const OperationalEffectivenessCalc = props => {
                   }}
                 >
                   <Picker
-                    selectedValue={"MG"}
+                    selectedValue={tdollStats[selected].type}
                     style={{
                       flex: 1,
                       backgroundColor: "#ddd",
                       marginTop: -30,
                     }}
+                    onValueChange={(itemValue, itemIndex) => {
+                      console.log(tdollStats[selected].type);
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        type: itemValue,
+                      });
+                    }}
                   >
                     <Picker.Item label="MG" value="MG" />
-                    <Picker.Item label="SG" value="SMG" />
+                    <Picker.Item label="SG" value="SG" />
                     <Picker.Item
                       label="SMG, AR, RF, HG"
                       value="SMG, AR, RF, HG"
