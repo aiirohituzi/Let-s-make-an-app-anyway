@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   Modal,
   TouchableHighlight,
+  Picker,
 } from "react-native";
 import Constants from "expo-constants";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -26,6 +27,7 @@ import {
 
 const OperationalEffectivenessCalc = props => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [pickerVisible, setPickerVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const [tdollStat1, setTdollStat1] = useState({
     operationalEffectiveness: 0,
@@ -369,11 +371,83 @@ const OperationalEffectivenessCalc = props => {
               </Text>
             </TouchableOpacity>
           </View>
+          {pickerVisible ? (
+            <View
+              style={{
+                position: "absolute",
+                zIndex: 1,
+                height: Dimensions.get("window").height,
+                width: Dimensions.get("window").width,
+                backgroundColor: "#00000080",
+                flexDirection: "column-reverse",
+              }}
+            >
+              <View
+                style={{
+                  height: 200,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // height: 50,
+                    backgroundColor: "#ddd",
+                    borderBottomWidth: 0.2,
+                  }}
+                >
+                  <TouchableOpacity
+                    style={{
+                      justifyContent: "center",
+                      padding: 10,
+                    }}
+                    onPress={() => setPickerVisible(false)}
+                  >
+                    <Text style={{ fontSize: 20, color: "#409BFD" }}>취소</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      justifyContent: "center",
+                      padding: 10,
+                    }}
+                  >
+                    <Text style={{ fontSize: 20, color: "#409BFD" }}>확인</Text>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    backgroundColor: "#ddd",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Picker
+                    selectedValue={"MG"}
+                    style={{
+                      flex: 1,
+                      backgroundColor: "#ddd",
+                      marginTop: -30,
+                    }}
+                  >
+                    <Picker.Item label="MG" value="MG" />
+                    <Picker.Item label="SG" value="SMG" />
+                    <Picker.Item
+                      label="SMG, AR, RF, HG"
+                      value="SMG, AR, RF, HG"
+                    />
+                  </Picker>
+                </View>
+              </View>
+            </View>
+          ) : null}
           <ScrollView indicatorStyle="black">
             <View style={{ padding: 10 }}>
+              <TouchableOpacity onPress={() => setPickerVisible(true)}>
+                <Text>피커 열기</Text>
+              </TouchableOpacity>
               <View style={[styles.baseLabelsView, styles.radiusTitle]}>
                 <Text style={styles.baseLabelsAlignCenter}>
-                  필요 사용량 입력
+                  편성창에서 장비표시를 눌렀을 때 보이는 스탯 입력
                 </Text>
               </View>
               <View style={styles.flexRowNoMargin}>
