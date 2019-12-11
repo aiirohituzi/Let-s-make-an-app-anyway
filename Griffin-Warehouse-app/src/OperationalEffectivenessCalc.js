@@ -49,6 +49,7 @@ const OperationalEffectivenessCalc = props => {
     type: "MG",
     operationalEffectiveness: 0,
   });
+  const tdollType = ["MG", "SG", "SMG, AR, RF, HG"];
 
   const tdollStats = [
     tdollStat1,
@@ -65,7 +66,7 @@ const OperationalEffectivenessCalc = props => {
     setTdollStat5,
   ];
 
-  useEffect(() => {
+  const calcOE = () => {
     console.log(tdollStats);
 
     let attack = 0;
@@ -114,9 +115,90 @@ const OperationalEffectivenessCalc = props => {
           (1 +
             parseInt(tdollStats[i].aglBuff ? tdollStats[i].aglBuff : 0) / 100),
       );
-      console.log(i, armor, str, criticalRate, agi, dex, agl);
+      // console.log(i, armor, str, criticalRate, agi, dex, agl);
+
+      let link = tdollStats[i].link ? parseInt(tdollStats[i].link) : 0;
+      let bullet = tdollStats[i].bullet ? parseInt(tdollStats[i].bullet) : 0;
+      let armorPenetration = tdollStats[i].armorPenetration
+        ? parseInt(tdollStats[i].armorPenetration)
+        : 0;
+      let criticalDamageRate = tdollStats[i].criticalDamageRate
+        ? parseInt(tdollStats[i].criticalDamageRate)
+        : 0;
+      let hp = tdollStats[i].hp ? parseInt(tdollStats[i].hp) : 0;
+      let skill2Lv = tdollStats[i].skill2Lv
+        ? parseInt(tdollStats[i].skill2Lv)
+        : 0;
+      let rating = tdollStats[i].rating ? parseInt(tdollStats[i].rating) : 0;
+      let skill1Lv = tdollStats[i].skill1Lv
+        ? parseInt(tdollStats[i].skill1Lv)
+        : 0;
+
+      if (tdollStats[i].type === tdollType[0]) {
+        //MG
+        attack =
+          7 *
+          link *
+          ((((bullet *
+            (str + armorPenetration / 3) *
+            ((criticalRate / 100) * ((criticalDamageRate - 100) / 100) + 1)) /
+            (bullet / 3 + 4 + 200 / agi)) *
+            dex) /
+            (dex + 23) +
+            8);
+      } else if (tdollStats[i].type === tdollType[1]) {
+        //SG
+        attack =
+          6 *
+          link *
+          ((((3 *
+            bullet *
+            (str + armorPenetration / 3) *
+            ((criticalRate / 100) * ((criticalDamageRate - 100) / 100) + 1)) /
+            (1.5 + (bullet * 50) / agi + 0.5 * bullet)) *
+            dex) /
+            (dex + 23) +
+            8);
+      } else if (tdollStats[i].type === tdollType[2]) {
+        //AR, SMG, RF, HG
+        attack =
+          5 *
+          link *
+          (((((str + armorPenetration / 3) *
+            ((criticalRate / 100) * ((criticalDamageRate - 100) / 100) + 1) *
+            agi) /
+            50) *
+            dex) /
+            (dex + 23) +
+            8);
+      }
+
+      defense =
+        (((hp / link) * link * (35 + agl)) / 35) *
+        ((2.6 * 75) / armorCoefficient - 1.6);
+
+      if (skill2Lv > 0) {
+        skill =
+          link *
+          (0.8 + rating / 10) *
+          (35 + 5 * (skill1Lv - 1) + (3 + 2 / 3) * (skill2Lv - 1));
+      } else {
+        skill = link * (0.8 + rating / 10) * (35 + 5 * (skill1Lv - 1));
+      }
+
+      var operationalEffectiveness =
+        Math.ceil(attack) + Math.ceil(defense) + Math.ceil(skill);
+
+      if (isNaN(operationalEffectiveness)) {
+        operationalEffectiveness = 0;
+      }
+
+      setTdollStats[i]({
+        ...tdollStats[i],
+        operationalEffectiveness: operationalEffectiveness,
+      });
     }
-  }, [tdollStats]);
+  };
 
   const modalOpen = select => {
     setSelected(select);
@@ -145,6 +227,13 @@ const OperationalEffectivenessCalc = props => {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ScrollView>
           <View style={{ padding: "5%" }}>
+            <TouchableHighlight
+              style={styles.btn}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => calcOE()}
+            >
+              <Text style={{ textAlign: "center" }}>계산</Text>
+            </TouchableHighlight>
             <TouchableHighlight
               style={styles.btn}
               underlayColor={SWITCH_UNDERLAY}
