@@ -230,13 +230,6 @@ const OperationalEffectivenessCalc = props => {
             <TouchableHighlight
               style={styles.btn}
               underlayColor={SWITCH_UNDERLAY}
-              onPress={() => calcOE()}
-            >
-              <Text style={{ textAlign: "center" }}>계산</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
               onPress={() => modalOpen(0)}
             >
               <Text style={{ textAlign: "center" }}>인형1 정보입력</Text>
@@ -270,7 +263,9 @@ const OperationalEffectivenessCalc = props => {
               <Text style={{ textAlign: "center" }}>인형5 정보입력</Text>
             </TouchableHighlight>
             <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-              <Text style={styles.baseLabelsAlignCenter}>필요 사용량 입력</Text>
+              <Text style={styles.baseLabelsAlignCenter}>
+                작전능력 계산결과
+              </Text>
             </View>
             <View style={styles.flexRowNoMargin}>
               <View
@@ -425,6 +420,14 @@ const OperationalEffectivenessCalc = props => {
                 </Text>
               </View>
             </View>
+
+            <TouchableHighlight
+              style={[styles.btn, { marginTop: 20 }]}
+              underlayColor={SWITCH_UNDERLAY}
+              onPress={() => calcOE()}
+            >
+              <Text style={{ textAlign: "center" }}>계산</Text>
+            </TouchableHighlight>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
