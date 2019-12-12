@@ -224,928 +224,928 @@ const OperationalEffectivenessCalc = props => {
         <View style={{ width: 50 }} />
       </View>
 
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
-        <ScrollView>
-          <View style={{ padding: "5%" }}>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => modalOpen(0)}
+      <ScrollView>
+        <View style={{ padding: "5%" }}>
+          <TouchableHighlight
+            style={styles.btn}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => modalOpen(0)}
+          >
+            <Text style={{ textAlign: "center" }}>인형1 정보입력</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.btn}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => modalOpen(1)}
+          >
+            <Text style={{ textAlign: "center" }}>인형2 정보입력</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.btn}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => modalOpen(2)}
+          >
+            <Text style={{ textAlign: "center" }}>인형3 정보입력</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.btn}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => modalOpen(3)}
+          >
+            <Text style={{ textAlign: "center" }}>인형4 정보입력</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.btn}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => modalOpen(4)}
+          >
+            <Text style={{ textAlign: "center" }}>인형5 정보입력</Text>
+          </TouchableHighlight>
+          <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+            <Text style={styles.baseLabelsAlignCenter}>작전능력 계산결과</Text>
+          </View>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
             >
-              <Text style={{ textAlign: "center" }}>인형1 정보입력</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => modalOpen(1)}
+              <Text style={{ textAlign: "center" }}>인형1 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+              ]}
             >
-              <Text style={{ textAlign: "center" }}>인형2 정보입력</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => modalOpen(2)}
-            >
-              <Text style={{ textAlign: "center" }}>인형3 정보입력</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => modalOpen(3)}
-            >
-              <Text style={{ textAlign: "center" }}>인형4 정보입력</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.btn}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => modalOpen(4)}
-            >
-              <Text style={{ textAlign: "center" }}>인형5 정보입력</Text>
-            </TouchableHighlight>
-            <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-              <Text style={styles.baseLabelsAlignCenter}>
-                작전능력 계산결과
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[0].operationalEffectiveness}
               </Text>
             </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>인형1 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[0].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>인형2 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[1].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>인형3 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[2].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>인형4 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[3].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>인형5 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[4].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.flexRowNoMargin}>
-              <View
-                style={[
-                  styles.baseLabelsView,
-                  { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>제대 작전능력</Text>
-              </View>
-              <View
-                style={[
-                  styles.resultLabelsView,
-                  {
-                    flex: 1,
-                    borderTopWidth: 0,
-                    borderBottomRightRadius: 5,
-                  },
-                ]}
-              >
-                <Text style={{ textAlign: "center" }}>
-                  {tdollStats[0].operationalEffectiveness +
-                    tdollStats[1].operationalEffectiveness +
-                    tdollStats[2].operationalEffectiveness +
-                    tdollStats[3].operationalEffectiveness +
-                    tdollStats[4].operationalEffectiveness}
-                </Text>
-              </View>
-            </View>
-
-            <TouchableHighlight
-              style={[styles.btn, { marginTop: 20 }]}
-              underlayColor={SWITCH_UNDERLAY}
-              onPress={() => calcOE()}
-            >
-              <Text style={{ textAlign: "center" }}>계산</Text>
-            </TouchableHighlight>
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>인형2 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[1].operationalEffectiveness}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>인형3 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[2].operationalEffectiveness}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>인형4 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[3].operationalEffectiveness}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>인형5 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[4].operationalEffectiveness}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.flexRowNoMargin}>
+            <View
+              style={[
+                styles.baseLabelsView,
+                { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>제대 작전능력</Text>
+            </View>
+            <View
+              style={[
+                styles.resultLabelsView,
+                {
+                  flex: 1,
+                  borderTopWidth: 0,
+                  borderBottomRightRadius: 5,
+                },
+              ]}
+            >
+              <Text style={{ textAlign: "center" }}>
+                {tdollStats[0].operationalEffectiveness +
+                  tdollStats[1].operationalEffectiveness +
+                  tdollStats[2].operationalEffectiveness +
+                  tdollStats[3].operationalEffectiveness +
+                  tdollStats[4].operationalEffectiveness}
+              </Text>
+            </View>
+          </View>
+
+          <TouchableHighlight
+            style={[styles.btn, { marginTop: 20 }]}
+            underlayColor={SWITCH_UNDERLAY}
+            onPress={() => calcOE()}
+          >
+            <Text style={{ textAlign: "center" }}>계산</Text>
+          </TouchableHighlight>
+        </View>
+      </ScrollView>
 
       <Modal visible={modalVisible} animationType="slide">
-        <View
-          style={{
-            flex: 1,
-            // padding: 10,
-            paddingTop: Constants.statusBarHeight,
-          }}
-        >
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
           <View
             style={{
-              height: 60,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              borderBottomWidth: 2,
+              flex: 1,
+              // padding: 10,
+              paddingTop: Constants.statusBarHeight,
             }}
           >
-            <View style={{ width: 50 }} />
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "600",
-                fontSize: 20,
-              }}
-            >
-              인형 {selected + 1} 정보 입력
-            </Text>
-            <TouchableOpacity
-              style={styles.btnMenu}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={{ fontSize: 18, fontWeight: "600" }}>
-                <Icon name="md-close" size={30} color="#555" />
-              </Text>
-            </TouchableOpacity>
-          </View>
-          {pickerVisible ? (
             <View
               style={{
-                position: "absolute",
-                zIndex: 1,
-                height: Dimensions.get("window").height,
-                width: Dimensions.get("window").width,
-                backgroundColor: "#00000080",
-                flexDirection: "column-reverse",
+                height: 60,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                borderBottomWidth: 2,
               }}
             >
+              <View style={{ width: 50 }} />
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "600",
+                  fontSize: 20,
+                }}
+              >
+                인형 {selected + 1} 정보 입력
+              </Text>
+              <TouchableOpacity
+                style={styles.btnMenu}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={{ fontSize: 18, fontWeight: "600" }}>
+                  <Icon name="md-close" size={30} color="#555" />
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {pickerVisible ? (
               <View
                 style={{
-                  height: 200,
+                  position: "absolute",
+                  zIndex: 1,
+                  height: Dimensions.get("window").height,
+                  width: Dimensions.get("window").width,
+                  backgroundColor: "#00000080",
+                  flexDirection: "column-reverse",
                 }}
               >
                 <View
                   style={{
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    // height: 50,
-                    backgroundColor: "#ddd",
-                    borderBottomWidth: 0.2,
+                    height: 200,
                   }}
                 >
-                  <TouchableOpacity
+                  <View
                     style={{
-                      justifyContent: "center",
-                      padding: 10,
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      // height: 50,
+                      backgroundColor: "#ddd",
+                      borderBottomWidth: 0.2,
                     }}
-                    onPress={() => setPickerVisible(false)}
                   >
-                    <Text style={{ fontSize: 20, color: "#409BFD" }}>닫기</Text>
-                  </TouchableOpacity>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    backgroundColor: "#ddd",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Picker
-                    selectedValue={tdollStats[selected].type}
+                    <TouchableOpacity
+                      style={{
+                        justifyContent: "center",
+                        padding: 10,
+                      }}
+                      onPress={() => setPickerVisible(false)}
+                    >
+                      <Text style={{ fontSize: 20, color: "#409BFD" }}>
+                        닫기
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View
                     style={{
                       flex: 1,
                       backgroundColor: "#ddd",
-                      marginTop: -30,
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      setTdollStats[selected]({
-                        ...tdollStats[selected],
-                        type: itemValue,
-                      });
+                      overflow: "hidden",
                     }}
                   >
-                    <Picker.Item label="MG" value="MG" />
-                    <Picker.Item label="SG" value="SG" />
-                    <Picker.Item
-                      label="SMG, AR, RF, HG"
-                      value="SMG, AR, RF, HG"
-                    />
-                  </Picker>
+                    <Picker
+                      selectedValue={tdollStats[selected].type}
+                      style={{
+                        flex: 1,
+                        backgroundColor: "#ddd",
+                        marginTop: -30,
+                      }}
+                      onValueChange={(itemValue, itemIndex) => {
+                        setTdollStats[selected]({
+                          ...tdollStats[selected],
+                          type: itemValue,
+                        });
+                      }}
+                    >
+                      <Picker.Item label="MG" value="MG" />
+                      <Picker.Item label="SG" value="SG" />
+                      <Picker.Item
+                        label="SMG, AR, RF, HG"
+                        value="SMG, AR, RF, HG"
+                      />
+                    </Picker>
+                  </View>
                 </View>
               </View>
-            </View>
-          ) : null}
-          <ScrollView indicatorStyle="black">
-            <View style={{ padding: 10 }}>
-              <View style={styles.flexRow}>
-                <View style={[styles.inputLabelsView, { flex: 1 }]}>
-                  <Text style={{ textAlign: "center" }}>병종 선택</Text>
+            ) : null}
+            <ScrollView indicatorStyle="black">
+              <View style={{ padding: 10 }}>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 1 }]}>
+                    <Text style={{ textAlign: "center" }}>병종 선택</Text>
+                  </View>
+                  <TouchableHighlight
+                    underlayColor={OUTPUT_LABEL}
+                    style={[styles.selectsView, { flex: 1 }]}
+                    onPress={() => setPickerVisible(true)}
+                  >
+                    <Text style={{ textAlign: "right" }}>
+                      {tdollStats[selected].type} ▼
+                    </Text>
+                  </TouchableHighlight>
                 </View>
-                <TouchableHighlight
-                  underlayColor={OUTPUT_LABEL}
-                  style={[styles.selectsView, { flex: 1 }]}
-                  onPress={() => setPickerVisible(true)}
-                >
-                  <Text style={{ textAlign: "right" }}>
-                    {tdollStats[selected].type} ▼
+
+                <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+                  <Text style={styles.baseLabelsAlignCenter}>
+                    편성창에서 장비표시를 눌렀을 때 보이는 스탯 입력
                   </Text>
-                </TouchableHighlight>
-              </View>
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>편제 수</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        link: text,
+                      })
+                    }
+                    value={tdollStats[selected].link}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>장탄 수</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        bullet: text,
+                      })
+                    }
+                    value={tdollStats[selected].bullet}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>화력</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        str: text,
+                      })
+                    }
+                    value={tdollStats[selected].str}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>관통</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        armorPenetration: text,
+                      })
+                    }
+                    value={tdollStats[selected].armorPenetration}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>장갑</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        armor: text,
+                      })
+                    }
+                    value={tdollStats[selected].armor}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>치명률</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        criticalRate: text,
+                      })
+                    }
+                    value={tdollStats[selected].criticalRate}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>치명상</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        criticalDamageRate: text,
+                      })
+                    }
+                    value={tdollStats[selected].criticalDamageRate}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>사속</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        agi: text,
+                      })
+                    }
+                    value={tdollStats[selected].agi}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>명중</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        dex: text,
+                      })
+                    }
+                    value={tdollStats[selected].dex}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>체력</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        hp: text,
+                      })
+                    }
+                    value={tdollStats[selected].hp}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>회피</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        agl: text,
+                      })
+                    }
+                    value={tdollStats[selected].agl}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>등급(별 수)</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        rating: text,
+                      })
+                    }
+                    value={tdollStats[selected].rating}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>스킬 1레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        skill1Lv: text,
+                      })
+                    }
+                    value={tdollStats[selected].skill1Lv}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRow}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderRightWidth: 0,
+                        borderBottomLeftRadius: 5,
+                      },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>스킬2 레벨</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        skill2Lv: text,
+                      })
+                    }
+                    value={tdollStats[selected].skill2Lv}
+                    keyboardType="numeric"
+                  />
+                </View>
 
-              <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-                <Text style={styles.baseLabelsAlignCenter}>
-                  편성창에서 장비표시를 눌렀을 때 보이는 스탯 입력
-                </Text>
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>편제 수</Text>
+                <View style={[styles.baseLabelsView, styles.radiusTitle]}>
+                  <Text style={styles.baseLabelsAlignCenter}>
+                    인형이 받는 진형버프
+                  </Text>
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      link: text,
-                    })
-                  }
-                  value={tdollStats[selected].link}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>장탄 수</Text>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>화력</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        strBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].strBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      bullet: text,
-                    })
-                  }
-                  value={tdollStats[selected].bullet}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>화력</Text>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>장갑</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        armorBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].armorBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      str: text,
-                    })
-                  }
-                  value={tdollStats[selected].str}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>관통</Text>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>치명률</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        criticalRateBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].criticalRateBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      armorPenetration: text,
-                    })
-                  }
-                  value={tdollStats[selected].armorPenetration}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>장갑</Text>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>사속</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        agiBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].agiBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      armor: text,
-                    })
-                  }
-                  value={tdollStats[selected].armor}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>치명률</Text>
+                <View style={styles.flexRowNoMargin}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>명중</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        dexBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].dexBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      criticalRate: text,
-                    })
-                  }
-                  value={tdollStats[selected].criticalRate}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>치명상</Text>
+                <View style={styles.flexRow}>
+                  <View
+                    style={[
+                      styles.baseLabelsView,
+                      {
+                        flex: 1,
+                        borderTopWidth: 0,
+                        borderRightWidth: 0,
+                        borderBottomLeftRadius: 5,
+                      },
+                    ]}
+                  >
+                    <Text style={{ textAlign: "center" }}>회피</Text>
+                  </View>
+                  <TextInput
+                    style={[
+                      styles.inputs,
+                      { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
+                    ]}
+                    onChangeText={text =>
+                      setTdollStats[selected]({
+                        ...tdollStats[selected],
+                        aglBuff: text,
+                      })
+                    }
+                    value={tdollStats[selected].aglBuff}
+                    keyboardType="numeric"
+                  />
                 </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      criticalDamageRate: text,
-                    })
-                  }
-                  value={tdollStats[selected].criticalDamageRate}
-                  keyboardType="numeric"
-                />
               </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>사속</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      agi: text,
-                    })
-                  }
-                  value={tdollStats[selected].agi}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>명중</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      dex: text,
-                    })
-                  }
-                  value={tdollStats[selected].dex}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>체력</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      hp: text,
-                    })
-                  }
-                  value={tdollStats[selected].hp}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>회피</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      agl: text,
-                    })
-                  }
-                  value={tdollStats[selected].agl}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>등급(별 수)</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      rating: text,
-                    })
-                  }
-                  value={tdollStats[selected].rating}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>스킬 1레벨</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      skill1Lv: text,
-                    })
-                  }
-                  value={tdollStats[selected].skill1Lv}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRow}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderRightWidth: 0,
-                      borderBottomLeftRadius: 5,
-                    },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>스킬2 레벨</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      skill2Lv: text,
-                    })
-                  }
-                  value={tdollStats[selected].skill2Lv}
-                  keyboardType="numeric"
-                />
-              </View>
-
-              <View style={[styles.baseLabelsView, styles.radiusTitle]}>
-                <Text style={styles.baseLabelsAlignCenter}>
-                  인형이 받는 진형버프
-                </Text>
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>화력</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      strBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].strBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>장갑</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      armorBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].armorBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>치명률</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      criticalRateBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].criticalRateBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>사속</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      agiBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].agiBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRowNoMargin}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    { flex: 1, borderTopWidth: 0, borderRightWidth: 0 },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>명중</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      dexBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].dexBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-              <View style={styles.flexRow}>
-                <View
-                  style={[
-                    styles.baseLabelsView,
-                    {
-                      flex: 1,
-                      borderTopWidth: 0,
-                      borderRightWidth: 0,
-                      borderBottomLeftRadius: 5,
-                    },
-                  ]}
-                >
-                  <Text style={{ textAlign: "center" }}>회피</Text>
-                </View>
-                <TextInput
-                  style={[
-                    styles.inputs,
-                    { flex: 1, borderTopWidth: 0, borderTopRightRadius: 0 },
-                  ]}
-                  onChangeText={text =>
-                    setTdollStats[selected]({
-                      ...tdollStats[selected],
-                      aglBuff: text,
-                    })
-                  }
-                  value={tdollStats[selected].aglBuff}
-                  keyboardType="numeric"
-                />
-              </View>
-            </View>
-          </ScrollView>
-        </View>
+            </ScrollView>
+          </View>
+        </KeyboardAvoidingView>
       </Modal>
     </SafeAreaView>
   );
