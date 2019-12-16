@@ -25,6 +25,7 @@ import {
 
 const SimCalc = props => {
   const [dataTableVisible, setDataTableVisible] = useState(false);
+  const [inputDataModalVisible, setInputDataModalVisible] = useState(true);
 
   const [basicData, setBasicData] = useState("");
   const [intermediateData, setIntermediateData] = useState("");
@@ -313,6 +314,51 @@ const SimCalc = props => {
           </ScrollView>
         </View>
       </Modal>
+      {inputDataModalVisible ? (
+        <View
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            height: Dimensions.get("window").height,
+            width: Dimensions.get("window").width,
+            backgroundColor: "#00000080",
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={{
+              height: 200,
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: "#ddd",
+                overflow: "hidden",
+              }}
+            ></View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                // height: 50,
+                backgroundColor: "#ddd",
+                borderBottomWidth: 0.2,
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  justifyContent: "center",
+                  padding: 10,
+                }}
+                onPress={() => setPickerVisible(false)}
+              >
+                <Text style={{ fontSize: 20, color: "#409BFD" }}>닫기</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      ) : null}
 
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ScrollView>
