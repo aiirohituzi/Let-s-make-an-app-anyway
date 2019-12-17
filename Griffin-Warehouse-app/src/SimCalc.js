@@ -328,7 +328,7 @@ const SimCalc = props => {
         >
           <View
             style={{
-              height: 255,
+              height: 250,
             }}
           >
             <View
@@ -394,23 +394,33 @@ const SimCalc = props => {
                 </View>
               </View>
             </View>
-            <TouchableOpacity
-              underlayColor={SWITCH_UNDERLAY}
+            <View
               style={[
-                styles.btn,
                 {
                   width: Dimensions.get("window").width,
                   height: 50,
+                  backgroundColor: "#ddd",
                 },
               ]}
-              onPress={() => setInputDataModalVisible(false)}
             >
-              <Text
-                style={{ fontSize: 20, color: "#fff", textAlign: "center" }}
+              <TouchableOpacity
+                underlayColor={SWITCH_UNDERLAY}
+                style={[
+                  styles.btn,
+                  {
+                    width: "100%",
+                    height: "100%",
+                  },
+                ]}
+                onPress={() => setInputDataModalVisible(false)}
               >
-                닫기
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{ fontSize: 20, color: "#fff", textAlign: "center" }}
+                >
+                  닫기
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       ) : null}
@@ -919,7 +929,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1,
     borderColor: BORDER_COLOR,
-    borderRadius: 5,
     backgroundColor: SWITCH_ACTIVE,
     borderBottomWidth: 1.5,
     borderRightWidth: 1,
