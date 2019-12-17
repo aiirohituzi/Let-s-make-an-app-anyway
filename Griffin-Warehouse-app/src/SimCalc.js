@@ -25,7 +25,7 @@ import {
 
 const SimCalc = props => {
   const [dataTableVisible, setDataTableVisible] = useState(false);
-  const [inputDataModalVisible, setInputDataModalVisible] = useState(true);
+  const [inputDataModalVisible, setInputDataModalVisible] = useState(false);
 
   const [basicData, setBasicData] = useState("");
   const [intermediateData, setIntermediateData] = useState("");
@@ -44,9 +44,9 @@ const SimCalc = props => {
   const [needSimEnergy_sum, setNeedSimEnergy_sum] = useState(0);
   const [needSimPurchase, setNeedSimPurchase] = useState(0);
 
-  const [getBasicData, setGetBasicData] = useState(218);
-  const [getIntermediateData, setGetIntermediateData] = useState(98);
-  const [getAdvancedData, setGetAdvancedData] = useState(53);
+  const [getBasicData, setGetBasicData] = useState("218");
+  const [getIntermediateData, setGetIntermediateData] = useState("98");
+  const [getAdvancedData, setGetAdvancedData] = useState("53");
 
   useEffect(() => {
     if (
@@ -314,6 +314,7 @@ const SimCalc = props => {
           </ScrollView>
         </View>
       </Modal>
+
       {inputDataModalVisible ? (
         <View
           style={{
@@ -327,7 +328,7 @@ const SimCalc = props => {
         >
           <View
             style={{
-              height: 200,
+              height: 255,
             }}
           >
             <View
@@ -336,26 +337,80 @@ const SimCalc = props => {
                 backgroundColor: "#ddd",
                 overflow: "hidden",
               }}
-            ></View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                // height: 50,
-                backgroundColor: "#ddd",
-                borderBottomWidth: 0.2,
-              }}
             >
-              <TouchableOpacity
+              <View
                 style={{
+                  flexDirection: "row",
                   justifyContent: "center",
-                  padding: 10,
+                  alignItems: "center",
+                  height: 50,
+                  backgroundColor: "#ddd",
+                  borderBottomWidth: 0.2,
                 }}
-                onPress={() => setPickerVisible(false)}
               >
-                <Text style={{ fontSize: 20, color: "#409BFD" }}>닫기</Text>
-              </TouchableOpacity>
+                <Text style={{ fontSize: 20, textAlign: "center" }}>
+                  스킬칩 획득량 입력
+                </Text>
+              </View>
+              <View style={{ padding: 10 }}>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={{ textAlign: "center" }}>
+                      모의작전 1회당 초급 획득량
+                    </Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    onChangeText={text => setGetBasicData(text)}
+                    value={getBasicData}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={{ textAlign: "center" }}>
+                      모의작전 1회당 중급 획득량
+                    </Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    onChangeText={text => setGetIntermediateData(text)}
+                    value={getIntermediateData}
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.flexRow}>
+                  <View style={[styles.inputLabelsView, { flex: 3 }]}>
+                    <Text style={{ textAlign: "center" }}>
+                      모의작전 1회당 고급 획득량
+                    </Text>
+                  </View>
+                  <TextInput
+                    style={[styles.inputs, { flex: 2 }]}
+                    onChangeText={text => setGetAdvancedData(text)}
+                    value={getAdvancedData}
+                    keyboardType="numeric"
+                  />
+                </View>
+              </View>
             </View>
+            <TouchableOpacity
+              underlayColor={SWITCH_UNDERLAY}
+              style={[
+                styles.btn,
+                {
+                  width: Dimensions.get("window").width,
+                  height: 50,
+                },
+              ]}
+              onPress={() => setInputDataModalVisible(false)}
+            >
+              <Text
+                style={{ fontSize: 20, color: "#fff", textAlign: "center" }}
+              >
+                닫기
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       ) : null}
@@ -363,11 +418,25 @@ const SimCalc = props => {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ScrollView>
           <View style={{ padding: "5%" }}>
-            <View style={[styles.flexRow, { justifyContent: "center" }]}>
+            <View
+              style={[
+                styles.flexRow,
+                { justifyContent: "center", alignItems: "center" },
+              ]}
+            >
               <Text>
                 모의작전 1회당 스킬칩 획득량 / 초급:{getBasicData}, 중급:
                 {getIntermediateData}, 고급:{getAdvancedData}
               </Text>
+
+              <TouchableOpacity
+                style={{ marginLeft: 5 }}
+                onPress={() => setInputDataModalVisible(true)}
+              >
+                <Text style={{ fontWeight: "600" }}>
+                  <Icon name="md-settings" size={25} color="#555" />
+                </Text>
+              </TouchableOpacity>
             </View>
             <View style={[styles.baseLabelsView, styles.radiusTitle]}>
               <Text style={styles.baseLabelsAlignCenter}>
@@ -817,6 +886,46 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     borderWidth: 1,
     borderRadius: 5,
+  },
+
+  inputLabelsView: {
+    // flex: 3,
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    backgroundColor: ADDON_LABEL,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  inputs: {
+    // flex: 2,
+    textAlign: "right",
+    height: 40,
+    paddingRight: 5,
+    paddingLeft: 5,
+    borderColor: BORDER_COLOR,
+    borderWidth: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+
+  btn: {
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: BORDER_COLOR,
+    borderRadius: 5,
+    backgroundColor: SWITCH_ACTIVE,
+    borderBottomWidth: 1.5,
+    borderRightWidth: 1,
+    borderBottomColor: BORDER_SHADOW,
+    borderRightColor: BORDER_SHADOW,
+    marginBottom: 5,
   },
 });
 
