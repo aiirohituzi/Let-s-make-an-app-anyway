@@ -54,7 +54,7 @@ const MyDrawerNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: "#e91e63",
     },
-    initialRouteName: "OperationalEffectivenessCalc",
+    initialRouteName: "DamageCalc",
     hideStatusBar: true,
     statusBarAnimation: false,
   },

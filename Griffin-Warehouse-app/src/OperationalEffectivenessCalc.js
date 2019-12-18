@@ -67,7 +67,7 @@ const OperationalEffectivenessCalc = props => {
   ];
 
   const calcOE = () => {
-    console.log(tdollStats);
+    // console.log(tdollStats);
 
     let attack = 0;
     let defense = 0;
